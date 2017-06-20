@@ -9,8 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EinzelComponent implements OnInit {
   @Input() sportart: string;
   @Input() regeln: string;
-  @Input() klassen: String[] = ["FS151", "FI151", "FS161", "FV151"];
-  @Input() schueler: String[] = ["Mirco", "David", "Michi", "Jonas", "Maxi", "Maja"];
+  @Input() klassen: string[] = ["FS151", "FI151", "FS161", "FV151"];
+  @Input() schueler: string[] = ["Mirco", "David", "Michi", "Jonas", "Maxi", "Maja"];
   
   constructor() { }
 
