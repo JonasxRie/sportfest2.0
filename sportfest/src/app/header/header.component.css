@@ -1,5 +1,5 @@
 .header{
-  position: fixed;
+  position: relative;
   left:0;
   top: 0;
 }
@@ -13,9 +13,7 @@
 
 .header h1 {
   font-size: 3.5em;
-  left:200px;
-  top: 100px;
-  height: 100px;
+  height: 150px;
   vertical-align: center;
 }
 
