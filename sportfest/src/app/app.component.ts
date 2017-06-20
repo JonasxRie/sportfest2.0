@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   headerImage = '/assets/images/tribune2.png';
-  atiwImage = '/assets/images/ATIW-BK 2016.jpg';
+  atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
   year = '2017';
   asdf = 42;
