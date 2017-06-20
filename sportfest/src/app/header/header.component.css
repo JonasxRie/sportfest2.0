@@ -1,22 +1,26 @@
 .header{
-  position: relative;
+  position: fixed;
+  width: 500px;
   left:0;
   top: 0;
 }
 
 .header img {
+  vertical-align: middle;
   float: left;
   margin-left: 10px;
   width: 250px;
-  height: 150px;
+  height: 165px;
 }
 
+.header HeadText{
+
+}
 .header h1 {
+    vertical-align: middle;
   font-size: 3.5em;
-  height: 150px;
-  vertical-align: center;
-}
-
-.bgImage{
-  opacity: 0.5;
+  height: 165px;
+  margin:0;
+  padding: 0;
+  background-color: white;
 }
