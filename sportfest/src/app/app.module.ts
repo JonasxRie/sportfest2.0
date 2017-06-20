@@ -6,12 +6,14 @@ import { EinzelComponent } from './einzel/einzel.component';
 import { TeamComponent } from './team/team.component';
 import { SportfestService } from './sportfest.service';
 import { TechnischerService } from './technischer.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EinzelComponent,
-    TeamComponent
+    TeamComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule
