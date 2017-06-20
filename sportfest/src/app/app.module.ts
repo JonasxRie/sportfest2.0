@@ -9,10 +9,11 @@ import { TeamComponent } from './team/team.component';
 import { SportfestService } from './sportfest.service';
 import { TechnischerService } from './technischer.service';
 import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routConfig: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: AppComponent },
+    { path: 'home', component: DashboardComponent },
     { path: 'einzel', component: EinzelComponent },
     { path: 'team', component: TeamComponent }
 ];
@@ -22,11 +23,13 @@ const routConfig: Routes = [
     AppComponent,
     EinzelComponent,
     TeamComponent,
-    HeaderComponent
+    HeaderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routConfig)
+    RouterModule.forRoot(routConfig),
+    MaterialModule
   ],
   providers: [
     TechnischerService,
