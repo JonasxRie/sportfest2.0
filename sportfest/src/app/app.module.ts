@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
