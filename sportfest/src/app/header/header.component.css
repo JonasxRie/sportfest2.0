@@ -1,4 +1,5 @@
 .header{
+  font-family: Arial, Helvetica, sans-serif;
   position: fixed;
   left:0;
   top: 0;
@@ -13,8 +14,8 @@
 }
 
 .header h1 {
-  font-size: 3.5em;
-  line-height: 3em;
+  font-size: 45px;
+  line-height: 175px;
   height: 165px;
   width: 550px;
   margin: 0;
@@ -24,6 +25,20 @@
 }
 
 .header small{
+  font-size: 30px;
   color: #006EC7;
 }
 
+.header navbar{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.user{
+  color: darkgrey;
+}
+
+.fill-remaining-space {
+  /* this fills the remaining space, by using flexbox. 
+  / every toolbar row uses a flexbox row layout.*/
+  flex: 1 1 auto;
+}
