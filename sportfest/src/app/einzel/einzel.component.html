@@ -4,38 +4,21 @@
 <div class="panel panel-default" align="center">
   <div class="panel-body">
     <h3>Regeln</h3>
-    <p>{{regel}}</p>
+    <p>{{ regeln }}</p>
   </div>
 </div>
 
 <hr>
 
-<!--<div class="btn-group" role="group">
-  <!-- Klassenauswahl >
-  <button class="btn btn-default dropdown-toggle" type="button" id="ddKlasse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Klasse
-        <span class="caret"></span>
-      </button>
-  <ul class="dropdown-menu" aria-labelledby="ddKlasse">
-    <li *ngFor="let klasse of klassen"><a href="#">{{ klasse }}</a></li>
-    <li><a href="#">klasse1</a></li>
-  </ul>
-  <!-- Schülerauswahl >
-  <button class="btn btn-default dropdown-toggle" type="button" id="ddSchueler" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="true">
-        Schüler
-        <span class="caret"></span>
-      </button>
-  <ul class="dropdown-menu" aria-labelledby="ddSchueler">
-    <li *ngFor="let s of schueler"><a href="#">{{ s }}</a></li>
-  </ul>
-</div>-->
-
-<ul>
-  <li *ngFor="let klasse of klassen">
-    {{ klasse }}
-    <p *ngFor="let s of schueler">{{ s }}</p>
-    <hr>
-  </li>
-  
-</ul>
+<table class="table table-striped table-hover">
+   <thead>
+     <tr>
+      <th *ngFor="let klasse of klassen">{{ klasse }}</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+        <td *ngFor="let s of schueler">{{ s }}</td>
+     </tr>
+   </tbody>
+</table>
