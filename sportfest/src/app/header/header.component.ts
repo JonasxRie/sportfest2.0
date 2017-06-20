@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,9 +14,17 @@ export class HeaderComponent implements OnInit {
   year = '2017';
   username= 'uberadmin';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public navigateToEinzel() {
+    this.router.navigate(['/einzel']);
+  }
+
+  public navigateToTeam() {
+    this.router.navigate(['/team']);
   }
 
 }
