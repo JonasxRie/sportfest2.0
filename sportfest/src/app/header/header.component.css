@@ -1,0 +1,24 @@
+.header{
+  position: fixed;
+  left:0;
+  top: 0;
+}
+
+.header img {
+  float: left;
+  margin-left: 10px;
+  width: 250px;
+  height: 150px;
+}
+
+.header h1 {
+  font-size: 3.5em;
+  left:200px;
+  top: 100px;
+  height: 100px;
+  vertical-align: center;
+}
+
+.bgImage{
+  opacity: 0.5;
+}

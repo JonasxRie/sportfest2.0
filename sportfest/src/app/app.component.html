@@ -1,11 +1,5 @@
-<img height="200" width="100%" [src]="headerImage" alt="Bild konnte nicht geladen werden..." style="opacity: 0.5">
-<div class="header" style="position: fixed; left:0; top: 0;">
-  <br>
-  <a href="#" height="100px" width="200px"><img [src]="atiwImage" alt="Atiw Logo"></a>
-  <h1>
-    &nbsp;{{title}} <small>{{year}}</small>
-  </h1>
-</div>
+<app-header></app-header>
+<router-outlet></router-outlet>
 <br>
 <app-team></app-team>
 <app-einzel sportart="Hockey" regeln="Bitte Regelblatt beachten!"></app-einzel>
