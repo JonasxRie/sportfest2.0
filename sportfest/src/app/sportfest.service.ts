@@ -7,18 +7,160 @@ export class SportfestService {
 
   constructor(private techService: TechnischerService) { }
   
-  public usersLogin(username: string, password: string){
-    return this.techService.getRequest('/users/login?username=' + username + '&password' + password);
+  /**
+   * ***********************************************
+   * Test Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Test GET
+   */
+  public test(){
+    return this.techService.getRequest('/test');
+  }
+  public testpost(data: any){
+    return this.techService.postRequest('/data', data);
   }
   
-  public usersPrivileges(id: number){
-    return this.techService.getRequest('users/privileges/' + id);
+  
+  /**
+   * ***********************************************
+   * User Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Anmeldung
+   */
+  public userLogin(username: string, password: string){
+    return this.techService.getRequest('/user/login?username=' + username + '&password' + password);
   }
   
-  public disziplinen(id: number){
-    return this.techService.getRequest('/disziplinen/' + id);
+  /**
+   * Gibt die User Privilegien zurück
+   */
+  public userPrivileges(id: number){
+    return this.techService.getRequest('user/privileges/' + id);
   }
   
-  public 
-
+  /**
+   * Gibt den User zurück
+   */
+  public user(){
+    return this.techService.getRequest('/user');
+  }
+  
+  /**
+   * Ändert den User
+   */
+  public userAendern(user: any){
+    return this.techService.postRequest('/user', user);
+  }
+  
+  /**
+   * Löscht den User
+   */
+  public userLoeschen(id: number){
+    return this.techService.deleteRequest('/user/' + id);
+  }
+  
+  
+  /**
+   * ***********************************************
+   * Schüler Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Fügt einen Schüler hinzu
+   */
+  public schueler(schueler: any){
+    return this.techService.putRequest('/schueler', schueler);
+  }
+  
+  
+  /**
+   * ***********************************************
+   * Disziplin Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Gibt die Disziplin zurück
+   */
+  public disziplin(){
+    return this.techService.getRequest('/disziplin');
+  }
+  
+  /**
+   * Ändert eine Disziplin
+   */
+  public disziplinAendern(disziplin: any){
+    return this.techService.postRequest('/disziplin', disziplin)
+  }
+  
+  
+  /**
+   * ***********************************************
+   * Ergebnis Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Gibt die Ergebnisse zur Disziplin mit der übergebenen ID zuück
+   */
+  public ergebnisseDisziplin(did: number){
+    return this.techService.getRequest('/ergebnis/' + did);
+  }
+  
+  /**
+   * Ändert ein Ergebnis
+   */
+  public ergebnisseAendern(did: number, eid: number){
+    return this.techService.getRequest('/ergebnis' + did + '/' + eid);
+  }
+  
+  /**
+   * Schreibt ein Ergebnis
+   */
+  public ergebnisSchreiben(did: number, ergebnis: any){
+    return this.techService.putRequest('/ergebnis' + did, ergebnis);
+  }
+  
+  /**
+   * Löscht ein Ergebnis
+   */
+  public ergebnisLoeschen(did: number, eid: number){
+    return this.techService.deleteRequest('/ergebnis/' + did + '/' + eid);
+  }
+  
+  
+  /**
+   * ***********************************************
+   * Klassen Resource
+   * ***********************************************
+   */
+  
+  /**
+   * Gibt Informationen zu allen Klassen
+   */
+  public klassen(){
+    return this.techService.getRequest('/klasse');
+  }
+  
+  /**
+   * Gibt Informationen zu einer KlassenID
+   */
+  public klasseID(id: number){
+    return this.techService.getRequest('/klasse/' + id);
+  }
+  
+  /**
+   * Schreibt eine Klasse
+   */
+  public klasseSchreiben(klasse: any){
+    return this.techService.putRequest('/klasse', klasse);
+  }
+  
 }
