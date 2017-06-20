@@ -9,9 +9,22 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EinzelComponent implements OnInit {
   @Input() sportart: string;
   @Input() regeln: string;
-  @Input() klassen: string[] = ["FS151", "FI151", "FS161", "FV151"];
-  @Input() schueler: string[] = ["Mirco", "David", "Michi", "Jonas", "Maxi", "Maja"];
-  
+  @Input() klassen = [
+    {value: 0, viewValue: 'FS151'},
+    {value: 0, viewValue: 'FI151'},
+    {value: 0, viewValue: 'FS161'},
+    {value: 0, viewValue: 'FV151'}
+  ];
+
+  @Input() schueler = [
+    {value: 0, viewValue: 'Mirco'},
+    {value: 1, viewValue: 'Michi'},
+    {value: 2, viewValue: 'Maja'},
+    {value: 3, viewValue: 'David'},
+    {value: 4, viewValue: 'Maxi'},
+    {value: 5, viewValue: 'Jonas'}
+  ];
+
   constructor() { }
 
   ngOnInit() {

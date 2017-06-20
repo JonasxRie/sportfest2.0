@@ -1,29 +1,39 @@
 <h1>
     Einzelsportart - {{ sportart }}
 </h1>
-<div class="panel panel-default" align="center">
-  <div class="panel-body">
-    <h3>Regeln</h3>
-    <p>{{ regeln }}</p>
-  </div>
-</div>
 
-<hr>
-<!--<button md-button [mdMenuTriggerFor]="appMenu">
-  Klasse
-</button>
-<md-menu #appMenu="mdMenu">
-  <button md-menu-item *ngFor="let klasse of klassen">{{ klasse }}</button>
-</md-menu>-->
-<table class="table table-striped table-hover">
-   <thead>
-     <tr>
-      <th *ngFor="let klasse of klassen">{{ klasse }}</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr>
-        <td *ngFor="let s of schueler">{{ s }}</td>
-     </tr>
-   </tbody>
-</table>
+<md-card>
+  <md-card-header>
+    <md-card-title>Regeln</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    {{ regeln }}
+  </md-card-content>
+</md-card>
+
+<md-card>
+  <md-card-header>
+    <md-card-title>Regeln</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-select placeholder="Teilnehmer">
+      <md-option *ngFor="let teilnehmer of schueler" [value]="teilnehmer.value">
+        {{ teilnehmer.viewValue }}
+      </md-option>
+    </md-select>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let klasse of klassen">{{ klasse.viewValue }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td *ngFor="let s of schueler.viewValue">{{ s }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-card-content>
+</md-card>
+
