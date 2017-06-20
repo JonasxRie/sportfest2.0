@@ -1,0 +1,12 @@
+.header img {
+  float: left;
+  margin-left: 10px;
+  width: 200px;
+  height: 100px;
+}
+
+.header h1 {
+  font-size: 3.5em;
+  height: 100px;
+  vertical-align: center;
+}

@@ -1,0 +1,53 @@
+import { Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+
+@Injectable()
+export class TechnischerService {
+  
+  private api: string = 'http://irgendwas.backend/8080';
+  public token: any;
+
+  constructor(private http: Http) { }
+  
+  public getRequest(ressourceAPI: string){
+    return this.http.get(this.api).map(data => data.json()).catch(
+      (e) => {
+        if (e.status >= 403) {
+          return Observable.throw(e);
+        }
+    });
+
+  }
+  
+  public postRequest(ressourceAPI: string, body: any){
+    body["token"] = this.token;
+    return this.http.post(this.api, body).map(data => data.json()).catch(
+      (e) => {
+        if (e.status >= 403) {
+          return Observable.throw(e);
+        }
+    });
+
+  }
+  
+  public putRequest(ressourceAPI: string, body: any){
+    return this.http.put(this.api, body).map(data => data.json()).catch(
+      (e) => {
+        if (e.status >= 403) {
+          return Observable.throw(e);
+        }
+    });
+  }
+  
+  public deleteRequest(ressourceAPI: string){
+    return this.http.delete(this.api).map(data => data.json()).catch(
+      (e) => {
+        if (e.status >= 403) {
+          return Observable.throw(e);
+        }
+    });
+  }
+
+}
