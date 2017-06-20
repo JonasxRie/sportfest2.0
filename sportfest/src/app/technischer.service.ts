@@ -5,13 +5,13 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TechnischerService {
-  
-  private api: string = 'http://172.20.3.18:8080';
+
+  private api = 'http://172.20.3.18:8080';
   public token: any;
 
   constructor(private http: Http) { }
-  
-  public getRequest(ressourceAPI: string){
+
+  public getRequest(ressourceAPI: string) {
     return this.http.get(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
@@ -20,9 +20,9 @@ export class TechnischerService {
     });
 
   }
-  
-  public postRequest(ressourceAPI: string, body: any){
-    body["token"] = this.token;
+
+  public postRequest(ressourceAPI: string, body: any) {
+    body['token'] = this.token;
     return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
@@ -31,8 +31,8 @@ export class TechnischerService {
     });
 
   }
-  
-  public putRequest(ressourceAPI: string, body: any){
+
+  public putRequest(ressourceAPI: string, body: any) {
     return this.http.put(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
@@ -40,8 +40,8 @@ export class TechnischerService {
         }
     });
   }
-  
-  public deleteRequest(ressourceAPI: string){
+
+  public deleteRequest(ressourceAPI: string) {
     return this.http.delete(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {

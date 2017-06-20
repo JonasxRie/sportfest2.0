@@ -14,8 +14,19 @@
 
     <button md-button [mdMenuTriggerFor]="menu0">Sportarten</button>
     <md-menu #menu0="mdMenu">
-      <button md-menu-item (click)="navigateToEinzel()">Einzel</button>
-      <button md-menu-item (click)="navigateToTeam()">Team</button>
+      <!--Einzel-->
+      <button md-menu-item [mdMenuTriggerFor]="menu0a">Einzel</button>
+        <md-menu #menu0a="mdMenu">
+          <!--<div *ngFor="let einzel in disziplinen.einzel">
+            <button md-menu-item (click)="navigateToEinzel(einzel.id)">{{ einzel.bezeichnung }}</button>
+          </div>-->
+          <button md-menu-item (click)="navigateToEinzel(disziplinen.einzel[0].id)">{{ disziplinen.einzel[0].bezeichnung }}</button>
+        </md-menu>
+      <!--Team-->
+      <button md-menu-item [mdMenuTriggerFor]="menu0b">Team</button>
+        <md-menu #menu0b="mdMenu">
+          <button md-menu-item (click)="navigateToTeam()">Fußball</button>
+        </md-menu>
     </md-menu>
 
     <button md-button [mdMenuTriggerFor]="menu1">Import</button>

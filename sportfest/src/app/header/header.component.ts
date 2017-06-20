@@ -12,18 +12,46 @@ export class HeaderComponent implements OnInit {
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
   year = '2017';
-  username= 'uberadmin';
+  username = 'uberadmin';
+  disziplinen =
+  {
+    einzel: [
+      {
+        id: 0,
+        bezeichnung: 'Weitsprung'
+      },
+      {
+        id: 1,
+        bezeichnung: 'Hochspring'
+      },
+      {
+        id: 2,
+        bezeichnung: 'Medizinballstoßen'
+      }
+    ],
+    team: [
+      {
+        id: 3,
+        bezeichnung: 'Fußball'
+      },
+      {
+        id: 4,
+        bezeichnung: 'Hockey'
+      }
+    ]
+  };
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.disziplinen.einzel[0].id);
   }
 
-  public navigateToEinzel() {
+  public navigateToEinzel(did: number) {
     this.router.navigate(['/einzel']);
   }
 
-  public navigateToTeam() {
+  public navigateToTeam(did: number) {
     this.router.navigate(['/team']);
   }
 
