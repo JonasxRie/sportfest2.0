@@ -8,20 +8,24 @@
 </div>
 <div class="navbar">
   <md-toolbar>
-    <button md-button [mdMenuTriggerFor]="menu">Sportarten</button>
-    <md-menu>
+    <button md-button (click)="navigateToDashboard()">
+      <md-icon>home</md-icon>
+    </button>
+
+    <button md-button [mdMenuTriggerFor]="menu0">Sportarten</button>
+    <md-menu #menu0="mdMenu">
       <button md-menu-item (click)="navigateToEinzel()">Einzel</button>
       <button md-menu-item (click)="navigateToTeam()">Team</button>
     </md-menu>
 
-    <button md-button [mdMenuTriggerFor]="menu">Import</button>
-    <md-menu>
+    <button md-button [mdMenuTriggerFor]="menu1">Import</button>
+    <md-menu #menu1="mdMenu">
       <button md-menu-item>Klassenimport</button>
       <button md-menu-item>Disziplin anlegen</button>
     </md-menu>
     
-    <button md-button [mdMenuTriggerFor]="menu">Admin</button>
-    <md-menu>
+    <button md-button [mdMenuTriggerFor]="menu2">Admin</button>
+    <md-menu #menu2="mdMenu">
       <button md-menu-item>Benutzerverwaltung</button>
       <button md-menu-item>Neues Sportfest</button>
       <button md-menu-item>Sportfest auswählen</button>
