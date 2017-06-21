@@ -8,3 +8,6 @@ button {
     display: block;
     margin: auto;
 }
+md-icon{
+    vertical-align: middle;
+}
