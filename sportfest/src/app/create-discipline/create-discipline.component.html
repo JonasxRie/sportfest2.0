@@ -65,15 +65,15 @@
 <md-card *ngIf="secondVisible">
   <h1>Regel anlegen</h1>
   <table>
-    <tr *ngFor="let row1 of rules">
-      <td> 
+    <tr *ngFor="let row of rules">
+      <td>
         <md-input-container> 
-            <input mdInput type="text" placeholder="Name der Regel" [value]="row1.regelname" >
+            <input mdInput type="text" placeholder="Name der Regel" [value]="row.regeltext">
         </md-input-container>
       </td>  
       <td> 
         <md-input-container> 
-            <input mdInput type="number" placeholder="Punkte" [value]="row1.punkte"> <!-- sicher int und Punkte?-->
+            <input mdInput type="number" placeholder="Punkte" [value]="row.punkte"> <!-- sicher int und Punkte?-->
         </md-input-container>
       </td>  
     </tr>  
@@ -81,15 +81,19 @@
 </md-card>
 
 
-    <!--1.	Name: String
+    <!--
+    1.	Name: String
     2.	Beschreibung: String
     3.	Min Teilnehmeranzahl: int
     4.	Max Teilnehmeranzahl: int
-    5.	Teamleistung: boolean-->
-<!--Regel-Variable anlegen
-1.	Name
-2.	ExpressionID
-3.	Beschreiben
-Regel anlegen
-1.	Regeltext
-2.	Punkte-->
+    5.	Teamleistung: boolean
+    
+    Regel-Variable anlegen
+    1.	Name
+    2.	ExpressionID
+    3.	Beschreiben
+    
+    Regel anlegen
+    1.	Regeltext
+    2.	Punkte
+    -->

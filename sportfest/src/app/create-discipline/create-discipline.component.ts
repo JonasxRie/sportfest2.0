@@ -19,27 +19,35 @@ export class CreateDisciplineComponent implements OnInit {
     rulesVar: Array<Variable>;
     rules: Array<Regel>;
     dummynumber: number;
+    dummyregel: Regel = { regeltext: '', punkte: 0 };
 
   constructor(private sfService: SportfestService) { 
-    this.rulesVar=[{name:'',expId:'',desc:''}];
-    this.rules=[{regeltext: '',punkte:this.dummynumber}];
+    this.rulesVar = [
+      {
+        name:'',
+        expId:'',
+        desc:''
+      }
+    ];
+    this.rules = [
+      this.dummyregel
+    ];
   }
 
   ngOnInit() {
   }
   
   addNewRuleVarLine(){
-    let variable = {name: '', expId: '', desc: ''};
-    this.rulesVar.push(variable);
+    let line = {name: '', expId: '', desc: ''};
+    this.rulesVar.push(line);
   }
 
   addNewRuleLine(){
-    let rule = {regeltext: '',punkte:this.dummynumber};
+    let rule = { regeltext: '', punkte: 0 };
     this.rules.push(rule);
   }
   
   submit() {
-    console.log(this.sportart);
-    this.secondVisible=true;
+    this.secondVisible = true;
   }
 }
