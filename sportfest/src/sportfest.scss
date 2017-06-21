@@ -41,8 +41,41 @@ $mat-atiw-blue: (
     A700: white,
   )
 );
+$mat-secondery: (
+  50: #64dd17,
+  100: #64dd17,
+  200: #64dd17,
+  300: #64dd17,
+  400: #64dd17,
+  500: #64dd17,
+  600: #64dd17,
+  700: #64dd17,
+  800: #64dd17,
+  900: #64dd17,
+  A100: #64dd17,
+  A200: #64dd17,
+  A400: #64dd17,
+  A700: #64dd17,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
 $sportfest-app-primary: mat-palette($mat-atiw-blue);
-$sportfest-app-accent:  mat-palette($mat-orange);
+$sportfest-app-accent:  mat-palette($mat-secondery);
 
 // The warn palette is optional (defaults to red).
 $sportfest-app-warn:    mat-palette($mat-red);
