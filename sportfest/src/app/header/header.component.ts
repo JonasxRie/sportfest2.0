@@ -1,3 +1,4 @@
+import { SportfestService } from './../sportfest.service';
 import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit {
   };
 
   constructor(private router: Router,
-              public dialog: MdDialog) { }
+              public dialog: MdDialog,
+              private sfService: SportfestService) { }
 
   ngOnInit() {
     console.log(this.disziplinen.einzel[0].id);
@@ -71,8 +73,9 @@ export class HeaderComponent implements OnInit {
     const dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
-      //Login
-      //TODO this.loginService.login(dlg.getUsername())
+      // TODO: Login
+      console.log(data);
+      console.log(this.sfService.userLogin(data[0], data[1]));
       dlg.close();
     });
   }

@@ -8,6 +8,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LoginComponent implements OnInit {
   @Output() loginClose: EventEmitter<any> = new EventEmitter<any>();
   @Output() loginSubmit: EventEmitter<any> = new EventEmitter<any>();
+  
+  username: String;
+  password: String;
 
   constructor() { }
 
@@ -15,8 +18,9 @@ export class LoginComponent implements OnInit {
   }
 
   public submit() {
-    // TODO: Daten holen
-    this.loginSubmit.emit();
+    // Login    
+    let data = [this.username, this.password];
+    this.loginSubmit.emit(data);
   }
 
   public close() {
