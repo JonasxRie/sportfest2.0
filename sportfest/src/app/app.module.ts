@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateDisciplineComponent } from './create-discipline/create-discipline.component';
 import { KlassenImportComponent } from './klassen-import/klassen-import.component';
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
+import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
 
 const routConfig: Routes = [
     {
@@ -50,6 +51,10 @@ const routConfig: Routes = [
     { path: 'activateDiscipline',
       component: ActivateDisciplineComponent,
       canActivate: [RouteGuard]
+    },
+    { path: 'uac',
+      component: UserAccountControlComponent,
+      canActivate: [RouteGuard]
     }
 ];
 
@@ -63,7 +68,8 @@ const routConfig: Routes = [
     LoginComponent,
     CreateDisciplineComponent,
     KlassenImportComponent,
-    ActivateDisciplineComponent
+    ActivateDisciplineComponent,
+    UserAccountControlComponent
   ],
   imports: [
     BrowserModule,

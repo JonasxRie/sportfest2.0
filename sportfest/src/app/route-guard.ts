@@ -9,6 +9,7 @@ export class RouteGuard implements CanActivate {
 
   canActivate() {
     // TODO!
+    // Evtl. zwei RouteGuards für die beiden Berchtigungslevel
     return true;
   }
 }

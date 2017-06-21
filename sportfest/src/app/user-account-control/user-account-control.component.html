@@ -1,0 +1,46 @@
+<md-card>
+  <md-card-header>
+    Benutzerverwaltung
+  </md-card-header>
+  <br>
+  <md-card-content>
+    <table>
+      <tr>
+        <th>Benutzer</th>
+        <th>Rolle</th>
+        <th></th>
+      </tr>
+
+      <tr *ngFor="let user of users" >
+        <td>{{ user.name }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <md-icon (click)="deleteUser(user.id)" >delete forever</md-icon>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Benutzername" ([ngModel])="username" >
+          </md-input-container>
+        </td>
+        <td>
+          <md-select placeholder="Rolle" [(ngModel)]="selectedRole">
+            <md-option value="admin">
+              Admin
+            </md-option>
+            <md-option value="richter">
+              Richter
+            </md-option>
+          </md-select>
+        </td>
+        <td>
+          <md-icon (click)="addUser()">add</md-icon>
+        </td>
+      </tr>
+    </table>
+  </md-card-content>
+  <md-card-actions>
+    
+  </md-card-actions>
+</md-card>
