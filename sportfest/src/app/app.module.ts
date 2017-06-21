@@ -54,9 +54,6 @@ const routConfig: Routes = [
   entryComponents: [
     LoginComponent
   ],
-  entryComponents: [
-    LoginComponent
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
