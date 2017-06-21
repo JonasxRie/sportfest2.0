@@ -43,6 +43,13 @@
       <button md-menu-item>Disziplin aktivieren</button>
     </md-menu>
     <span class="fill-remaining-space"></span>
-    <span class="user">Eingeloggt als {{username}}</span>
+
+    <span class="user" *ngIf="!username">Eingeloggt als {{username}} <!--TODO: Umsteig auf LoginService-->
+      <button md-button (click)="logout()">Logout</button>
+    </span>
+    <span class="user" *ngIf="username">Anzeige als Gast
+      <button md-button (click)="login()">Login</button>
+    </span>
+
   </md-toolbar>
 </div>

@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +12,7 @@ import { SportfestService } from './sportfest.service';
 import { TechnischerService } from './technischer.service';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 const routConfig: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,7 +27,8 @@ const routConfig: Routes = [
     EinzelComponent,
     TeamComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ const routConfig: Routes = [
   ],
   providers: [
     TechnischerService,
-    SportfestService
+    SportfestService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

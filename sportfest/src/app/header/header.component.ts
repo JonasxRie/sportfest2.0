@@ -1,5 +1,8 @@
+import { LoginService } from './../login.service';
+import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from "@angular/material";
 
 @Component({
   selector: 'app-header',
@@ -41,7 +44,9 @@ export class HeaderComponent implements OnInit {
     ]
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private loginService: LoginService,
+              public dialog: MdDialog) { }
 
   ngOnInit() {
     console.log(this.disziplinen.einzel[0].id);
@@ -57,6 +62,21 @@ export class HeaderComponent implements OnInit {
 
   public navigateToDashboard() {
     this.router.navigate(['/home']);
+  }
+
+
+  public logout() {
+    // TODO: ausloggen
+  }
+
+  public login() {
+    const dlg = this.dialog.open(LoginComponent);
+    dlg.componentInstance.loginClose.subscribe(data => dlg.close());
+    dlg.componentInstance.loginSubmit.subscribe(data => {
+      //Login
+      //TODO this.loginService.login(dlg.getUsername())
+      dlg.close();
+    });
   }
 
 }
