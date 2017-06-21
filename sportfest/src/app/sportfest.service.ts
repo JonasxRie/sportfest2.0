@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 import { TechnischerService } from './technischer.service';
@@ -16,10 +17,10 @@ export class SportfestService {
   /**
    * Test GET
    */
-  public test() {
+  public test(): Observable<any> {
     return this.techService.getRequest('/test');
   }
-  public testpost(data: any) {
+  public testpost(data: any): Observable<any> {
     return this.techService.postRequest('/data', data);
   }
 
@@ -33,35 +34,31 @@ export class SportfestService {
   /**
    * Anmeldung
    */
-  public userLogin(username: string, password: string) {
+  public userLogin(username: string, password: string): Observable<any> {
     return this.techService.getRequest('/user/login?username=' + username + '&password' + password);
   }
-
   /**
    * Gibt die User Privilegien zurück
    */
-  public userPrivileges(id: number) {
+  public userPrivileges(id: number): Observable<any> {
     return this.techService.getRequest('user/privileges/' + id);
   }
-
   /**
    * Gibt den User zurück
    */
-  public user() {
+  public user(): Observable<any> {
     return this.techService.getRequest('/user');
   }
-
   /**
    * Ändert den User
    */
-  public userAendern(user: any) {
+  public userAendern(user: any): Observable<any> {
     return this.techService.postRequest('/user', user);
   }
-
   /**
    * Löscht den User
    */
-  public userLoeschen(id: number) {
+  public userLoeschen(id: number): Observable<any> {
     return this.techService.deleteRequest('/user/' + id);
   }
 
@@ -75,10 +72,9 @@ export class SportfestService {
   /**
    * Fügt einen Schüler hinzu
    */
-  public schueler(schueler: any) {
+  public schueler(schueler: any): Observable<any> {
     return this.techService.putRequest('/schueler', schueler);
   }
-
 
   /**
    * ***********************************************
@@ -89,24 +85,21 @@ export class SportfestService {
   /**
    * Gibt alle Disziplinen zurück
    */
-  public disziplinen() {
+  public disziplinen(): Observable<any> {
     return this.techService.getRequest('/disziplin');
   }
-  
   /**
-   * Gibt die Disziplinen zurück
+   * Gibt die angefragte Disziplin zurück
    */
-  public disziplin(did: number) {
+  public disziplin(did: number): Observable<any> {
     return this.techService.getRequest('/disziplin/' + did);
   }
-
   /**
    * Ändert eine Disziplin
    */
-  public disziplinAendern(disziplin: any) {
+  public disziplinAendern(disziplin: any): Observable<any> {
     return this.techService.postRequest('/disziplin', disziplin)
   }
-
 
   /**
    * ***********************************************
@@ -117,31 +110,27 @@ export class SportfestService {
   /**
    * Gibt die Ergebnisse zur Disziplin mit der übergebenen ID zuück
    */
-  public ergebnisseDisziplin(did: number) {
+  public ergebnisseDisziplin(did: number): Observable<any> {
     return this.techService.getRequest('/ergebnis/' + did);
   }
-
   /**
    * Ändert ein Ergebnis
    */
-  public ergebnisseAendern(did: number, eid: number) {
+  public ergebnisseAendern(did: number, eid: number): Observable<any> {
     return this.techService.getRequest('/ergebnis' + did + '/' + eid);
   }
-
   /**
    * Schreibt ein Ergebnis
    */
-  public ergebnisSchreiben(did: number, ergebnis: any) {
+  public ergebnisSchreiben(did: number, ergebnis: any): Observable<any> {
     return this.techService.putRequest('/ergebnis' + did, ergebnis);
   }
-
   /**
    * Löscht ein Ergebnis
    */
-  public ergebnisLoeschen(did: number, eid: number) {
+  public ergebnisLoeschen(did: number, eid: number): Observable<any> {
     return this.techService.deleteRequest('/ergebnis/' + did + '/' + eid);
   }
-
 
   /**
    * ***********************************************
@@ -152,22 +141,19 @@ export class SportfestService {
   /**
    * Gibt Informationen zu allen Klassen
    */
-  public klassen() {
+  public klassen(): Observable<any> {
     return this.techService.getRequest('/klasse');
   }
-
   /**
    * Gibt Informationen zu einer KlassenID
    */
-  public klasseID(id: number) {
+  public klasseID(id: number): Observable<any> {
     return this.techService.getRequest('/klasse/' + id);
   }
-
   /**
    * Schreibt eine Klasse
    */
-  public klasseSchreiben(klasse: any) {
+  public klasseSchreiben(klasse: any): Observable<any> {
     return this.techService.putRequest('/klasse', klasse);
   }
-
 }

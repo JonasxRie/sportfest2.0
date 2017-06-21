@@ -49,7 +49,12 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
-    // console.log(this.disziplinen.einzel[0].id);
+    this.sfService.disziplinen().subscribe(data => {
+      this.disziplinen = data;
+    },
+      (err) => {
+        console.error('Der GET-Service für Disziplinen ist zurzeit nicht erreichbar.');
+    });
   }
 
   public navigateToEinzel(did: number) {
@@ -78,6 +83,12 @@ export class HeaderComponent implements OnInit {
       console.log(data);
       console.log(this.sfService.userLogin(data[0], data[1]));
       dlg.close();
+    });
+    this.sfService.user().subscribe(data => {
+      this.username = data;
+    },
+      (err) => {
+        console.error('Der GET-Service für den Username ist zurzeit nicht erreichbar.');
     });
   }
 
