@@ -1,3 +1,4 @@
+import { Variable } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,13 +14,25 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
+    secondVisible= false;
+    
+    rules: Array<Variable>;
+    
 
-  constructor(private sfService: SportfestService) { }
+  constructor(private sfService: SportfestService) { 
+    this.rules=[{name:'',expId:'',desc:''}];
+  }
 
   ngOnInit() {
   }
   
+  addNewRuleLine(){
+    let variable = {name: '', expId: '', desc: ''};
+    this.rules.push(variable);
+  }
+  
   submit() {
     console.log(this.sportart);
+    this.secondVisible=true;
   }
 }
