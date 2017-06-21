@@ -2,7 +2,11 @@
     width: 100%;
 }
 
-.main-card-title {
+.login-form {    
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
     font-size: 24px !important;
 }
 
