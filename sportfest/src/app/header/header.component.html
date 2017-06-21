@@ -28,7 +28,7 @@
 
     <button md-button [mdMenuTriggerFor]="menu1">Import</button>
     <md-menu #menu1="mdMenu">
-      <button md-menu-item>Klassenimport</button>
+      <button md-menu-item (click)="navigateToImportKlasse()">Klassenimport</button>
       <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
     </md-menu>
     
