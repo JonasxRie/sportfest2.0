@@ -24,13 +24,14 @@
 
     <table class="table table-striped table-hover">
       <thead>
-        <tr>
-          <th *ngFor="let klasse of klassen">{{ klasse.viewValue }}</th>
-        </tr>
+        <tr *ngFor="let klasse of klassen">
+          <th>{{ klasse.viewValue }}</th>
+          <td></td>
+        </tr>        
       </thead>
       <tbody>
         <tr>
-            <td *ngFor="let s of schueler">{{ s.viewValue }}</td>
+          <td *ngFor="let s of schueler">{{ s.viewValue }}</td>
         </tr>
       </tbody>
     </table>

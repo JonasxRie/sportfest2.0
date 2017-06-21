@@ -35,6 +35,15 @@
   margin-top: -5px;
 }
 
+.kategorie{
+  font-family: Arial, Helvetica, sans-serif;
+  color: dimgray;
+  vertical-align: middle;
+  font-size: 0.9em;
+  size: 100%;
+  line-height: 40px;
+}
+
 .user{
   color: darkgrey;
 }

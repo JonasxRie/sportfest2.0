@@ -40,12 +40,12 @@
 <br>
 <md-card *ngIf="secondVisible">
   <h1>Regel-Variable anlegen</h1>
-  <button md-raised-button color="primary" (click)="addNewRuleLine()"><md-icon>add</md-icon>Neue Regel-Variable</button>
+  <button md-raised-button color="primary" (click)="addNewRuleVarLine()"><md-icon>add</md-icon>Neue Regel-Variable</button>
   <table>
-    <tr *ngFor="let row of rules">
+    <tr *ngFor="let row of rulesVar">
       <td> 
         <md-input-container> 
-            <input mdInput type="text" placeholder="Name der Regel" [value]="row.name" >
+            <input mdInput type="text" placeholder="Name der Regel-Variable" [value]="row.name" >
         </md-input-container>
       </td>  
       <td> 
@@ -61,17 +61,39 @@
     </tr>  
   </table>
 </md-card>
+<br>
+<md-card *ngIf="secondVisible">
+  <h1>Regel anlegen</h1>
+  <table>
+    <tr *ngFor="let row of rules">
+      <td>
+        <md-input-container> 
+            <input mdInput type="text" placeholder="Name der Regel" [value]="row.regeltext">
+        </md-input-container>
+      </td>  
+      <td> 
+        <md-input-container> 
+            <input mdInput type="number" placeholder="Punkte" [value]="row.punkte"> <!-- sicher int und Punkte?-->
+        </md-input-container>
+      </td>  
+    </tr>  
+  </table>
+</md-card>
 
 
-    <!--1.	Name: String
+    <!--
+    1.	Name: String
     2.	Beschreibung: String
     3.	Min Teilnehmeranzahl: int
     4.	Max Teilnehmeranzahl: int
-    5.	Teamleistung: boolean-->
-<!--Regel-Variable anlegen
-1.	Name
-2.	ExpressionID
-3.	Beschreiben
-Regel anlegen
-1.	Regeltext
-2.	Punkte-->
+    5.	Teamleistung: boolean
+    
+    Regel-Variable anlegen
+    1.	Name
+    2.	ExpressionID
+    3.	Beschreiben
+    
+    Regel anlegen
+    1.	Regeltext
+    2.	Punkte
+    -->
