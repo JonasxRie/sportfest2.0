@@ -6,10 +6,54 @@
     <md-card-title>Regeln</md-card-title>
   </md-card-header>
   <md-card-content>
-    {{ regeln }}
+    {{ regel }}
   </md-card-content>
 </md-card>
+<br><br>
 
+<!--Eingabe neuer Spielergebnisse-->
+<table align="center">
+  <tr colspan="2">
+    <th>
+      <p>Neue Begegnung</p>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <div align="right" valign="bottom">
+        
+        <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
+          <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+            {{ klasse.viewValue }}
+          </md-option>
+        </md-select>
+        
+        <span>&nbsp;vs.&nbsp;</span>
+        <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
+          <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+            {{ klasse.viewValue }}
+          </md-option>
+        </md-select>
+      </div>
+    </td>
+    <td style="padding-left:20px">
+      <div align="left">
+        
+        <md-input-container>
+          <input mdInput placeholder="Punkte A">
+        </md-input-container>
+        
+        <span>&nbsp;:&nbsp;</span>
+        
+        <md-input-container>
+          <input mdInput placeholder="Punkte B">
+        </md-input-container>
+      </div>
+    </td>
+  </tr>
+</table>
+<br><br>
+<!--Anzeige der Ergebnisse-->
 <md-card>
   <md-card-header>
     <md-card-title>Ergebnisse</md-card-title>
