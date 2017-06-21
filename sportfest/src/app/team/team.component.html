@@ -13,8 +13,8 @@
 
 <!--Eingabe neuer Spielergebnisse-->
 <table align="center">
-  <tr colspan="2">
-    <th>
+  <tr>
+    <th colspan="2" align="center">
       <p>Neue Begegnung</p>
     </th>
   </tr>
@@ -40,15 +40,20 @@
       <div align="left">
         
         <md-input-container>
-          <input mdInput placeholder="Punkte A">
+          <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
         </md-input-container>
         
         <span>&nbsp;:&nbsp;</span>
         
         <md-input-container>
-          <input mdInput placeholder="Punkte B">
+          <input type="number" mdInput placeholder="Punkte B">
         </md-input-container>
       </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <button md-raised-button color="primary" (click)="sendTeamErgebnis()">Abschicken</button>
     </td>
   </tr>
 </table>
