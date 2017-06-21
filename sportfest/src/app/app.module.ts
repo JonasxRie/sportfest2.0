@@ -18,8 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routConfig: Routes = [
     { path: '#', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: DashboardComponent },
-    { path: 'einzel', component: EinzelComponent },
-    { path: 'team', component: TeamComponent }
+    { path: 'einzel/:did', component: EinzelComponent },
+    { path: 'team/:did', component: TeamComponent }
 ];
 
 @NgModule({
