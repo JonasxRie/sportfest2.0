@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
@@ -33,7 +34,9 @@ const routConfig: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routConfig),
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     TechnischerService,
