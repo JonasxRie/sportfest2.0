@@ -1,3 +1,4 @@
+import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ export class CreateDisciplineComponent implements OnInit {
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
 
-  constructor() { }
+  constructor(private sfService: SportfestService) { }
 
   ngOnInit() {
   }
