@@ -1,4 +1,3 @@
-import { LoginService } from './../login.service';
 import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +14,7 @@ export class HeaderComponent implements OnInit {
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
   year = '2017';
-  username = 'uberadmin';
+  username: string;
   disziplinen =
   {
     einzel: [
@@ -45,7 +44,6 @@ export class HeaderComponent implements OnInit {
   };
 
   constructor(private router: Router,
-              private loginService: LoginService,
               public dialog: MdDialog) { }
 
   ngOnInit() {

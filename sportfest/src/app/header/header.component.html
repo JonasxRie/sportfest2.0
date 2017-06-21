@@ -1,13 +1,13 @@
 <img class="bgImage" height="200" width="100%" [src]="headerImage" alt="Bild konnte nicht geladen werden...">
 <div class="header">
   <br>
-  <a href="#" height="150px" width="250px"><img [src]="atiwImage" alt="Atiw Logo"></a>
+  <a href="/home" height="150px" width="250px"><img [src]="atiwImage" alt="Atiw Logo"></a>
   <h1>
     {{title}} <small>{{year}}</small>
   </h1>
 </div>
 <div class="navbar">
-  <md-toolbar>
+  <md-toolbar class="navbar">
     <button md-button (click)="navigateToDashboard()">
       <md-icon>home</md-icon>
     </button>
@@ -15,18 +15,15 @@
     <button md-button [mdMenuTriggerFor]="menu0">Sportarten</button>
     <md-menu #menu0="mdMenu">
       <!--Einzel-->
-      <button md-menu-item [mdMenuTriggerFor]="menu0a">Einzel</button>
-        <md-menu #menu0a="mdMenu">
-          <!--<div *ngFor="let einzel in disziplinen.einzel">
-            <button md-menu-item (click)="navigateToEinzel(einzel.id)">{{ einzel.bezeichnung }}</button>
-          </div>-->
-          <button md-menu-item (click)="navigateToEinzel(disziplinen.einzel[0].id)">{{ disziplinen.einzel[0].bezeichnung }}</button>
-        </md-menu>
+      <span>Einzel</span>
+        <div *ngFor="let einzel of disziplinen.einzel">
+          <button md-menu-item (click)="navigateToEinzel(einzel.id)">{{ einzel.bezeichnung }}</button>
+        </div>
       <!--Team-->
-      <button md-menu-item [mdMenuTriggerFor]="menu0b">Team</button>
-        <md-menu #menu0b="mdMenu">
-          <button md-menu-item (click)="navigateToTeam()">Fußball</button>
-        </md-menu>
+      <span>Team</span>
+        <div *ngFor="let team of disziplinen.team">
+          <button md-menu-item (click)="navigateToTeam(team.id)">Fußball</button>
+        </div>
     </md-menu>
 
     <button md-button [mdMenuTriggerFor]="menu1">Import</button>
@@ -44,10 +41,12 @@
     </md-menu>
     <span class="fill-remaining-space"></span>
 
-    <span class="user" *ngIf="!username">Eingeloggt als {{username}} <!--TODO: Umsteig auf LoginService-->
+    <span class="user" *ngIf="username">Eingeloggt als {{username}} <!--TODO: Umsteig auf Rest-->
+      &nbsp;
       <button md-button (click)="logout()">Logout</button>
     </span>
-    <span class="user" *ngIf="username">Anzeige als Gast
+    <span class="user" *ngIf="!username">Anzeige als Gast
+      &nbsp;
       <button md-button (click)="login()">Login</button>
     </span>
 

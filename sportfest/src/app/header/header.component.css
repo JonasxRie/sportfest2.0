@@ -1,6 +1,6 @@
 .header{
   font-family: Arial, Helvetica, sans-serif;
-  position: fixed;
+  position: absolute;
   left:0;
   top: 0;
   width: 800px;
@@ -29,8 +29,10 @@
   color: #006EC7;
 }
 
-.header navbar{
+.navbar{
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #208EE7;
+  margin-top: -5px;
 }
 
 .user{
