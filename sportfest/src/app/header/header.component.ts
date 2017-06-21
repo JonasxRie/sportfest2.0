@@ -51,11 +51,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public navigateToEinzel(did: number) {
-    this.router.navigate(['/einzel']);
+    this.router.navigate(['/einzel/' + did]);
   }
 
   public navigateToTeam(did: number) {
-    this.router.navigate(['/team']);
+    this.router.navigate(['/team/' + did]);
   }
 
   public navigateToDashboard() {
