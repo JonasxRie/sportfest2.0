@@ -1,4 +1,5 @@
 import { LoginComponent } from '../login/login.component';
+import { SportfestService } from '../sportfest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from "@angular/material";
@@ -44,17 +45,18 @@ export class HeaderComponent implements OnInit {
   };
 
   constructor(private router: Router,
-              public dialog: MdDialog) { }
+              public dialog: MdDialog,
+              private sfService: SportfestService) { }
 
   ngOnInit() {
     // console.log(this.disziplinen.einzel[0].id);
   }
 
   public navigateToEinzel(did: number) {
-    this.router.navigate(['/einzel']);
+    this.router.navigate(['/einzel/' + did]);
   }
   public navigateToTeam(did: number) {
-    this.router.navigate(['/team']);
+    this.router.navigate(['/team/' + did]);
   }
   public navigateToDashboard() {
     this.router.navigate(['/home']);
@@ -72,8 +74,9 @@ export class HeaderComponent implements OnInit {
     const dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
-      //Login
-      //TODO this.loginService.login(dlg.getUsername())
+      // TODO: Login
+      console.log(data);
+      console.log(this.sfService.userLogin(data[0], data[1]));
       dlg.close();
     });
   }

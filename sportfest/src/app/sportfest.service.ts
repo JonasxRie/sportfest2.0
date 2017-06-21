@@ -87,10 +87,17 @@ export class SportfestService {
    */
 
   /**
-   * Gibt die Disziplin zurück
+   * Gibt alle Disziplinen zurück
    */
-  public disziplin() {
+  public disziplinen() {
     return this.techService.getRequest('/disziplin');
+  }
+  
+  /**
+   * Gibt die Disziplinen zurück
+   */
+  public disziplin(did: number) {
+    return this.techService.getRequest('/disziplin/' + did);
   }
 
   /**

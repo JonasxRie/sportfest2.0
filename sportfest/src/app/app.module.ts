@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
@@ -18,9 +19,9 @@ import { CreateDisciplineComponent } from './create-discipline/create-discipline
 const routConfig: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: DashboardComponent },
-    { path: 'einzel', component: EinzelComponent },
-    { path: 'team', component: TeamComponent },
-    { path: 'createDiscipline', component: CreateDisciplineComponent }
+    { path: 'createDiscipline', component: CreateDisciplineComponent },
+    { path: 'einzel/:did', component: EinzelComponent },
+    { path: 'team/:did', component: TeamComponent }
 ];
 
 @NgModule({
@@ -39,7 +40,9 @@ const routConfig: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routConfig),
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [
     TechnischerService,
