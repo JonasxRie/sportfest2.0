@@ -8,7 +8,7 @@ export class RouteGuard implements CanActivate {
   constructor(private sfService: SportfestService) {}
 
   canActivate() {
-      // TODO!
+    // TODO!
     return true;
   }
 }

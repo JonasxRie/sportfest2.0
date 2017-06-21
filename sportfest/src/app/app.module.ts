@@ -18,11 +18,29 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateDisciplineComponent } from './create-discipline/create-discipline.component';
 
 const routConfig: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: DashboardComponent },
-    { path: 'createDiscipline', component: CreateDisciplineComponent },
-    { path: 'einzel/:did', component: EinzelComponent },
-    { path: 'team/:did', component: TeamComponent }
+    { 
+      path: '', 
+      redirectTo: 'home', 
+      pathMatch: 'full' 
+    },
+    { 
+      path: 'home', 
+      component: DashboardComponent
+    },
+    { 
+      path: 'createDiscipline', 
+      component: CreateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
+    { 
+      path: 'einzel/:did', 
+      component: EinzelComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'team/:did',
+      component: TeamComponent,
+      canActivate: [RouteGuard]
+    }
 ];
 
 @NgModule({
