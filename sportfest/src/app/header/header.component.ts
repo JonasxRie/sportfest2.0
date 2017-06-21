@@ -1,4 +1,4 @@
-import { LoginComponent } from './../login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from "@angular/material";
@@ -47,19 +47,20 @@ export class HeaderComponent implements OnInit {
               public dialog: MdDialog) { }
 
   ngOnInit() {
-    console.log(this.disziplinen.einzel[0].id);
+    // console.log(this.disziplinen.einzel[0].id);
   }
 
   public navigateToEinzel(did: number) {
     this.router.navigate(['/einzel']);
   }
-
   public navigateToTeam(did: number) {
     this.router.navigate(['/team']);
   }
-
   public navigateToDashboard() {
     this.router.navigate(['/home']);
+  }
+  public navigateToCreateDiscipline() {
+    this.router.navigate(['/createDiscipline']);
   }
 
 

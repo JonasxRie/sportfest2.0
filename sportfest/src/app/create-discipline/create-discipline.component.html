@@ -1,0 +1,53 @@
+<md-card>
+    <h1>Anlegen der Disziplinen</h1>
+    <table>
+      <tr>
+        <td>
+          <md-slide-toggle [(ngModel)]="teamleistung">Teamleistung</md-slide-toggle>
+        </td>
+      <tr>
+      <tr>
+        <td>
+          <md-input-container> 
+            <input mdInput type="text" placeholder="Name" [(ngModel)]="sportart">
+          </md-input-container>
+        </td>
+      <tr>
+      <tr>
+        <td>
+          <md-input-container> 
+            <input mdInput type="text" placeholder="Beschreibung" [(ngModel)]="beschreibung">
+          </md-input-container>
+        </td>
+      <tr>
+      <tr>
+        <td>
+          <md-input-container> 
+            <input mdInput type="number" placeholder="Min Teilnehmeranzahl" [(ngModel)]="minTeilnehmeranzahl">
+          </md-input-container>
+        </td>
+      <tr>
+      <tr>
+        <td>
+          <md-input-container> 
+            <input mdInput type="number" placeholder="Max Teilnehmeranzahl" [(ngModel)]="maxTeilnehmeranzahl">
+          </md-input-container>
+        </td>
+      <tr>
+    </table>
+    <button md-raised-button color="primary" (click)="submit()">Weiter</button>
+</md-card>
+
+
+    <!--1.	Name: String
+    2.	Beschreibung: String
+    3.	Min Teilnehmeranzahl: int
+    4.	Max Teilnehmeranzahl: int
+    5.	Teamleistung: boolean-->
+<!--Regel-Variable anlegen
+1.	Name
+2.	ExpressionID
+3.	Beschreiben
+Regel anlegen
+1.	Regeltext
+2.	Punkte-->

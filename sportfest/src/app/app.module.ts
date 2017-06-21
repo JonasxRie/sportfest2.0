@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
@@ -12,12 +13,14 @@ import { SportfestService } from './sportfest.service';
 import { TechnischerService } from './technischer.service';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateDisciplineComponent } from './create-discipline/create-discipline.component';
 
 const routConfig: Routes = [
-    { path: '#', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: DashboardComponent },
     { path: 'einzel', component: EinzelComponent },
-    { path: 'team', component: TeamComponent }
+    { path: 'team', component: TeamComponent },
+    { path: 'createDiscipline', component: CreateDisciplineComponent }
 ];
 
 @NgModule({
@@ -27,17 +30,23 @@ const routConfig: Routes = [
     TeamComponent,
     HeaderComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    CreateDisciplineComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routConfig),
     MaterialModule
   ],
   providers: [
     TechnischerService,
     SportfestService
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })
