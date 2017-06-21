@@ -20,3 +20,8 @@
     font-size: 14px;
     line-height: 36px;
 }
+
+md-card {
+    width: inherit;
+    height: inherit;
+}
