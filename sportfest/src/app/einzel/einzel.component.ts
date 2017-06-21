@@ -28,8 +28,8 @@ export class EinzelComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.klassen);
-    console.log(this.schueler);
+    // console.log(this.klassen);
+    // console.log(this.schueler);
   }
 
 }

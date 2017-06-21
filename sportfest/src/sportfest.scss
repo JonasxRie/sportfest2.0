@@ -9,16 +9,48 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$tournament-app-primary: mat-palette($mat-indigo);
-$tournament-app-accent:  mat-palette($mat-light-green);
+$mat-atiw-blue: (
+  50: #006EC7,
+  100: #006EC7,
+  200: #006EC7,
+  300: #006EC7,
+  400: #006EC7,
+  500: #006EC7,
+  600: #006EC7,
+  700: #006EC7,
+  800: #006EC7,
+  900: #006EC7,
+  A100: #006EC7,
+  A200: #006EC7,
+  A400: #006EC7,
+  A700: #006EC7,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+$sportfest-app-primary: mat-palette($mat-atiw-blue);
+$sportfest-app-accent:  mat-palette($mat-orange);
 
 // The warn palette is optional (defaults to red).
-$tournament-app-warn:    mat-palette($mat-red);
+$sportfest-app-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$tournament-app-theme: mat-light-theme($tournament-app-primary, $tournament-app-accent, $tournament-app-warn);
+$sportfest-app-theme: mat-light-theme($sportfest-app-primary, $sportfest-app-accent, $sportfest-app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($tournament-app-theme);
+@include angular-material-theme($sportfest-app-theme);
