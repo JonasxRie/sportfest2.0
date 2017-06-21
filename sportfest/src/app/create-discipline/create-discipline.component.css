@@ -1,0 +1,10 @@
+table {
+    margin: auto;
+}
+h1 {
+    text-align: center;
+}
+button {
+    display: block;
+    margin: auto;
+}

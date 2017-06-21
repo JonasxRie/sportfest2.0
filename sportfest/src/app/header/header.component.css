@@ -11,6 +11,7 @@
   margin-left: 10px;
   width: 250px;
   height: 165px;
+  cursor: pointer;
 }
 
 .header h1 {
@@ -31,7 +32,6 @@
 
 .navbar{
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #208EE7;
   margin-top: -5px;
 }
 

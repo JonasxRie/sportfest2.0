@@ -1,13 +1,13 @@
 <img class="bgImage" height="200" width="100%" [src]="headerImage" alt="Bild konnte nicht geladen werden...">
 <div class="header">
   <br>
-  <a href="/home" height="150px" width="250px"><img [src]="atiwImage" alt="Atiw Logo"></a>
+  <a (click)="navigateToDashboard()" height="150px" width="250px"><img [src]="atiwImage" alt="Atiw Logo"></a>
   <h1>
     {{title}} <small>{{year}}</small>
   </h1>
 </div>
 <div class="navbar">
-  <md-toolbar class="navbar">
+  <md-toolbar color="primary" class="navbar">
     <button md-button (click)="navigateToDashboard()">
       <md-icon>home</md-icon>
     </button>
@@ -29,7 +29,7 @@
     <button md-button [mdMenuTriggerFor]="menu1">Import</button>
     <md-menu #menu1="mdMenu">
       <button md-menu-item>Klassenimport</button>
-      <button md-menu-item>Disziplin anlegen</button>
+      <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
     </md-menu>
     
     <button md-button [mdMenuTriggerFor]="menu2">Admin</button>
