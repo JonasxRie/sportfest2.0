@@ -1,3 +1,4 @@
+import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -41,7 +42,11 @@ const routConfig: Routes = [
   ],
   providers: [
     TechnischerService,
-    SportfestService
+    SportfestService,
+    RouteGuard
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })
