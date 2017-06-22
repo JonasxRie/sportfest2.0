@@ -72,6 +72,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public logout() {
+    this.username = null;
     // TODO: ausloggen
   }
 
