@@ -15,12 +15,12 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
-    secondVisible = false;
+    secondVisible = true;
     
     rulesVar: Array<Variable>;
     rules: Array<Regel>;
     dummynumber: number;
-    dummyregel: Regel = { regeltext: '', punkte: 0 };
+    dummyregel: Regel = { regeltext: '', punkte: this.dummynumber };
 
   constructor(private sfService: SportfestService, private route: ActivatedRoute) { 
     this.rulesVar = [
@@ -52,10 +52,18 @@ export class CreateDisciplineComponent implements OnInit {
     let line = {name: '', expId: '', desc: ''};
     this.rulesVar.push(line);
   }
+  
+  removeRuleVarLine(index: number){
+        this.rulesVar.splice(index,1);
+  }
 
-  addNewRuleLine() {
-    let rule = { regeltext: '', punkte: 0 };
+  addNewRuleLine(){
+    let rule = { regeltext: '', punkte: this.dummynumber };
     this.rules.push(rule);
+  }
+  
+  removeRuleLine(index: number){
+    this.rules.splice(index);
   }
   
   submit() {
