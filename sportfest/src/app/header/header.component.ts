@@ -78,6 +78,9 @@ export class HeaderComponent implements OnInit {
   public navigateToUAC() {
     this.router.navigate(['/uac']);
   }
+  public navigateToCreateSportfest() {
+    this.router.navigate(['/createSportfest']);
+  }
 
 
   public logout() {
