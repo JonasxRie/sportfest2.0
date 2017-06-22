@@ -1,86 +1,93 @@
-<h1>
-    Teamsportart - {{currentSportart}}
-</h1>
 <md-card>
   <md-card-header>
-    <md-card-title>Regeln</md-card-title>
+    <h3>{{ currentSportart }}</h3>
+  </md-card-header>
+</md-card>
+
+<md-card>
+  <md-card-header>
+    <h4>Regeln</h4>
   </md-card-header>
   <md-card-content>
     {{ regel }}
   </md-card-content>
 </md-card>
-<br><br>
 
-<!--Eingabe neuer Spielergebnisse-->
-<table align="center">
-  <tr>
-    <th colspan="2" align="center">
-      <p>Neue Begegnung</p>
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <div align="right" valign="bottom">
-        
-        <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
-          <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-            {{ klasse.viewValue }}
-          </md-option>
-        </md-select>
-        
-        <span>&nbsp;vs.&nbsp;</span>
-        <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
-          <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-            {{ klasse.viewValue }}
-          </md-option>
-        </md-select>
-      </div>
-    </td>
-    <td style="padding-left:20px">
-      <div align="left">
-        
-        <md-input-container>
-          <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
-        </md-input-container>
-        
-        <span>&nbsp;:&nbsp;</span>
-        
-        <md-input-container>
-          <input type="number" mdInput placeholder="Punkte B">
-        </md-input-container>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <button md-raised-button color="primary" (click)="sendTeamErgebnis()">Abschicken</button>
-    </td>
-  </tr>
-</table>
-<br><br>
-<!--Anzeige der Ergebnisse-->
 <md-card>
   <md-card-header>
-    <md-card-title>Ergebnisse</md-card-title>
+    <h4>Neue Begegnung</h4>
   </md-card-header>
   <md-card-content>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Klasse A</th>
-          <th>Klasse B</th>
-          <th>Punkte</th>
-          <th>Punkte</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let begegnung of punkteStand">
-            <td>{{ begegnung.classA }}</td>
-            <td>{{ begegnung.classB }}</td>
-            <td>{{ begegnung.pointsA }}</td>
-            <td>{{ begegnung.pointsB }}</td>
-        </tr>
-      </tbody>
+    <!--Eingabe neuer Spielergebnisse-->
+    <table align="center">
+      <!--<tr>
+        <th colspan="2" align="center">
+          <p>Neue Begegnung</p>
+        </th>
+      </tr>-->
+      <tr>
+        <td>
+          <div align="right" valign="bottom">
+
+            <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
+              <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+                {{ klasse.viewValue }}
+              </md-option>
+            </md-select>
+
+            <span>&nbsp;vs.&nbsp;</span>
+            <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
+              <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+                {{ klasse.viewValue }}
+              </md-option>
+            </md-select>
+          </div>
+        </td>
+        <td style="padding-left:20px">
+          <div align="left">
+
+            <md-input-container>
+              <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
+            </md-input-container>
+
+            <span>&nbsp;:&nbsp;</span>
+
+            <md-input-container>
+              <input type="number" mdInput placeholder="Punkte B">
+            </md-input-container>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button md-raised-button color="primary" (click)="sendTeamErgebnis()">Abschicken</button>
+        </td>
+      </tr>
     </table>
-  </md-card-content>
-</md-card>
+    <br><br>
+    <!--Anzeige der Ergebnisse-->
+    <md-card>
+      <md-card-header>
+        <h4>Ergebnisse</h4>
+      </md-card-header>
+      <md-card-content>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Klasse A</th>
+              <th>Klasse B</th>
+              <th>Punkte</th>
+              <th>Punkte</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let begegnung of punkteStand">
+              <td>{{ begegnung.classA }}</td>
+              <td>{{ begegnung.classB }}</td>
+              <td>{{ begegnung.pointsA }}</td>
+              <td>{{ begegnung.pointsB }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+    </md-card>

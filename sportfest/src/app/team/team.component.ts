@@ -7,8 +7,8 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  currentSportart: string;
-  regel: string;
+  currentSportart: string = "Fußball"; // TODO
+  regel: string = "Nur mit dem Fuß spielen"; // TODO
 
   punkteStand = [{classA: 'FS151', classB: 'FI151', pointsA: 6, pointsB: 3}, {classA: 'FI151', classB: 'FI152', pointsA: 2, pointsB: 1}]
 

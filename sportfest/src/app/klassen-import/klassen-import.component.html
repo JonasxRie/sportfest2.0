@@ -1,17 +1,29 @@
 <md-card>
   <md-card-header>
-    Klassen Upload
+    <h3>Klassen Upload</h3>
   </md-card-header>
   <md-card-content>
-    <br>
-    <p>
-      Bitte die Klassen-Datei auswählen um sie dem Turnier hinzuzufügen. Mögliche Dateiformate sind .csv, .xls und .xlsx.
-    </p>
-    <p>
-      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".csv,.xls,.xlsx">
-    </p>
+    <table>
+      <tr>
+        <td>
+          Bitte die Klassen-Datei auswählen um sie dem Turnier hinzuzufügen. 
+          Mögliche Dateiformate sind .csv, .xls und .xlsx.
+        </td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td>
+          <input type="file" 
+                (change)="fileChange($event)"
+                placeholder="Datei hochladen"
+                accept=".csv,.xls,.xlsx">
+        </td>
+      </tr>
+    </table>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button color="primary" (click)="sendFile()" [disabled]="!isFileSelected()">Datei abschicken</button>
+    <button md-raised-button color="primary" 
+            (click)="sendFile()" 
+            [disabled]="!isFileSelected()">Datei abschicken</button>
   </md-card-actions>
 </md-card>

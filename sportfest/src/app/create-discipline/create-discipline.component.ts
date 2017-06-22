@@ -14,7 +14,7 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
-    secondVisible= false;
+    secondVisible = false;
     
     rulesVar: Array<Variable>;
     rules: Array<Regel>;
