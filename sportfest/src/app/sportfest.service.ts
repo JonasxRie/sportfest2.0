@@ -34,7 +34,7 @@ export class SportfestService {
   /**
    * Anmeldung
    */
-  public userLogin(username: string, password: string): Observable<any> {
+  public userLogin(username: string, password: any): Observable<any> {
     return this.techService.postRequest('/user/login', {username: username, password: password});
   }
   /**
