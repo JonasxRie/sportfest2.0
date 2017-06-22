@@ -41,14 +41,19 @@
     </md-menu>
     <span class="fill-remaining-space"></span>
 
-    <span class="user" *ngIf="username">{{username}} <!--TODO: Umsteig auf Rest-->
+    <div *ngIf="username">
+      <span class="user" >{{ username }}</span>
+      <md-icon [mdMenuTriggerFor]="menu3">more_vert</md-icon>
+      <md-menu #menu3="mdMenu">
+        <button md-menu-item (click)="openChangePassword()">Passwort ändern</button>
+        <button md-menu-item (click)="logout()">Logout</button>
+      </md-menu>
       &nbsp;
-      <button md-button (click)="logout()">Logout</button>
-    </span>
-    <span class="user" *ngIf="!username">Gast
+    </div>
+    <div class="user" *ngIf="!username"><span>Gast</span>
       &nbsp;
       <button md-button (click)="login()">Login</button>
-    </span>
+    </div>
 
   </md-toolbar>
 </div>
