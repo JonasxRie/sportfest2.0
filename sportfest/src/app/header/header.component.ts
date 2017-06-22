@@ -75,6 +75,9 @@ export class HeaderComponent implements OnInit {
   public navigateToActivateDiscipline() {
     this.router.navigate(['/activateDiscipline']);
   }
+  public navigateToUAC() {
+    this.router.navigate(['/uac']);
+  }
 
 
   public logout() {

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SportfestService } from "app/sportfest.service";
 
@@ -10,7 +11,8 @@ export class ActivateDisciplineComponent implements OnInit {
 
   disziplinen: any;
 
-  constructor(private sfService: SportfestService) { }
+  constructor(private sfService: SportfestService,
+              private router: Router) { }
 
   ngOnInit() {
     this.disziplinen = {
@@ -49,6 +51,10 @@ export class ActivateDisciplineComponent implements OnInit {
   public save() {
     // this.sfService.disziplinAendern()
     console.log('TODO: Abklären, wie die Schnittstelle des Backend zum ändern der Aktiv-Zustand aussieht')
+  }
+  
+  public editDiscipline(did: number) {
+    this.router.navigate(['/createDiscipline/' + did]);
   }
 
 }

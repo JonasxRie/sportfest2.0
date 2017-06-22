@@ -58,16 +58,19 @@ export class LoginComponent implements OnInit {
 
     // Logindaten übermitteln
     // Wie an den String kommen??
-    this.sfService.userLogin(encryptedUsername.ciphertext, encryptedPassword.ciphertext).subscribe(
-      data => {
-        console.log(data);
-        this.loginSubmit.emit();
-      },
-      err => {
-        console.log(err);
-        this.errorMsg = "Fehlgeschlagen, bitte überprüfen Sie Benutzername und Passwort."
-      }
-    );
+    // this.sfService.userLogin(encryptedUsername, encryptedPassword).subscribe(
+    //   data => {
+    //     // Token in localStorage packen
+    //     console.log("Token: " + data);
+    //     localStorage.setItem('token', JSON.stringify(data));
+        
+    //     this.loginSubmit.emit();
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.errorMsg = "Fehlgeschlagen, bitte überprüfen Sie Benutzername und Passwort."
+    //   }
+    // );
   }
 
   public close() {

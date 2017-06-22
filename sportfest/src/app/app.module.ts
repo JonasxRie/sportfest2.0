@@ -31,7 +31,7 @@ const routConfig: Routes = [
       component: DashboardComponent
     },
     {
-      path: 'createDiscipline',
+      path: 'createDiscipline/:did',
       component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },
@@ -50,6 +50,10 @@ const routConfig: Routes = [
     },
     { path: 'activateDiscipline',
       component: ActivateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'createDiscipline/:did',
+      component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },
     { path: 'uac',
