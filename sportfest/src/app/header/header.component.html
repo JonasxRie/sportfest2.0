@@ -16,13 +16,13 @@
     <md-menu #menu0="mdMenu">
       <!--Einzel-->
       <div class="kategorie">&nbsp;Einzel</div>
-        <div *ngFor="let einzel of disziplinen.einzel">
-          <button md-menu-item (click)="navigateToEinzel(einzel.id)">{{ einzel.bezeichnung }}</button>
+        <div *ngFor="let einzel of disziplinenEinzel">
+          <button md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.bezeichnung }}</button>
         </div>
       <!--Team-->
       <div class="kategorie">&nbsp;Team</div>
-        <div *ngFor="let team of disziplinen.team">
-          <button md-menu-item (click)="navigateToTeam(team.id)">Fußball</button>
+        <div *ngFor="let team of disziplinenTeam">
+          <button md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
         </div>
     </md-menu>
 
