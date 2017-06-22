@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 export class TechnischerService {
 
   private api = 'http://172.20.3.18:8080';
-  public token: any;
+  // public token: any;
 
   constructor(private http: Http) { }
 
@@ -22,7 +22,8 @@ export class TechnischerService {
   }
 
   public postRequest(ressourceAPI: string, body: any) {
-    body['token'] = this.token;
+    // Token aus localStorage
+    body['token'] = JSON.parse(localStorage.getItem('token'));;
     return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {

@@ -52,6 +52,10 @@ const routConfig: Routes = [
       component: ActivateDisciplineComponent,
       canActivate: [RouteGuard]
     },
+    { path: 'createDiscipline/:did',
+      component: CreateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
     { path: 'uac',
       component: UserAccountControlComponent,
       canActivate: [RouteGuard]
