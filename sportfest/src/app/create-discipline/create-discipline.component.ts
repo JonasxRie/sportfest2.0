@@ -38,9 +38,12 @@ export class CreateDisciplineComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let sportartID = params['did'];
-      this.sfService.disziplin(sportartID).subscribe(data => {
+      this.sfService.disziplin(sportartID).subscribe((data) => {
         // Daten in die entsprechenden Felder füllen
         console.log(data);
+      },
+      (err) => {
+        console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
     });
   }
