@@ -24,10 +24,25 @@ export class EinzelComponent implements OnInit {
     {value: 4, viewValue: 'Maxi'},
     {value: 5, viewValue: 'Jonas'}
   ];
+  
+  @Input() bestenSchueler = [
+    {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
+    {value: 1, viewValue: 'Michi', ergebnis: 5.3},
+    {value: 2, viewValue: 'Maja', ergebnis: 5.4},
+    {value: 3, viewValue: 'David', ergebnis: 5.5},
+    {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
+    {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
+  ];
+  //Länge der klassen
+  aufgeklappt= [false, false, false, false];
+  
 
   constructor() { }
 
   ngOnInit() {
+    
   }
-
+  aufklappen(i: number){
+    this.aufgeklappt[i] = !this.aufgeklappt[i];
+  }
 }

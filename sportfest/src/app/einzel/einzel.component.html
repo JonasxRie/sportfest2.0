@@ -18,31 +18,57 @@
     <h4>Ergebnisse</h4>
   </md-card-header>
   <md-card-content>
-    <md-select placeholder="Teilnehmer">
-      <md-option *ngFor="let teilnehmer of schueler" [value]="teilnehmer.value">
-        {{ teilnehmer.viewValue }}
-      </md-option>
-    </md-select>
 
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr *ngFor="let klasse of klassen">
-          <th></th>
-          <th>{{ klasse.viewValue }}</th>
-          <td *ngFor="let s of schueler">
-            {{ s.viewValue }}
-          </td>
-          <td>
-            12.5
-          </td>
-        </tr>       
-      </thead>
-      <tbody>
-        <tr>
-          <td>Summe</td>
-        </tr>
-      </tbody>
-    </table>
+   
+    
+    <!--Änderung Maxi-->
+    <table width="100%">
+      <tr>
+        <td align="left" width="70%">
+          <md-list *ngFor="let klasse of klassen, let i=index">
+            <h3 (click)="aufklappen(i)">{{klasse.viewValue}}</h3>
+            <div *ngIf="aufgeklappt[i]">
+              <table>
+                <tr *ngFor="let s of schueler">
+                  <td>
+                    <span>{{ s.viewValue }}:</span>
+                  </td>
+                  <td>
+                    <md-input-container>
+                      <input mdInput placeholder="Ergebnis" type="number">
+                    </md-input-container>
+                    <!-- Inputfeld (disabled wenn nicht login) -->
+                    <!-- vorhandene Values einfügen-->
+                  </td>
+                </tr>      
+                
+              </table>
+            </div>
+          </md-list>
+        </td>
+        <td width="30%" align="center" valign="top">
+          <!--Bestenliste der Sportart-->
+          <md-card>
+            <md-card-header>
+              <h4>Bestenliste im {{sportart}}</h4>
+            </md-card-header>
+            <md-card-content>
+              <table width="100%">
+                <tr>
+                  <th width="20%" align="left">Platzierung</th>
+                  <th width="60%" align="left">Name</th>
+                  <th width="20%" align="left">Ergebnis</th>
+                </tr>
+                <tr *ngFor="let s of bestenSchueler, let i=index">
+                  <td>{{i}}</td>
+                  <td>{{s.viewValue}}</td>
+                  <td>{{s.ergebnis}}<td>
+                </tr>
+              </table>
+            </md-card-content>
+          </md-card>
+        </td>
+      </tr>
+    </table>    
   </md-card-content>
 </md-card>
-

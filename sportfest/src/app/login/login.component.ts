@@ -1,6 +1,6 @@
 import { Md5 } from 'ts-md5/dist/md5';
 import { SportfestService } from './../sportfest.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LoginComponent implements OnInit {
   @Output() loginClose: EventEmitter<any> = new EventEmitter<any>();
   @Output() loginSubmit: EventEmitter<any> = new EventEmitter<any>();
+  
+  @ViewChild('loginbtn') loginBtn;
 
   username: string;
   password: string;
@@ -40,6 +42,14 @@ export class LoginComponent implements OnInit {
         this.errorMsg = "Fehlgeschlagen, bitte überprüfen Sie Benutzername und Passwort."
       }
     );
+  }
+  
+  public keypress(event: any) {
+    if (event.keyCode == 13) { // Enter gedrückt
+      console.log("Enter gepressed!");
+      console.log(this.loginBtn);
+      this.loginBtn.first.nativeElement.focus();
+    } 
   }
 
   public close() {

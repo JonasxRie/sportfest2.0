@@ -1,50 +1,25 @@
-<!--<md-card>
-  <md-card-header>
-    <md-card-title class="main-card-title">Login</md-card-title>
-  </md-card-header>
-  <br>
-  <md-card-content>
-    <form class="login-form">
-      <table class="login-full-width">
-        <tr>
-          <td>
-            <md-input-container>
-              <input mdInput name="username" type="text" placeholder="Username" [(ngModel)]="username">
-            </md-input-container>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <md-input-container>
-              <input mdInput name="password" type="password" placeholder="Passwort" [(ngModel)]="password">
-            </md-input-container>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button (click)="close()">Abbrechen</button>
-    <button md-button (click)="submit()">Login</button>
-    <span class="error-message">{{errorMsg}}</span>
-  </md-card-actions>
-</md-card>-->
-
-
 <h1 class="main-card-title">Login</h1>
 <form class="login-form">
   <table class="login-full-width">
     <tr>
       <td>
         <md-input-container>
-          <input mdInput name="username" type="text" placeholder="Username" [(ngModel)]="username">
+          <input mdInput name="username" 
+            type="text" 
+            placeholder="Username" 
+            [(ngModel)]="username"
+            (keypress)="keypress($event)">
         </md-input-container>
       </td>
     </tr>
     <tr>
       <td>
         <md-input-container>
-          <input mdInput name="password" type="password" placeholder="Passwort" [(ngModel)]="password">
+          <input #loginbtn mdInput name="password" 
+            type="password" 
+            placeholder="Passwort" 
+            [(ngModel)]="password"
+            (keypress)="keypress($event)">
         </md-input-container>
       </td>
     </tr>
