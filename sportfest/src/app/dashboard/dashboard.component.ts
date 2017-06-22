@@ -7,31 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+l: any;
 
   teilnehmer = [
     {
       name: 'Mirco',
-      value: 12
+      value: 12,
+      rang:1
     },
     {
       name: 'Maja',
-      value: 12.5
+      value: 12.5,
+      rang:1
     },
     {
       name: 'Michi',
-      value: 1
+      value: 1,
+      rang:1
     },
     {
       name: 'Maxi',
-      value: 123
+      value: 123,
+      rang:1
     },
     {
       name: 'Jonas',
-      value: 111
+      value: 111,
+      rang:1
     },
     {
       name: 'David',
-      value: 12.5
+      value: 12.5,
+      rang:1
     }
   ];
 
@@ -42,6 +49,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
    this.sortByRang(); 
+   let i: number;
+   i=0;
+
+  this.l = this.teilnehmer.length;
+     console.log(i);
+     console.log(this.l);
+   while(i<this.l){
+     console.log(i);
+    this.teilnehmer[i].rang=i+1;
+     i++;
+   }
    this.sorieterteTeilehmer=this.teilnehmer;
   }
 

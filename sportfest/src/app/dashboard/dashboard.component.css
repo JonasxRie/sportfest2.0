@@ -1,6 +1,14 @@
 table {
     margin: auto;
-    width: auto;    
+    width: 50%;
+    padding: 10px;
+    background-color: rgba(0,110, 199, 1);  
+    color: white; 
+    border-radius: 5px;
+}
+
+td{
+    padding-right:  10px;
 }
 
 th{
