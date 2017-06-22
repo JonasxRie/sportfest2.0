@@ -97,8 +97,14 @@ export class SportfestService {
   /**
    * Ändert eine Disziplin
    */
-  public disziplinAendern(disziplin: any): Observable<any> {
-    return this.techService.postRequest('/disziplin', disziplin)
+  public disziplinAendern(did: number, disziplin: any): Observable<any> {
+    return this.techService.postRequest('/disziplin/' + did, disziplin)
+  }
+  /**
+   * Schreibt eine Disziplin
+   */
+  public disziplinSchreiben(disziplin: any): Observable<any> {
+    return this.techService.putRequest('/disziplin', disziplin)
   }
 
   /**

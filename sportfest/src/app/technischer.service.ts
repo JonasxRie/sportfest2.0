@@ -6,12 +6,13 @@ import 'rxjs/Rx';
 @Injectable()
 export class TechnischerService {
 
-  private api = 'http://172.20.3.18:8080';
+  private api = 'http://172.20.3.18:8080/backend';
   // public token: any;
 
   constructor(private http: Http) { }
 
   public getRequest(ressourceAPI: string) {
+    console.log(this.api + ressourceAPI);
     return this.http.get(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {

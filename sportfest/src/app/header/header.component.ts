@@ -49,11 +49,14 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    console.log('los gehts');
     this.sfService.disziplinen().subscribe(data => {
       this.disziplinen = data;
+      console.log(this.disziplinen);
     },
       (err) => {
         console.error('GET-Service "disziplinen()" not reachable.');
+        console.log(err);
     });
   }
 
