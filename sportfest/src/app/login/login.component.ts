@@ -1,4 +1,4 @@
-import * as CryptoJS from 'crypto-js';
+import { Md5 } from 'ts-md5/dist/md5';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -16,49 +16,19 @@ export class LoginComponent implements OnInit {
 
   errorMsg: string;
 
-  constructor(private sfService: SportfestService) { }
+  constructor(private sfService: SportfestService)
+  { }
 
   ngOnInit() {
   }
 
   public submit() {
     // Logindaten verschlüsseln
-    let key = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let iv = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let encryptedUsername = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.username), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
-
-    let encryptedPassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.password), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
-
-    /*let decrypted = CryptoJS.AES.decrypt(encryptedUsername, key, {
-      keySize: 128 / 8,
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
-    });
-
-    console.log('Encrypted :' + encryptedUsername);
-    console.log('Ciphertext :' + encryptedUsername.ciphertext);
-    console.log('Key :' + encryptedUsername.key);
-    console.log('Salt :' + encryptedUsername.salt);
-    console.log('iv :' + encryptedUsername.iv);
-    console.log('Decrypted : ' + decrypted);
-    console.log('utf8 = ' + decrypted.toString(CryptoJS.enc.Utf8));*/
+    let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
+    console.log(encryptpwd);
 
     // Logindaten übermitteln
-    // Wie an den String kommen??
-    this.sfService.userLogin(encryptedUsername, encryptedPassword).subscribe(
+    this.sfService.userLogin(this.username, encryptpwd).subscribe(
       data => {
         // Token in localStorage packen
         console.log("Token: " + data);

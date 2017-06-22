@@ -1,3 +1,4 @@
+import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -85,11 +86,14 @@ const routConfig: Routes = [
   providers: [
     TechnischerService,
     SportfestService,
-    RouteGuard
+    RouteGuard,
+    Md5
   ],
   entryComponents: [
     LoginComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
