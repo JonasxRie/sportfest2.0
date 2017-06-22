@@ -27,9 +27,9 @@ selectedClassB: number;
     this.route.params.forEach((params: Params) => {
       this.currentSportart = params['did']; //getDisziplin(did).name
       this.regel = params['did']; //getDisziplin(did).regel
-  });
+    });
   }
-  sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
+  sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number) {
     
   }
 

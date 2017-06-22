@@ -1,3 +1,4 @@
+import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,6 +35,11 @@ const routConfig: Routes = [
     },
     {
       path: 'createDiscipline',
+      component: CreateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
+    {
+      path: 'createDiscipline/:did',
       component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },
@@ -97,12 +103,15 @@ const routConfig: Routes = [
   providers: [
     TechnischerService,
     SportfestService,
-    RouteGuard
+    RouteGuard,
+    Md5
   ],
   entryComponents: [
     LoginComponent,
     AreYouSureComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

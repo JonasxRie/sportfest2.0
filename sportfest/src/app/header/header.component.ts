@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
       this.disziplinen = data;
     },
       (err) => {
-        console.error('Der GET-Service für Disziplinen ist zurzeit nicht erreichbar.');
+        console.error('GET-Service "disziplinen()" not reachable.');
     });
   }
 
@@ -95,7 +95,7 @@ export class HeaderComponent implements OnInit {
       this.username = data;
     },
       (err) => {
-        console.error('Der GET-Service für den Username ist zurzeit nicht erreichbar.');
+        console.error('GET-Service "user()" not reachable.');
     });
   }
 
