@@ -162,4 +162,16 @@ export class SportfestService {
   public klasseSchreiben(klasse: any): Observable<any> {
     return this.techService.putRequest('/klasse', klasse);
   }
+  /**
+   * Ändert das Passwort
+   */
+  public changePassword(newPassword: any): Observable<any> {
+    return this.techService.putRequest('/changePassword', newPassword);
+  }
+  /**
+   * Fragt ab, ob das Passwort valide ist.
+   */
+  public validatePassword(password: any): Observable<any> {
+    return this.techService.putRequest('/validatePassword', password);
+  }
 }

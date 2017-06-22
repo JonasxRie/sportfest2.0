@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
-    console.log('los gehts');
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         console.log(data[i]);
@@ -37,7 +36,7 @@ export class HeaderComponent implements OnInit {
       }
     },
       (err) => {
-        console.log(err);
+        console.error('GET-Service "disziplinen()" not reachable.');
     });
   }
 
@@ -72,6 +71,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public logout() {
+    this.username = null;
     // TODO: ausloggen
   }
 
