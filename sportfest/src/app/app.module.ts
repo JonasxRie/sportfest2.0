@@ -20,6 +20,7 @@ import { CreateDisciplineComponent } from './create-discipline/create-discipline
 import { KlassenImportComponent } from './klassen-import/klassen-import.component';
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
 import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routConfig: Routes = [
     {
@@ -79,7 +80,8 @@ const routConfig: Routes = [
     CreateDisciplineComponent,
     KlassenImportComponent,
     ActivateDisciplineComponent,
-    UserAccountControlComponent
+    UserAccountControlComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
