@@ -1,5 +1,5 @@
-<h1 class="main-card-title">Login</h1>
 <form class="login-form">
+  <h1 class="main-card-title">Login</h1>
   <table class="login-full-width">
     <tr>
       <td>
@@ -7,8 +7,7 @@
           <input mdInput name="username" 
             type="text" 
             placeholder="Username" 
-            [(ngModel)]="username"
-            (keypress)="keypress($event)">
+            [(ngModel)]="username">
         </md-input-container>
       </td>
     </tr>
@@ -24,7 +23,7 @@
       </td>
     </tr>
   </table>
+  <span class="error-message">{{ errorMsg }}</span><br>
+  <button md-button (click)="close($event)">Abbrechen</button>
+  <button md-button (click)="submit()">Login</button>
 </form>
-<button md-button (click)="close()">Abbrechen</button>
-<button md-button (click)="submit()">Login</button>
-<span class="error-message">{{ errorMsg }}</span>
