@@ -16,33 +16,8 @@ export class HeaderComponent implements OnInit {
   title = 'Sportfest';
   year = '2017';
   username: string;
-  disziplinen =
-  {
-    einzel: [
-      {
-        id: 0,
-        bezeichnung: 'Weitsprung'
-      },
-      {
-        id: 1,
-        bezeichnung: 'Hochspring'
-      },
-      {
-        id: 2,
-        bezeichnung: 'Medizinballstoßen'
-      }
-    ],
-    team: [
-      {
-        id: 3,
-        bezeichnung: 'Fußball'
-      },
-      {
-        id: 4,
-        bezeichnung: 'Hockey'
-      }
-    ]
-  };
+  disziplinenTeam: Array<any> = [];
+  disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
               public dialog: MdDialog,
@@ -51,20 +26,25 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     console.log('los gehts');
     this.sfService.disziplinen().subscribe(data => {
-      this.disziplinen = data;
-      console.log(this.disziplinen);
+      for(let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        if(data[i].teamleistung == true) {
+          this.disziplinenTeam.push(data[i]);
+        }else {
+          this.disziplinenEinzel.push(data[i]);
+        }
+      }
     },
       (err) => {
-        console.error('GET-Service "disziplinen()" not reachable.');
         console.log(err);
     });
   }
 
-  public navigateToEinzel(did: number) {
-    this.router.navigate(['/einzel/' + did]);
+  public navigateToEinzel(did: number, name: string) {
+    this.router.navigate(['/einzel/' + did + '/' + name]);
   }
-  public navigateToTeam(did: number) {
-    this.router.navigate(['/team/' + did]);
+  public navigateToTeam(did: number, name: string) {
+    this.router.navigate(['/team/' + did + '/' + name]);
   }
   public navigateToDashboard() {
     this.router.navigate(['/home']);

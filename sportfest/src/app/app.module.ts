@@ -44,11 +44,11 @@ const routConfig: Routes = [
       canActivate: [RouteGuard]
     },
     {
-      path: 'einzel/:did',
+      path: 'einzel/:did/:name',
       component: EinzelComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'team/:did',
+    { path: 'team/:did/:name',
       component: TeamComponent,
       canActivate: [RouteGuard]
     },

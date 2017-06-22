@@ -10,7 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class TeamComponent implements OnInit {
   did: number;
   
-  currentSportart: string = "Fußball"; // TODO
+  currentSportart: string;
   regel: string = "Nur mit dem Fuß spielen"; // TODO
 
   punkteStand = [{classA: 'FS151', classB: 'FI151', pointsA: 6, pointsB: 3}, {classA: 'FI151', classB: 'FI152', pointsA: 2, pointsB: 1}]
@@ -32,7 +32,7 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.did = params['did'];
-      this.currentSportart = params['did']; //getDisziplin(did).name
+      this.currentSportart = params['name']; //getDisziplin(did).name
       this.regel = params['did']; //getDisziplin(did).regel
     });
   }
