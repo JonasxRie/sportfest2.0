@@ -1,5 +1,23 @@
 table {
     margin: auto;
+    width: auto;    
+}
+
+th{
+    border-bottom: solid;
+    vertical-align: middle !important;
+}
+div{
+    display: inline-table;
+    vertical-align: middle;
+    padding: 0;
+}
+
+p{
+    display: table-cell;
+    vertical-align: middle !important;
+    padding: 0px;
+    margin:0;
 }
 
 /*cdk-overlay-0, .cdk-overlay-pane, .cdk-overlay-container, .cdk-global-overlay-wrapper {

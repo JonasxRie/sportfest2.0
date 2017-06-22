@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
   teilnehmer = [
     {
       name: 'Mirco',
-      value: 12.5
+      value: 12
     },
     {
       name: 'Maja',
@@ -19,15 +19,15 @@ export class DashboardComponent implements OnInit {
     },
     {
       name: 'Michi',
-      value: 12.5
+      value: 1
     },
     {
       name: 'Maxi',
-      value: 12.5
+      value: 123
     },
     {
       name: 'Jonas',
-      value: 12.5
+      value: 111
     },
     {
       name: 'David',
@@ -35,9 +35,83 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
+  sorieterteTeilehmer: any;
+
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+   this.sortByRang(); 
+   this.sorieterteTeilehmer=this.teilnehmer;
+  }
+
+  public sortByRang(){
+    this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
+      if(n1.value>n2.value){
+        return -1;
+      }
+      if(n1.value<n2.value){
+        return 1;
+      }
+
+      if(n1.value==n2.value){
+        if(n1.name>n2.name){
+          return 1;
+        }
+
+        if(n1.name<n2.name){
+          return -1;
+        }
+      }
+      return 0;
+    });
+  }
+
+public sortByRangRev(){
+    this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
+      if(n1.value>n2.value){
+        return 1;
+      }
+      if(n1.value<n2.value){
+        return -1;
+      }
+
+      if(n1.value==n2.value){
+        if(n1.name>n2.name){
+          return -1;
+        }
+
+        if(n1.name<n2.name){
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
+
+
+  public sortByKlasse(){
+    this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
+      if(n1.name>n2.name){
+        return -1;
+      }
+      if(n1.name<n2.name){
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  public sortByKlasseRev(){
+        this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
+      if(n1.name>n2.name){
+        return 1;
+      }
+      if(n1.name<n2.name){
+        return -1;
+      }
+      return 0;
+    });
   }
 
 }
