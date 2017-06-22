@@ -13,6 +13,7 @@
   </md-card-content>
 </md-card>
 
+
 <md-card>
   <md-card-header>
     <h4>Neue Begegnung</h4>
@@ -53,14 +54,14 @@
             <span>&nbsp;:&nbsp;</span>
 
             <md-input-container>
-              <input type="number" mdInput placeholder="Punkte B">
+              <input type="number" mdInput placeholder="Punkte B" [(ngModel)]="pointsB">
             </md-input-container>
           </div>
         </td>
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <button md-raised-button color="primary" (click)="sendTeamErgebnis()">Abschicken</button>
+          <button md-raised-button color="primary" (click)="sendTeamErgebnis(selectedClassA, selectedClassB, pointsA, pointsB)">Abschicken</button>
         </td>
       </tr>
     </table>

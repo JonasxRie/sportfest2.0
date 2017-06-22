@@ -29,5 +29,8 @@ selectedClassB: number;
       this.regel = params['did']; //getDisziplin(did).regel
   });
   }
+  sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
+    
+  }
 
 }

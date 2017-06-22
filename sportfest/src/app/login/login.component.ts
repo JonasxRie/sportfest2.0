@@ -58,9 +58,12 @@ export class LoginComponent implements OnInit {
 
     // Logindaten übermitteln
     // Wie an den String kommen??
-    this.sfService.userLogin(encryptedUsername.ciphertext, encryptedPassword.ciphertext).subscribe(
+    this.sfService.userLogin(encryptedUsername, encryptedPassword).subscribe(
       data => {
-        console.log(data);
+        // Token in localStorage packen
+        console.log("Token: " + data);
+        localStorage.setItem('token', JSON.stringify(data));
+        
         this.loginSubmit.emit();
       },
       err => {
