@@ -20,6 +20,7 @@ import { CreateDisciplineComponent } from './create-discipline/create-discipline
 import { KlassenImportComponent } from './klassen-import/klassen-import.component';
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
 import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
@@ -87,6 +88,7 @@ const routConfig: Routes = [
     KlassenImportComponent,
     ActivateDisciplineComponent,
     UserAccountControlComponent,
+    PasswordChangeComponent,
     FooterComponent,
     CreateSportfestComponent,
     AreYouSureComponent
@@ -110,6 +112,7 @@ const routConfig: Routes = [
   ],
   entryComponents: [
     LoginComponent,
+    PasswordChangeComponent,
     AreYouSureComponent
   ],
   bootstrap: [

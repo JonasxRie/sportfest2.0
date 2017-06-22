@@ -45,6 +45,7 @@
 }
 
 .user{
+  vertical-align: middle;
   color: darkgrey;
 }
 
@@ -52,4 +53,8 @@
   /* this fills the remaining space, by using flexbox. 
   / every toolbar row uses a flexbox row layout.*/
   flex: 1 1 auto;
+}
+
+md-icon {
+  vertical-align: middle;
 }
