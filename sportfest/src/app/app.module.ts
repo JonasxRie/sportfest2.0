@@ -16,29 +16,44 @@ import { TechnischerService } from './technischer.service';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateDisciplineComponent } from './create-discipline/create-discipline.component';
+import { KlassenImportComponent } from './klassen-import/klassen-import.component';
+import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
+import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
 
 const routConfig: Routes = [
-    { 
-      path: '', 
-      redirectTo: 'home', 
-      pathMatch: 'full' 
+    {
+      path: '',
+      redirectTo: 'home',
+      pathMatch: 'full'
     },
-    { 
-      path: 'home', 
+    {
+      path: 'home',
       component: DashboardComponent
     },
-    { 
-      path: 'createDiscipline', 
+    {
+      path: 'createDiscipline',
       component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },
-    { 
-      path: 'einzel/:did', 
+    {
+      path: 'einzel/:did',
       component: EinzelComponent,
       canActivate: [RouteGuard]
     },
     { path: 'team/:did',
       component: TeamComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'import/klasse',
+      component: KlassenImportComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'activateDiscipline',
+      component: ActivateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'uac',
+      component: UserAccountControlComponent,
       canActivate: [RouteGuard]
     }
 ];
@@ -51,7 +66,10 @@ const routConfig: Routes = [
     HeaderComponent,
     DashboardComponent,
     LoginComponent,
-    CreateDisciplineComponent
+    CreateDisciplineComponent,
+    KlassenImportComponent,
+    ActivateDisciplineComponent,
+    UserAccountControlComponent
   ],
   imports: [
     BrowserModule,

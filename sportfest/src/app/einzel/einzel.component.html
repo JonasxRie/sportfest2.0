@@ -1,10 +1,12 @@
-<h1>
-    Einzelsportart - {{ sportart }}
-</h1>
+<md-card>
+  <md-card-header>
+    <h3>{{ sportart }}</h3>
+  </md-card-header>
+</md-card>
 
 <md-card>
   <md-card-header>
-    <md-card-title>Regeln</md-card-title>
+    <h4>Regeln</h4>
   </md-card-header>
   <md-card-content>
     {{ regeln }}
@@ -13,7 +15,7 @@
 
 <md-card>
   <md-card-header>
-    <md-card-title>Ergebnisse</md-card-title>
+    <h4>Ergebnisse</h4>
   </md-card-header>
   <md-card-content>
     <md-select placeholder="Teilnehmer">
@@ -24,13 +26,20 @@
 
     <table class="table table-striped table-hover">
       <thead>
-        <tr>
-          <th *ngFor="let klasse of klassen">{{ klasse.viewValue }}</th>
-        </tr>
+        <tr *ngFor="let klasse of klassen">
+          <th></th>
+          <th>{{ klasse.viewValue }}</th>
+          <td *ngFor="let s of schueler">
+            {{ s.viewValue }}
+          </td>
+          <td>
+            12.5
+          </td>
+        </tr>       
       </thead>
       <tbody>
         <tr>
-            <td *ngFor="let s of schueler">{{ s.viewValue }}</td>
+          <td>Summe</td>
         </tr>
       </tbody>
     </table>

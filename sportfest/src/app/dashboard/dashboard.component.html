@@ -1,16 +1,26 @@
-
 <md-card>
   <md-card-header>
-    <md-card-title>Klassen Ranking</md-card-title>
+    <h3>Klassen Ranking</h3>
   </md-card-header>
   <md-card-content>
-    <md-list>
+    <table>
+      <tr *ngFor="let teiln of teilnehmer">
+        <td> 
+          {{ teiln.name }}
+        </td>
+        <td>
+          {{ teiln.value }}
+        </td>
+        <td></td>
+      </tr>
+    </table>
+    <!--<md-list>
       <md-list-item *ngFor="let teiln of teilnehmer">
         <md-icon md-list-icon>car</md-icon>
         <h4 md-line>{{teiln.name}}</h4>
         <p md-line> {{teiln.value}} </p>
       </md-list-item>
-    </md-list>
+    </md-list>-->
   </md-card-content>
   <md-card-actions>
   </md-card-actions>

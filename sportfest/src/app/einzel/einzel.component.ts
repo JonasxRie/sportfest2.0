@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class EinzelComponent implements OnInit {
-  @Input() sportart: string;
-  @Input() regeln: string;
+  @Input() sportart: string = "Weitsprung";   // TODO: richtige Sportart
+  @Input() regeln: string = "Nicht die Linie übertreten.";  // TODO: richtige Regeln
   @Input() klassen = [
     {value: 0, viewValue: 'FS151'},
     {value: 0, viewValue: 'FI151'},
@@ -28,8 +28,6 @@ export class EinzelComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // console.log(this.klassen);
-    // console.log(this.schueler);
   }
 
 }

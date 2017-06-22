@@ -69,6 +69,12 @@ export class HeaderComponent implements OnInit {
   public navigateToCreateDiscipline() {
     this.router.navigate(['/createDiscipline']);
   }
+  public navigateToImportKlasse() {
+    this.router.navigate(['/import/klasse']);
+  }
+  public navigateToActivateDiscipline() {
+    this.router.navigate(['/activateDiscipline']);
+  }
 
 
   public logout() {
@@ -78,12 +84,7 @@ export class HeaderComponent implements OnInit {
   public login() {
     const dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
-    dlg.componentInstance.loginSubmit.subscribe(data => {
-      // TODO: Login
-      console.log(data);
-      console.log(this.sfService.userLogin(data[0], data[1]));
-      dlg.close();
-    });
+    dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
     this.sfService.user().subscribe(data => {
       this.username = data;
     },

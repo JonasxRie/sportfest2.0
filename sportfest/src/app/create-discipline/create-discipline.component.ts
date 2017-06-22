@@ -1,4 +1,4 @@
-import { Variable } from './../interfaces';
+import { Variable, Regel } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,25 +14,40 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
-    secondVisible= false;
+    secondVisible = false;
     
-    rules: Array<Variable>;
-    
+    rulesVar: Array<Variable>;
+    rules: Array<Regel>;
+    dummynumber: number;
+    dummyregel: Regel = { regeltext: '', punkte: 0 };
 
   constructor(private sfService: SportfestService) { 
-    this.rules=[{name:'',expId:'',desc:''}];
+    this.rulesVar = [
+      {
+        name:'',
+        expId:'',
+        desc:''
+      }
+    ];
+    this.rules = [
+      this.dummyregel
+    ];
   }
 
   ngOnInit() {
   }
   
+  addNewRuleVarLine(){
+    let line = {name: '', expId: '', desc: ''};
+    this.rulesVar.push(line);
+  }
+
   addNewRuleLine(){
-    let variable = {name: '', expId: '', desc: ''};
-    this.rules.push(variable);
+    let rule = { regeltext: '', punkte: 0 };
+    this.rules.push(rule);
   }
   
   submit() {
-    console.log(this.sportart);
-    this.secondVisible=true;
+    this.secondVisible = true;
   }
 }
