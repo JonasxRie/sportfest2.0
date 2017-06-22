@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { SportfestService } from '../sportfest.service';
 
 @Component({
   selector: 'app-password-change',
@@ -19,22 +20,35 @@ export class PasswordChangeComponent implements OnInit {
   newNotEqual = false;
   msgNewNotEqual = 'Passwörter sind nicht identisch!';
 
-  constructor() { }
+  constructor(private sfService: SportfestService) { }
 
   ngOnInit() {
   }
+  
   public cancel() {
     this.pwCancel.emit();
   }
   public save() {
     if (this.inputsValid()) {
-      console.error("Hier Rest-Service zum Speichern vom Passwort einbinden!");
+      // this.sfService.changePassword(this.new).subscribe((data) => {
+      //     console.log(data);
+      //   },
+      //   (err) => {
+      //     console.error('GET-Service "changePassword()" not reachable.');
+      // });
       this.pwSave.emit();
     }
   }
   private inputsValid() {
     let valid = true;
-    if (this.recent && this.recent.length > 0) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
+    let recentPasswordValid = (this.recent && this.recent.length > 0);
+    // this.sfService.validatePassword(this.recent).subscribe((data) => {
+    //     recentPasswordValid = data;
+    //   },
+    //   (err) => {
+    //     console.error('GET-Service "validatePassword()" not reachable.');
+    // });
+    if (this.recent && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
       this.recentInvalid = false;      
     } else {
       valid = false;
