@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Variable, Regel } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +22,7 @@ export class CreateDisciplineComponent implements OnInit {
     dummynumber: number;
     dummyregel: Regel = { regeltext: '', punkte: 0 };
 
-  constructor(private sfService: SportfestService) { 
+  constructor(private sfService: SportfestService, private route: ActivatedRoute) { 
     this.rulesVar = [
       {
         name:'',
@@ -35,14 +36,21 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      let sportartID = params['did'];
+      this.sfService.disziplin(sportartID).subscribe(data => {
+        // Daten in die entsprechenden Felder füllen
+        console.log(data);
+      });
+    });
   }
   
-  addNewRuleVarLine(){
+  addNewRuleVarLine() {
     let line = {name: '', expId: '', desc: ''};
     this.rulesVar.push(line);
   }
 
-  addNewRuleLine(){
+  addNewRuleLine() {
     let rule = { regeltext: '', punkte: 0 };
     this.rules.push(rule);
   }

@@ -31,7 +31,7 @@ const routConfig: Routes = [
       component: DashboardComponent
     },
     {
-      path: 'createDiscipline',
+      path: 'createDiscipline/:did',
       component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },

@@ -27,7 +27,6 @@ selectedClassB: number;
     this.route.params.forEach((params: Params) => {
       this.currentSportart = params['did']; //getDisziplin(did).name
       this.regel = params['did']; //getDisziplin(did).regel
-  });
+    });
   }
-
 }
