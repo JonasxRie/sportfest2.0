@@ -1,4 +1,4 @@
-import * as CryptoJS from 'crypto-js';
+import { Md5 } from 'ts-md5/dist/md5';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -22,59 +22,42 @@ export class LoginComponent implements OnInit {
   }
 
   public submit() {
-    // Logindaten verschlüsseln
-    let key = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let iv = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let encryptedUsername = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.username), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
+    if (this.username !== "" && this.password !== "" && this.username && this.password) {      
+      // Logindaten verschlüsseln
+      let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
+      console.log(encryptpwd);
 
-    let encryptedPassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.password), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
-
-    /*let decrypted = CryptoJS.AES.decrypt(encryptedUsername, key, {
-      keySize: 128 / 8,
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
-    });
-
-    console.log('Encrypted :' + encryptedUsername);
-    console.log('Ciphertext :' + encryptedUsername.ciphertext);
-    console.log('Key :' + encryptedUsername.key);
-    console.log('Salt :' + encryptedUsername.salt);
-    console.log('iv :' + encryptedUsername.iv);
-    console.log('Decrypted : ' + decrypted);
-    console.log('utf8 = ' + decrypted.toString(CryptoJS.enc.Utf8));*/
-
-    // Logindaten übermitteln
-    // Wie an den String kommen??
-    // this.sfService.userLogin(encryptedUsername, encryptedPassword).subscribe(
-    //   data => {
-    //     // Token in localStorage packen
-    //     console.log("Token: " + data);
-    //     localStorage.setItem('token', JSON.stringify(data));
-        
-    //     this.loginSubmit.emit();
-    //   },
-    //   err => {
-    //     console.log(err);
-    //     this.errorMsg = "Fehlgeschlagen, bitte überprüfen Sie Benutzername und Passwort."
-    //   }
-    // );
+      // Logindaten übermitteln
+      this.sfService.userLogin(this.username, encryptpwd).subscribe(
+        data => {
+          // Token in localStorage packen
+          console.log("Token: " + data);
+          localStorage.setItem('token', JSON.stringify(data));
+          this.loginSubmit.emit();
+        },
+        err => {
+          console.log(err);
+          this.error();
+        }
+      );
+    } else {
+      this.error();
+    }
   }
 
-  public close() {
-    this.loginClose.emit();
+  public error() {
+    this.errorMsg = "Bitte Eingaben überprüfen."
+  }
+
+  public keypress(event: any) {
+    if (event.keyCode == 13) { // Enter gedrückt
+      this.submit();      
+    }
+  }
+
+  public close(event: any) {
+    if (event.clientX !== 0 || event.clientY !== 0)
+      this.loginClose.emit();
   }
 
 }

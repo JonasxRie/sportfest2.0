@@ -1,0 +1,15 @@
+md-card{
+  font-family: Arial, Helvetica, sans-serif;
+  width: inherit;
+  background-color: #006EC7;
+  height: 15px;
+}
+
+md-card-content{
+    color: white;
+
+}
+
+p{
+  height: inherit;
+}

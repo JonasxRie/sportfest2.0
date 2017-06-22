@@ -1,3 +1,4 @@
+import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,9 @@ import { KlassenImportComponent } from './klassen-import/klassen-import.componen
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
 import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { FooterComponent } from './footer/footer.component';
+import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
+import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 
 const routConfig: Routes = [
     {
@@ -42,11 +46,11 @@ const routConfig: Routes = [
       canActivate: [RouteGuard]
     },
     {
-      path: 'einzel/:did',
+      path: 'einzel/:did/:name',
       component: EinzelComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'team/:did',
+    { path: 'team/:did/:name',
       component: TeamComponent,
       canActivate: [RouteGuard]
     },
@@ -65,6 +69,10 @@ const routConfig: Routes = [
     { path: 'uac',
       component: UserAccountControlComponent,
       canActivate: [RouteGuard]
+    },
+    { path: 'createSportfest',
+      component: CreateSportfestComponent,
+      canActivate: [RouteGuard]
     }
 ];
 
@@ -80,7 +88,10 @@ const routConfig: Routes = [
     KlassenImportComponent,
     ActivateDisciplineComponent,
     UserAccountControlComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    FooterComponent,
+    CreateSportfestComponent,
+    AreYouSureComponent
   ],
   imports: [
     BrowserModule,
@@ -96,12 +107,16 @@ const routConfig: Routes = [
   providers: [
     TechnischerService,
     SportfestService,
-    RouteGuard
+    RouteGuard,
+    Md5
   ],
   entryComponents: [
     LoginComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    AreYouSureComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

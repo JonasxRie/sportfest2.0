@@ -16,54 +16,36 @@ export class HeaderComponent implements OnInit {
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
   year = '2017';
-  username: string = "Jordan";
-  
-  disziplinen =
-  {
-    einzel: [
-      {
-        id: 0,
-        bezeichnung: 'Weitsprung'
-      },
-      {
-        id: 1,
-        bezeichnung: 'Hochspring'
-      },
-      {
-        id: 2,
-        bezeichnung: 'Medizinballstoßen'
-      }
-    ],
-    team: [
-      {
-        id: 3,
-        bezeichnung: 'Fußball'
-      },
-      {
-        id: 4,
-        bezeichnung: 'Hockey'
-      }
-    ]
-  };
+  username: string;
+  disziplinenTeam: Array<any> = [];
+  disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
               public dialog: MdDialog,
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    console.log('los gehts');
     this.sfService.disziplinen().subscribe(data => {
-      this.disziplinen = data;
+      for(let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        if(data[i].teamleistung == true) {
+          this.disziplinenTeam.push(data[i]);
+        }else {
+          this.disziplinenEinzel.push(data[i]);
+        }
+      }
     },
       (err) => {
-        console.error('GET-Service "disziplinen()" not reachable.');
+        console.log(err);
     });
   }
 
-  public navigateToEinzel(did: number) {
-    this.router.navigate(['/einzel/' + did]);
+  public navigateToEinzel(did: number, name: string) {
+    this.router.navigate(['/einzel/' + did + '/' + name]);
   }
-  public navigateToTeam(did: number) {
-    this.router.navigate(['/team/' + did]);
+  public navigateToTeam(did: number, name: string) {
+    this.router.navigate(['/team/' + did + '/' + name]);
   }
   public navigateToDashboard() {
     this.router.navigate(['/home']);
@@ -84,6 +66,9 @@ export class HeaderComponent implements OnInit {
     let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
     dlg.componentInstance.pwCancel.subscribe(data => dlg.close());
     dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+  }
+  public navigateToCreateSportfest() {
+    this.router.navigate(['/createSportfest']);
   }
 
   public logout() {
