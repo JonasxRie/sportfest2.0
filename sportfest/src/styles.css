@@ -2,8 +2,9 @@
 html, body {
     height: 100%;
     margin: auto;
-    font-family: Roboto;
+    font-family: Arial, Helvetica, sans-serif;
 }
 md-icon {
     cursor: pointer;
 }
+

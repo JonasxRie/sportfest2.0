@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
   year = '2017';
-  username: string;
+  username: string = "Maxi";
   disziplinenTeam: Array<any> = [];
   disziplinenEinzel: Array<any> = [];
 
