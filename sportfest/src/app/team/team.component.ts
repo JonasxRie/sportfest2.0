@@ -1,3 +1,4 @@
+import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -7,6 +8,8 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
+  did: number;
+  
   currentSportart: string = "Fußball"; // TODO
   regel: string = "Nur mit dem Fuß spielen"; // TODO
 
@@ -17,20 +20,31 @@ export class TeamComponent implements OnInit {
               {value: 3, viewValue: "FI151"},
               {value: 4, viewValue: "FI152"},
               {value: 5, viewValue: "FV151"}];
-selectedClassA: number;
-selectedClassB: number;
+  selectedClassA: number;
+  selectedClassB: number;
+  pointsA: number;
+  pointsB: number;
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, 
+              private sfService: SportfestService) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
+      this.did = params['did'];
       this.currentSportart = params['did']; //getDisziplin(did).name
       this.regel = params['did']; //getDisziplin(did).regel
   });
   }
   sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
+    //Clear Inputs
+    this.selectedClassA = null;
+    this.selectedClassB = null;
+    this.pointsA = null;
+    this.pointsB = null;
     
+    //Hier senden
+    this.sfService.ergebnisSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]) //TODO richtiges JSON
   }
 
 }
