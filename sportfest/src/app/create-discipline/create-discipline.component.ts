@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Variable, Regel } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,14 +15,14 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
-    secondVisible = false;
+    secondVisible = true;
     
     rulesVar: Array<Variable>;
     rules: Array<Regel>;
     dummynumber: number;
-    dummyregel: Regel = { regeltext: '', punkte: 0 };
+    dummyregel: Regel = { regeltext: '', punkte: this.dummynumber };
 
-  constructor(private sfService: SportfestService) { 
+  constructor(private sfService: SportfestService, private route: ActivatedRoute) { 
     this.rulesVar = [
       {
         name:'',
@@ -35,16 +36,34 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      let sportartID = params['did'];
+      this.sfService.disziplin(sportartID).subscribe((data) => {
+        // Daten in die entsprechenden Felder füllen
+        console.log(data);
+      },
+      (err) => {
+        console.error('GET-Service "disziplin(sportartID)" not reachable.');
+      });
+    });
   }
   
-  addNewRuleVarLine(){
+  addNewRuleVarLine() {
     let line = {name: '', expId: '', desc: ''};
     this.rulesVar.push(line);
   }
+  
+  removeRuleVarLine(index: number){
+        this.rulesVar.splice(index,1);
+  }
 
   addNewRuleLine(){
-    let rule = { regeltext: '', punkte: 0 };
+    let rule = { regeltext: '', punkte: this.dummynumber };
     this.rules.push(rule);
+  }
+  
+  removeRuleLine(index: number){
+    this.rules.splice(index);
   }
   
   submit() {

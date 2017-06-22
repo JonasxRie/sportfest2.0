@@ -40,7 +40,7 @@
     </table>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button color="primary" (click)="submit()">Weiter</button>
+    <!--<button md-raised-button color="primary" (click)="submit()">Weiter</button>-->
   </md-card-actions>
 </md-card>
 <br>
@@ -49,9 +49,9 @@
     <h3>Regel-Variable anlegen</h3>
   </md-card-header>	
   <md-card-content>
-    <button md-raised-button color="primary" (click)="addNewRuleVarLine()"><md-icon>add</md-icon>Neue Regel-Variable</button>
+   
     <table>
-      <tr *ngFor="let row of rulesVar">
+      <tr *ngFor="let row of rulesVar, let i = index">
         <td> 
           <md-input-container> 
               <input mdInput type="text" placeholder="Name der Regel-Variable" [value]="row.name" >
@@ -67,8 +67,12 @@
               <input mdInput type="text" placeholder="Beschreibung" [value]="row.desc">
           </md-input-container>
         </td>  
+        <td>
+          <md-icon (click)="removeRuleVarLine(i)" style="cursor: pointer">delete</md-icon>
+        </td>
       </tr>  
     </table>
+     <button md-raised-button color="primary" (click)="addNewRuleVarLine()"><md-icon>add</md-icon>Regel-Variable hinzufügen</button>
   </md-card-content>
 </md-card>
 <br>
@@ -78,7 +82,7 @@
   </md-card-header>
   <md-card-content>
     <table>
-      <tr *ngFor="let row of rules">
+      <tr *ngFor="let row of rules, let i = index">
         <td>
           <md-input-container> 
               <input mdInput type="text" placeholder="Name der Regel" [value]="row.regeltext">
@@ -86,12 +90,23 @@
         </td>  
         <td> 
           <md-input-container> 
-              <input mdInput type="number" placeholder="Punkte" [value]="row.punkte"> <!-- sicher int und Punkte?-->
+              <input mdInput type="number" placeholder="Punkte" [value]="row.punkte">
           </md-input-container>
         </td>  
+        <td>
+          <md-icon (click)="removeRuleLine(i)" style="cursor: pointer">delete</md-icon>
+        </td>
       </tr>  
     </table>
+    <button md-raised-button color="primary" (click)="addNewRuleLine()"><md-icon>add</md-icon>Regel hinzufügen</button>
   </md-card-content>
+</md-card>
+<br>
+<md-card style="background-color: #006EC7">
+  <md-card-header>
+     <button [disabled]=!secondVisible style="font-size: 1.1em"
+     md-raised-button (click)="submitRule()" color="accent"><md-icon>done</md-icon> Disziplin speichern</button>
+  </md-card-header>
 </md-card>
 
 

@@ -34,7 +34,7 @@ export class TeamComponent implements OnInit {
       this.did = params['did'];
       this.currentSportart = params['did']; //getDisziplin(did).name
       this.regel = params['did']; //getDisziplin(did).regel
-  });
+    });
   }
   sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
     //Clear Inputs

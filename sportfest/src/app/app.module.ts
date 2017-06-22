@@ -1,3 +1,4 @@
+import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,8 @@ import { CreateDisciplineComponent } from './create-discipline/create-discipline
 import { KlassenImportComponent } from './klassen-import/klassen-import.component';
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
 import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
+import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
+import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 
 const routConfig: Routes = [
     {
@@ -32,6 +35,11 @@ const routConfig: Routes = [
     },
     {
       path: 'createDiscipline',
+      component: CreateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
+    {
+      path: 'createDiscipline/:did',
       component: CreateDisciplineComponent,
       canActivate: [RouteGuard]
     },
@@ -52,8 +60,16 @@ const routConfig: Routes = [
       component: ActivateDisciplineComponent,
       canActivate: [RouteGuard]
     },
+    { path: 'createDiscipline/:did',
+      component: CreateDisciplineComponent,
+      canActivate: [RouteGuard]
+    },
     { path: 'uac',
       component: UserAccountControlComponent,
+      canActivate: [RouteGuard]
+    },
+    { path: 'createSportfest',
+      component: CreateSportfestComponent,
       canActivate: [RouteGuard]
     }
 ];
@@ -69,7 +85,9 @@ const routConfig: Routes = [
     CreateDisciplineComponent,
     KlassenImportComponent,
     ActivateDisciplineComponent,
-    UserAccountControlComponent
+    UserAccountControlComponent,
+    CreateSportfestComponent,
+    AreYouSureComponent
   ],
   imports: [
     BrowserModule,
@@ -85,11 +103,15 @@ const routConfig: Routes = [
   providers: [
     TechnischerService,
     SportfestService,
-    RouteGuard
+    RouteGuard,
+    Md5
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    AreYouSureComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

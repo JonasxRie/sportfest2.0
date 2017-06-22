@@ -1,6 +1,6 @@
-import * as CryptoJS from 'crypto-js';
+import { Md5 } from 'ts-md5/dist/md5';
 import { SportfestService } from './../sportfest.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,57 +10,31 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LoginComponent implements OnInit {
   @Output() loginClose: EventEmitter<any> = new EventEmitter<any>();
   @Output() loginSubmit: EventEmitter<any> = new EventEmitter<any>();
+  
+  @ViewChild('loginbtn') loginBtn;
 
   username: string;
   password: string;
 
   errorMsg: string;
 
-  constructor(private sfService: SportfestService) { }
+  constructor(private sfService: SportfestService)
+  { }
 
   ngOnInit() {
   }
 
   public submit() {
     // Logindaten verschlüsseln
-    let key = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let iv = CryptoJS.enc.Utf8.parse('7061737323313233');
-    let encryptedUsername = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.username), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
-
-    let encryptedPassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.password), key,
-      {
-        keySize: 128 / 8,
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      });
-
-    /*let decrypted = CryptoJS.AES.decrypt(encryptedUsername, key, {
-      keySize: 128 / 8,
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
-    });
-
-    console.log('Encrypted :' + encryptedUsername);
-    console.log('Ciphertext :' + encryptedUsername.ciphertext);
-    console.log('Key :' + encryptedUsername.key);
-    console.log('Salt :' + encryptedUsername.salt);
-    console.log('iv :' + encryptedUsername.iv);
-    console.log('Decrypted : ' + decrypted);
-    console.log('utf8 = ' + decrypted.toString(CryptoJS.enc.Utf8));*/
+    let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
+    console.log(encryptpwd);
 
     // Logindaten übermitteln
-    // Wie an den String kommen??
-    this.sfService.userLogin(encryptedUsername.ciphertext, encryptedPassword.ciphertext).subscribe(
+    this.sfService.userLogin(this.username, encryptpwd).subscribe(
       data => {
-        console.log(data);
+        // Token in localStorage packen
+        console.log("Token: " + data);
+        localStorage.setItem('token', JSON.stringify(data));        
         this.loginSubmit.emit();
       },
       err => {
@@ -68,6 +42,14 @@ export class LoginComponent implements OnInit {
         this.errorMsg = "Fehlgeschlagen, bitte überprüfen Sie Benutzername und Passwort."
       }
     );
+  }
+  
+  public keypress(event: any) {
+    if (event.keyCode == 13) { // Enter gedrückt
+      console.log("Enter gepressed!");
+      console.log(this.loginBtn);
+      this.loginBtn.first.nativeElement.focus();
+    } 
   }
 
   public close() {

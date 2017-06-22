@@ -4,3 +4,6 @@ html, body {
     margin: auto;
     font-family: Roboto;
 }
+md-icon {
+    cursor: pointer;
+}
