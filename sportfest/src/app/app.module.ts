@@ -20,6 +20,7 @@ import { CreateDisciplineComponent } from './create-discipline/create-discipline
 import { KlassenImportComponent } from './klassen-import/klassen-import.component';
 import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
 import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
+import { FooterComponent } from './footer/footer.component';
 import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 
@@ -86,6 +87,7 @@ const routConfig: Routes = [
     KlassenImportComponent,
     ActivateDisciplineComponent,
     UserAccountControlComponent,
+    FooterComponent,
     CreateSportfestComponent,
     AreYouSureComponent
   ],
