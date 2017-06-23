@@ -4,14 +4,51 @@
   </md-card-header>
   <md-card-content>
     <table>
-      <tr *ngFor="let teiln of teilnehmer">
+      <tr>
+        <th  style="width: 20%">
+          <div>
+          <p>Rang</p>
+          <md-icon (click)="sortByRangRev()">
+            keyboard_arrow_up
+          </md-icon>
+          <md-icon (click)="sortByRang()">
+            keyboard_arrow_down
+          </md-icon>
+          </div>
+        </th>
+        <th style="width: 25%">
+          <div>
+          <p>Klasse</p>
+          <md-icon (click)="sortByKlasseRev()">
+            keyboard_arrow_up
+          </md-icon>
+          <md-icon (click)="sortByKlasse()">
+            keyboard_arrow_down
+          </md-icon>
+          </div>
+        </th>
+        <th style="width: 55%">
+        <div>
+          <p>Gesammtpunktzahl</p>
+          <md-icon (click)="sortByRangRev()">
+            keyboard_arrow_up
+          </md-icon>
+          <md-icon (click)="sortByRang()">
+            keyboard_arrow_down
+          </md-icon >
+          </div>
+        </th>
+      </tr>
+      <tr *ngFor="let teiln of teilnehmer"><!-- TODO index mit plazierung ersetzen-->
+        <td style="text-align: right">
+          {{teiln.rang}}
+        </td>
         <td> 
           {{ teiln.name }}
         </td>
         <td>
           {{ teiln.value }}
         </td>
-        <td></td>
       </tr>
     </table>
     <!--<md-list>
