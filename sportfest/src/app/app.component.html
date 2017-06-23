@@ -1,6 +1,9 @@
 <div id="container">
-    <div id="header">
+   <div id="header" *ngIf="!isMobile()">
         <app-header></app-header>
+    </div>
+    <div id="header" *ngIf="isMobile()">
+        <app-mobile-header></app-mobile-header>
     </div>
     <div id="body">
         <router-outlet></router-outlet>
@@ -9,4 +12,3 @@
         <app-footer></app-footer>
     </div>
 </div>
-
