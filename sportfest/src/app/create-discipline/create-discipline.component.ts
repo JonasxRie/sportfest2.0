@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { Variable, Regel } from './../interfaces';
-import { SportfestService } from './../sportfest.service';
+import { Variable, Regel } from '../interfaces';
+import { SportfestService } from '../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,12 +15,11 @@ export class CreateDisciplineComponent implements OnInit {
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
-    secondVisible = true;
     
+    secondVisible = true;    
     rulesVar: Array<Variable>;
     rules: Array<Regel>;
     dummynumber: number;
-    dummyregel: Regel = { regeltext: '', punkte: this.dummynumber };
 
   constructor(private sfService: SportfestService, private route: ActivatedRoute) { 
     this.rulesVar = [
@@ -31,7 +30,7 @@ export class CreateDisciplineComponent implements OnInit {
       }
     ];
     this.rules = [
-      this.dummyregel
+      { regeltext: '', punkte: this.dummynumber }
     ];
   }
 
@@ -49,12 +48,12 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   addNewRuleVarLine() {
-    let line = {name: '', expId: '', desc: ''};
+    let line = { name: '', expId: '', desc: '' };
     this.rulesVar.push(line);
   }
   
   removeRuleVarLine(index: number){
-        this.rulesVar.splice(index,1);
+      this.rulesVar.splice(index, 1);
   }
 
   addNewRuleLine(){
@@ -63,7 +62,7 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   removeRuleLine(index: number){
-    this.rules.splice(index);
+    this.rules.splice(index, 1);
   }
   
   submit() {
