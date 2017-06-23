@@ -8,7 +8,7 @@
     <div id="body">
         <router-outlet></router-outlet>
     </div>
-    <div id="footer">
+    <div id="footer" *ngIf="!isMobile()">
         <app-footer></app-footer>
     </div>
 </div>
