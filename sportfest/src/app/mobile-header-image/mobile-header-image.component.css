@@ -1,8 +1,8 @@
 
 .header {
-    height: 80px;
+    max-height: 80px;
     background-image: url(/assets/images/tribune2.png);
-    background-size: 100%;
+    background-size: cover;
 }
 
 img {
