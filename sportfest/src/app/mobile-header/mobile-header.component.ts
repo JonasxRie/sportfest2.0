@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,13 +9,17 @@ import { Router } from '@angular/router';
 export class MobileHeaderComponent implements OnInit {
   atiwImage = '/assets/images/atiwlogo.png';
 
+  @Output() sidenavChange = new EventEmitter<any>();
+  
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
   
-   public navigateToDashboard() {
+  public changeSidenav() {
+    this.sidenavChange.emit();
+  }
+  public navigateToDashboard() {
     this.router.navigate(['/home']);
   }
-
 }

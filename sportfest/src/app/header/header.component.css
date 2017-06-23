@@ -1,5 +1,4 @@
 .header{
-  font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   left:0;
   top: 0;
@@ -31,12 +30,10 @@
 }
 
 .navbar{
-  font-family: Arial, Helvetica, sans-serif;
   margin-top: -5px;
 }
 
 .kategorie{
-  font-family: Arial, Helvetica, sans-serif;
   color: dimgray;
   vertical-align: middle;
   font-size: 0.9em;
@@ -53,8 +50,4 @@
   /* this fills the remaining space, by using flexbox. 
   / every toolbar row uses a flexbox row layout.*/
   flex: 1 1 auto;
-}
-
-md-icon {
-  vertical-align: middle;
 }
