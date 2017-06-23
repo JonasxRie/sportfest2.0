@@ -48,19 +48,15 @@ l: any;
   constructor(private router: Router) { }
 
   ngOnInit() {
-   this.sortByRang(); 
-   let i: number;
-   i=0;
+    this.sortByRang(); 
+    let i = 0;
 
-  this.l = this.teilnehmer.length;
-     console.log(i);
-     console.log(this.l);
-   while(i<this.l){
-     console.log(i);
-    this.teilnehmer[i].rang=i+1;
-     i++;
-   }
-   this.sorieterteTeilehmer=this.teilnehmer;
+    this.l = this.teilnehmer.length;
+    while(i < this.l){
+      this.teilnehmer[i].rang = i + 1;
+      i++;
+    }
+    this.sorieterteTeilehmer=this.teilnehmer;
   }
 
   public sortByRang(){
