@@ -28,13 +28,13 @@ export class HeaderComponent implements OnInit {
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         console.log(data[i]);
-        if(data[i].aktiviert) {
-          if(data[i].teamleistung == true) {
-            this.disziplinenTeam.push(data[i]);
-          }else {
+        //if(data[i].aktiviert) {
+          if(data[i].teamleistung == false || data[i].did == 3) {
             this.disziplinenEinzel.push(data[i]);
+          }else {
+            this.disziplinenTeam.push(data[i]);
           }
-        }
+       // }
       }
     },
       (err) => {
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/createDiscipline']);
   }
   public navigateToImportKlasse() {
-    this.router.navigate(['/import/klasse']);
+    this.router.navigate(['/import']);
   }
   public navigateToActivateDiscipline() {
     this.router.navigate(['/activateDiscipline']);

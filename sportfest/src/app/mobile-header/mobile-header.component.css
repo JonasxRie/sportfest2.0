@@ -1,0 +1,37 @@
+.navbar{
+  margin-top: -5px;
+}
+
+.kategorie{
+  color: dimgray;
+  vertical-align: middle;
+  font-size: 0.9em;
+  size: 100%;
+  line-height: 40px;
+}
+
+.user{
+  display: inline-block;
+  vertical-align: middle;
+  color: darkgrey;
+}
+
+.fill-remaining-space {
+  /* this fills the remaining space, by using flexbox. 
+  / every toolbar row uses a flexbox row layout.*/
+  flex: 1 1 auto;
+}
+
+md-icon {
+    padding-right: 10px;
+}
+.header{
+    height: 80px;
+    background-image: url(/assets/images/tribune2.png);
+    background-size: 100%;
+}
+
+img{
+    height: 80px;
+    background-color: rgba(255, 255, 255,0.7);
+}
