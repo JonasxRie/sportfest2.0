@@ -5,7 +5,7 @@
   <md-card-content>
     <table>
       <tr>
-        <th  style="width: 20%">
+        <th>
           <div>
           <p>Rang</p>
           <md-icon (click)="sortByRangRev()">
@@ -16,7 +16,7 @@
           </md-icon>
           </div>
         </th>
-        <th style="width: 25%">
+        <th>
           <div>
           <p>Klasse</p>
           <md-icon (click)="sortByKlasseRev()">
@@ -27,9 +27,9 @@
           </md-icon>
           </div>
         </th>
-        <th style="width: 55%">
+        <th>
         <div>
-          <p>Gesammtpunktzahl</p>
+          <p>Punkte</p>
           <md-icon (click)="sortByRangRev()">
             keyboard_arrow_up
           </md-icon>
@@ -40,13 +40,13 @@
         </th>
       </tr>
       <tr *ngFor="let teiln of teilnehmer"><!-- TODO index mit plazierung ersetzen-->
-        <td style="text-align: right">
+        <td class="left">
           {{teiln.rang}}
         </td>
-        <td> 
+        <td class="left"> 
           {{ teiln.name }}
         </td>
-        <td>
+        <td class="left">
           {{ teiln.value }}
         </td>
       </tr>
