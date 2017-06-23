@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/createDiscipline']);
   }
   public navigateToImportKlasse() {
-    this.router.navigate(['/import/klasse']);
+    this.router.navigate(['/import']);
   }
   public navigateToActivateDiscipline() {
     this.router.navigate(['/activateDiscipline']);

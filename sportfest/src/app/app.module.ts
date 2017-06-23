@@ -56,7 +56,7 @@ const routConfig: Routes = [
       component: TeamComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'import/klasse',
+    { path: 'import',
       component: KlassenImportComponent,
       canActivate: [RouteGuard]
     },
