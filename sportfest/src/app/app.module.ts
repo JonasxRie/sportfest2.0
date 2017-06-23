@@ -24,6 +24,7 @@ import { PasswordChangeComponent } from './password-change/password-change.compo
 import { FooterComponent } from './footer/footer.component';
 import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
+import { MobileHeaderComponent } from './mobile-header/mobile-header.component';
 
 const routConfig: Routes = [
     {
@@ -91,7 +92,8 @@ const routConfig: Routes = [
     PasswordChangeComponent,
     FooterComponent,
     CreateSportfestComponent,
-    AreYouSureComponent
+    AreYouSureComponent,
+    MobileHeaderComponent
   ],
   imports: [
     BrowserModule,
