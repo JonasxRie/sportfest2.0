@@ -1,0 +1,27 @@
+.navbar{
+  margin-top: -5px;
+}
+
+.kategorie{
+  color: dimgray;
+  vertical-align: middle;
+  font-size: 0.9em;
+  size: 100%;
+  line-height: 40px;
+}
+
+.user{
+  display: inline-block;
+  vertical-align: middle;
+  color: darkgrey;
+}
+
+.fill-remaining-space {
+  /* this fills the remaining space, by using flexbox. 
+  / every toolbar row uses a flexbox row layout.*/
+  flex: 1 1 auto;
+}
+
+md-icon {
+    padding-right: 10px;
+}
