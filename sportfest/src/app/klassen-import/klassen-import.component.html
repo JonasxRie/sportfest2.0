@@ -1,29 +1,72 @@
+<!-- Anmeldebogen-Export -->
 <md-card>
   <md-card-header>
-    <h3>Klassen Upload</h3>
+    <h3>Anmeldebogen - Export</h3>
   </md-card-header>
   <md-card-content>
     <table>
       <tr>
         <td>
-          Bitte die Klassen-Datei auswählen um sie dem Turnier hinzuzufügen. 
+          Laden Sie hier die Excel-Datei herunter, in der sich die Schüler einer Klasse für die einzelnen Disziplinen anmelden können.
+          <br><br> Bitte die <b>ausgefüllte Datei unten wieder hochladen</b>.
+        </td>
+      </tr>
+    </table>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button color="primary" (click)="download()" [disabled]="!isDownloadable()">Download</button>
+  </md-card-actions>
+</md-card>
+
+<!-- Anmeldebogen-Import -->
+<md-card>
+  <md-card-header>
+    <h3>Anmeldebogen - Import</h3>
+  </md-card-header>
+  <md-card-content>
+    <table>
+      <tr>
+        <td>
+          Bitte laden Sie hier den <b>vollständig ausgefüllten Anmeldebogen</b> (Excel-Datei) hoch.
+        </td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td>
+          <input type="file" (change)="anmeldebogenChange($event)" placeholder="Anmeldebogen hochladen" accept=".xls,.xlsx">
+        </td>
+      </tr>
+    </table>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button color="primary" (click)="sendAnmeldebogen()" [disabled]="!isAnmeldebogenSelected()">Anmeldebogen abschicken</button>
+  </md-card-actions>
+</md-card>
+
+<!-- Teilnehmerimport -->
+<md-card>
+  <md-card-header>
+    <h3>Import der Teilnehmer</h3>
+  </md-card-header>
+  <md-card-content>
+    <table>
+      <tr>
+        <td>
+          Bitte laden Sie die CSV-Datei, die alle Schüler und Lehrer des ATIWs enthält 
+          (Name; Vorname; Klasse; Geschlecht), aus, um die Daten für das Tunier bereitzustellen.
+          <br><br>
           Mögliche Dateiformate sind .csv, .xls und .xlsx.
         </td>
       </tr>
       <tr></tr>
       <tr>
         <td>
-          <input type="file" 
-                (change)="fileChange($event)"
-                placeholder="Datei hochladen"
-                accept=".csv,.xls,.xlsx">
+          <input type="file" (change)="teilnehmerChange($event)" placeholder="Datei hochladen" accept=".csv,.xls,.xlsx">
         </td>
       </tr>
     </table>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button color="primary" 
-            (click)="sendFile()" 
-            [disabled]="!isFileSelected()">Datei abschicken</button>
+    <button md-raised-button color="primary" (click)="sendTeilnehmer()" [disabled]="!isTeilnehmerSelected()">Teilnehmerliste abschicken</button>
   </md-card-actions>
 </md-card>
