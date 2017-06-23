@@ -1,9 +1,10 @@
-<div class="header">
-   <a (click)="navigateToDashboard()"><img [src]="atiwImage" alt="Atiw Logo"></a>
-</div>
 <md-toolbar color="primary" class="navbar">
-    <md-icon (click)="changeSidenav()">menu</md-icon>
-    <md-icon (click)="navigateToDashboard()">home</md-icon>
+    <button md-button (click)="changeSidenav()">
+      <md-icon>menu</md-icon>
+    </button>
+    <button md-button (click)="navigateToDashboard()">
+      <md-icon>home</md-icon>
+    </button>
     <span class="fill-remaining-space"></span>
     <div *ngIf="username">
       <span class="user" >{{ username }}</span>

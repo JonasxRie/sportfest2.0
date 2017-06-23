@@ -26,6 +26,7 @@ import { CreateSportfestComponent } from './create-sportfest/create-sportfest.co
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 import { MobileHeaderComponent } from './mobile-header/mobile-header.component';
 import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.component';
+import { MobileHeaderImageComponent } from './mobile-header-image/mobile-header-image.component';
 
 const routConfig: Routes = [
     {
@@ -95,7 +96,8 @@ const routConfig: Routes = [
     CreateSportfestComponent,
     AreYouSureComponent,
     MobileHeaderComponent,
-    MobileMenuListComponent
+    MobileMenuListComponent,
+    MobileHeaderImageComponent
   ],
   imports: [
     BrowserModule,

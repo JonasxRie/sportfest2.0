@@ -40,7 +40,7 @@ export class MobileMenuListComponent implements OnInit {
     this.itemSelected.emit();
   }
   public navigateToImportKlasse() {
-    this.router.navigate(['/import/klasse']);
+    this.router.navigate(['/import']);
     this.itemSelected.emit();
   }
   public navigateToActivateDiscipline() {

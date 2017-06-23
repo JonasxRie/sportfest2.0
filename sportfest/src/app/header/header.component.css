@@ -39,6 +39,7 @@
   font-size: 0.9em;
   size: 100%;
   line-height: 40px;
+  cursor: pointer;
 }
 
 .user{

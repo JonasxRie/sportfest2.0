@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./mobile-header.component.css']
 })
 export class MobileHeaderComponent implements OnInit {
-  atiwImage = '/assets/images/atiwlogo.png';
+  
+  username: string = "Admin";
 
   @Output() sidenavChange = new EventEmitter<any>();
   
@@ -23,7 +24,7 @@ export class MobileHeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   public logout() {
-    // this.username = null;
+    this.username = null;
     // TODO: ausloggen
   }
 
