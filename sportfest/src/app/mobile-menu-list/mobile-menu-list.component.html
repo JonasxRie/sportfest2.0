@@ -6,7 +6,7 @@
         <md-list-item class="subsub"
                       *ngFor="let einzel of disziplinenEinzel"
                       (click)="navigateToEinzel(einzel.did, einzel.name)">
-                      {{ einzel.bezeichnung }}
+                      {{ einzel.name }}
         </md-list-item>
       </div>
     <md-list-item class="sub" (click)="selectedTeam=!selectedTeam">Team</md-list-item>

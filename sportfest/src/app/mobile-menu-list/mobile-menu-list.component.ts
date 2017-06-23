@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { SportfestService } from '../sportfest.service';
 
 @Component({
   selector: 'app-mobile-menu-list',
@@ -18,9 +19,24 @@ export class MobileMenuListComponent implements OnInit {
   disziplinenTeam: Array<any> = [];
   disziplinenEinzel: Array<any> = [];
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sfService: SportfestService) { }
 
   ngOnInit() {
+    this.sfService.disziplinen().subscribe(data => {
+      for(let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        //if(data[i].aktiviert) {
+          if(data[i].teamleistung == false || data[i].did == 3) {
+            this.disziplinenEinzel.push(data[i]);
+          }else {
+            this.disziplinenTeam.push(data[i]);
+          }
+       // }
+      }
+    },
+      (err) => {
+        console.error('GET-Service "disziplinen()" not reachable.');
+    });
   }
   
   public navigateToEinzel(did: number, name: string) {
