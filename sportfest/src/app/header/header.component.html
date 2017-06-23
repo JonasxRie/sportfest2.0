@@ -29,16 +29,13 @@
     <button md-button (click)="navigateToImportKlasse()">
       Import
     </button>
-    <!--<md-menu #menu1="mdMenu">
-      <button md-menu-item (click)="navigateToImportKlasse()">Datei importieren</button>
-    </md-menu>-->
     
     <button md-button [mdMenuTriggerFor]="menu2">Admin</button>
     <md-menu #menu2="mdMenu">
-      <button md-menu-item (click)="navigateToUAC()" >Benutzerverwaltung</button>
-      <button md-menu-item (click)="navigateToCreateSportfest()" >Neues Sportfest</button>
       <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
       <button md-menu-item (click)="navigateToActivateDiscipline()" >Disziplin aktivieren</button>
+      <button md-menu-item (click)="navigateToUAC()" >Benutzerverwaltung</button>
+      <button md-menu-item (click)="navigateToCreateSportfest()" >Neues Sportfest</button>
     </md-menu>
     <span class="fill-remaining-space"></span>
 
