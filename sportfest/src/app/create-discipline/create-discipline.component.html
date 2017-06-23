@@ -107,8 +107,11 @@
     <table>
       <tr>
         <td style="width:40%"><div class="linie"></div></td>
-        <td><button [disabled]=!secondVisible style="font-size: 1.1em"
-      md-raised-button (click)="submitRule()" color="accent"><md-icon>done</md-icon> Disziplin speichern</button>
+        <td>
+          <button [disabled]=!secondVisible style="font-size: 1.1em"
+            md-raised-button (click)="sendToBackend()" color="accent">
+              <md-icon>done</md-icon> Disziplin speichern
+          </button>
       </td>
       <td style="width: 40%"><div class="linie"></div></td>
       </tr>
