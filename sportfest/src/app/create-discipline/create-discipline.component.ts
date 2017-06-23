@@ -1,3 +1,4 @@
+// import { Disziplin } from './../interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Variable, Regel } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
@@ -45,6 +46,27 @@ export class CreateDisciplineComponent implements OnInit {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
     });
+  }
+  
+  public sendToBackend() {
+    let disziplinDTO = {
+      did: -1,
+      name: this.sportart,
+      beschreibung: this.beschreibung,
+      minTeilnehmer: this.minTeilnehmeranzahl,
+      maxTeilnehmer: this.maxTeilnehmeranzahl,
+      teamleistung: this.teamleistung,
+      aktiviert: true      
+    }
+    
+    this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   
   addNewRuleVarLine() {

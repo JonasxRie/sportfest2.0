@@ -17,7 +17,7 @@
       <!--Einzel-->
       <div class="kategorie">&nbsp;Einzel</div>
         <div *ngFor="let einzel of disziplinenEinzel">
-          <button md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.bezeichnung }}</button>
+          <button md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
         </div>
       <!--Team-->
       <div class="kategorie">&nbsp;Team</div>
