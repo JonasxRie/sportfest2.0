@@ -102,10 +102,25 @@
   </md-card-content>
 </md-card>
 <br>
-<md-card style="background-color: lightgray">
+<md-card >
   <md-card-header>
-     <button [disabled]=!secondVisible style="font-size: 1.1em"
-     md-raised-button (click)="submitRule()" color="accent"><md-icon>done</md-icon> Disziplin speichern</button>
+    <table>
+      <tr>
+        <td style="width:40%"><div class="linie"></div></td>
+        <td><button [disabled]=!secondVisible style="font-size: 1.1em"
+      md-raised-button (click)="submitRule()" color="accent"><md-icon>done</md-icon> Disziplin speichern</button>
+      </td>
+      <td style="width: 40%"><div class="linie"></div></td>
+      </tr>
+    </table>
+    <!--
+    <div style="vertical-align: middle">
+      <div class="linie"></div>
+      <button [disabled]=!secondVisible style="font-size: 1.1em"
+      md-raised-button (click)="submitRule()" color="accent"><md-icon>done</md-icon> Disziplin speichern</button>
+      <div class="linie"></div>
+    </div>-->
+    
   </md-card-header>
 </md-card>
 
