@@ -6,5 +6,6 @@ html, body {
 }
 md-icon {
     cursor: pointer;
+    vertical-align: middle;
 }
 

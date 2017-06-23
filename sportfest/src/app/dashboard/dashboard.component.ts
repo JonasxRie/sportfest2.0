@@ -11,32 +11,32 @@ l: any;
 
   teilnehmer = [
     {
-      name: 'Mirco',
+      name: 'FS161',
       value: 12,
       rang:1
     },
     {
-      name: 'Maja',
+      name: 'FV151',
       value: 12.5,
       rang:1
     },
     {
-      name: 'Michi',
+      name: 'FS152',
       value: 1,
       rang:1
     },
     {
-      name: 'Maxi',
+      name: 'FS151',
       value: 123,
       rang:1
     },
     {
-      name: 'Jonas',
+      name: 'FI152',
       value: 111,
       rang:1
     },
     {
-      name: 'David',
+      name: 'FI151',
       value: 12.5,
       rang:1
     }
@@ -117,7 +117,7 @@ public sortByRangRev(){
   }
 
   public sortByKlasseRev(){
-        this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
+      this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
       if(n1.name>n2.name){
         return 1;
       }
