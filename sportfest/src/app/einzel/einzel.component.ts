@@ -35,7 +35,7 @@ export class EinzelComponent implements OnInit {
   ];
   //Länge der klassen
   aufgeklappt= [false, false, false, false];
-  
+  sortRev = false;
 
   constructor() { }
 
@@ -44,5 +44,53 @@ export class EinzelComponent implements OnInit {
   }
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
+  }
+  switchSort(){
+    this.sortRev = !this.sortRev;
+  }
+  
+  public sortByRang(){
+    this.switchSort()
+    this.bestenSchueler = this.bestenSchueler.sort((n1,n2)=>{
+      if(n1.ergebnis>n2.ergebnis){
+        return -1;
+      }
+      if(n1.ergebnis<n2.ergebnis){
+        return 1;
+      }
+
+      if(n1.ergebnis==n2.ergebnis){
+        if(n1.viewValue>n2.viewValue){
+          return 1;
+        }
+
+        if(n1.viewValue<n2.viewValue){
+          return -1;
+        }
+      }
+      return 0;
+    });
+  }
+  public sortByRangRev(){
+    this.switchSort()
+    this.bestenSchueler = this.bestenSchueler.sort((n1,n2)=>{
+      if(n1.ergebnis>n2.ergebnis){
+        return 1;
+      }
+      if(n1.ergebnis<n2.ergebnis){
+        return -1;
+      }
+
+      if(n1.ergebnis==n2.ergebnis){
+        if(n1.viewValue>n2.viewValue){
+          return -1;
+        }
+
+        if(n1.viewValue<n2.viewValue){
+          return 1;
+        }
+      }
+      return 0;
+    });
   }
 }

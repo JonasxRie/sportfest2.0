@@ -25,6 +25,8 @@ export class TeamComponent implements OnInit {
   pointsA: number;
   pointsB: number;
 
+  sortRevA= true;
+  sortRevB= true;
 
   constructor(private route: ActivatedRoute, 
               private sfService: SportfestService) { }
@@ -47,4 +49,100 @@ export class TeamComponent implements OnInit {
     this.sfService.ergebnisSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]) //TODO richtiges JSON
   }
 
+  switchSortA(){
+    this.sortRevA = !this.sortRevA;
+  }
+  switchSortB(){
+    this.sortRevB = !this.sortRevB;
+  }
+  
+  public sortByClassA(){
+    this.switchSortA()
+    this.punkteStand = this.punkteStand.sort((n1,n2)=>{
+      if(n1.classA>n2.classA){
+        return -1;
+      }
+      if(n1.classA<n2.classA){
+        return 1;
+      }
+
+      if(n1.classA==n2.classA){
+        if(n1.pointsA>n2.pointsA){
+          return 1;
+        }
+
+        if(n1.pointsA<n2.pointsA){
+          return -1;
+        }
+      }
+      return 0;
+    });
+  }
+  public sortByClassARev(){
+    this.switchSortA()
+    this.punkteStand = this.punkteStand.sort((n1,n2)=>{
+      if(n1.classA>n2.classA){
+        return 1;
+      }
+      if(n1.classA<n2.classA){
+        return -1;
+      }
+
+      if(n1.classA==n2.classA){
+        if(n1.pointsA>n2.pointsA){
+          return -1;
+        }
+
+        if(n1.pointsA<n2.pointsA){
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
+  
+  public sortByClassB(){
+    this.switchSortB()
+    this.punkteStand = this.punkteStand.sort((n1,n2)=>{
+      if(n1.classB>n2.classB){
+        return -1;
+      }
+      if(n1.classB<n2.classB){
+        return 1;
+      }
+
+      if(n1.classB==n2.classB){
+        if(n1.pointsB>n2.pointsB){
+          return 1;
+        }
+
+        if(n1.pointsB<n2.pointsB){
+          return -1;
+        }
+      }
+      return 0;
+    });
+  }
+  public sortByClassBRev(){
+    this.switchSortB()
+    this.punkteStand = this.punkteStand.sort((n1,n2)=>{
+      if(n1.classB>n2.classB){
+        return 1;
+      }
+      if(n1.classB<n2.classB){
+        return -1;
+      }
+
+      if(n1.classB==n2.classB){
+        if(n1.pointsB>n2.pointsB){
+          return -1;
+        }
+
+        if(n1.pointsB<n2.pointsB){
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
 }
