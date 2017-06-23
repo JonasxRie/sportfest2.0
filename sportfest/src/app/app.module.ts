@@ -25,6 +25,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 import { MobileHeaderComponent } from './mobile-header/mobile-header.component';
+import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.component';
 
 const routConfig: Routes = [
     {
@@ -93,7 +94,8 @@ const routConfig: Routes = [
     FooterComponent,
     CreateSportfestComponent,
     AreYouSureComponent,
-    MobileHeaderComponent
+    MobileHeaderComponent,
+    MobileMenuListComponent
   ],
   imports: [
     BrowserModule,

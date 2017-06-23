@@ -22,4 +22,20 @@ export class MobileHeaderComponent implements OnInit {
   public navigateToDashboard() {
     this.router.navigate(['/home']);
   }
+  public logout() {
+    // this.username = null;
+    // TODO: ausloggen
+  }
+
+  public login() {
+    // let dlg = this.dialog.open(LoginComponent);
+    // dlg.componentInstance.loginClose.subscribe(data => dlg.close());
+    // dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
+    // this.sfService.user().subscribe(data => {
+    //   this.username = data;
+    // },
+    //   (err) => {
+    //     console.error('GET-Service "user()" not reachable.');
+    // });
+  }
 }
