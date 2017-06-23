@@ -1,11 +1,12 @@
 md-list-item {
-    border-bottom: 2px solid lightgrey;
 }
 .main {
     background-color: lightgrey;
+    border-bottom: 2px solid white;
 }
 .sub {
-    
+    background-color: white;
+    border-bottom: 2px solid lightgrey;    
 }
 .subsub {
     

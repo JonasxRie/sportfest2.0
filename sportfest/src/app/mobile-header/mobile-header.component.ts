@@ -1,3 +1,7 @@
+import { PasswordChangeComponent } from './../password-change/password-change.component';
+import { MdDialog } from '@angular/material';
+import { SportfestService } from 'app/sportfest.service';
+import { LoginComponent } from '../login/login.component';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,7 +16,9 @@ export class MobileHeaderComponent implements OnInit {
 
   @Output() sidenavChange = new EventEmitter<any>();
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              public dialog: MdDialog,
+              private sfService: SportfestService) { }
 
   ngOnInit() {
   }
@@ -23,20 +29,25 @@ export class MobileHeaderComponent implements OnInit {
   public navigateToDashboard() {
     this.router.navigate(['/home']);
   }
+  public openChangePassword() {
+    let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
+    dlg.componentInstance.pwCancel.subscribe(data => dlg.close());
+    dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+  }
   public logout() {
     this.username = null;
     // TODO: ausloggen
   }
 
   public login() {
-    // let dlg = this.dialog.open(LoginComponent);
-    // dlg.componentInstance.loginClose.subscribe(data => dlg.close());
-    // dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
-    // this.sfService.user().subscribe(data => {
-    //   this.username = data;
-    // },
-    //   (err) => {
-    //     console.error('GET-Service "user()" not reachable.');
-    // });
+    let dlg = this.dialog.open(LoginComponent);
+    dlg.componentInstance.loginClose.subscribe(data => dlg.close());
+    dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
+    this.sfService.user().subscribe(data => {
+      this.username = data;
+    },
+      (err) => {
+        console.error('GET-Service "user()" not reachable.');
+    });
   }
 }
