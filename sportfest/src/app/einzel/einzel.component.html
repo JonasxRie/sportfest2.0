@@ -55,12 +55,14 @@
             <md-card-content>
               <table width="100%">
                 <tr>
-                  <th width="20%" align="left">Platzierung</th>
+                  <th width="20%" align="left" (click)="(sortRev)? sortByRangRev() : sortByRang()">
+                    <p>Platzierung <md-icon>import_export</md-icon></p>
+                  </th>
                   <th width="60%" align="left">Name</th>
                   <th width="20%" align="left">Ergebnis</th>
                 </tr>
                 <tr *ngFor="let s of bestenSchueler, let i=index">
-                  <td>{{i}}</td>
+                  <td>{{s.value + 1}}</td>
                   <td>{{s.viewValue}}</td>
                   <td>{{s.ergebnis}}<td>
                 </tr>
