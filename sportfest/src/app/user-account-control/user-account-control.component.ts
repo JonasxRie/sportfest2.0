@@ -10,7 +10,7 @@ export class UserAccountControlComponent implements OnInit {
 
   users: any;
   selectedRole: string;
-  username: string;
+  username: string = '';
 
   constructor(private sfService: SportfestService) { }
 
@@ -65,7 +65,7 @@ export class UserAccountControlComponent implements OnInit {
       // Abklären mit Backend ob hierfür eine Schnittstelle existiert
       alert(this.selectedRole + ' ' + this.username);
       this.users.push({id: 5, name: this.username, role: this.selectedRole})
-    }else {
+    } else {
       alert('Fehler bei der Eingabe');
     }
   }

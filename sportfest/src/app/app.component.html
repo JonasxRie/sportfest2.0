@@ -5,23 +5,21 @@
     <div id="body">
         <router-outlet></router-outlet>
     </div>
-    <div id="footer" *ngIf="!isMobile()">
+    <div id="footer">
         <app-footer></app-footer>
     </div>
 </div>
 
 <div id="container" *ngIf="isMobile()">
+    <app-mobile-header-image></app-mobile-header-image>
     <md-sidenav-container class="example-container">
-        <div id="header">
-            <app-mobile-header (sidenavChange)="sidenav.open()"></app-mobile-header>
-        </div>
+        <app-mobile-header (sidenavChange)="sidenav.open()"></app-mobile-header>
         <router-outlet></router-outlet>
-        
         <md-sidenav #sidenav class="example-sidenav" mode="over">
-            <md-toolbar color="primary" class="navbar">
+            <md-toolbar color="primary">
                 <md-icon (click)="sidenav.close()">menu</md-icon>
             </md-toolbar>
-            <!-- Menüpunkte einbinden-->
+            <app-mobile-menu-list (itemSelected)="sidenav.close()"></app-mobile-menu-list>
         </md-sidenav>
     </md-sidenav-container>
 </div>

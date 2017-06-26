@@ -1,4 +1,6 @@
-
+md-list {
+    cursor: pointer;
+}
 td {
     width: 10%;
 }

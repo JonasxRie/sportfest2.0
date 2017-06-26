@@ -1,0 +1,15 @@
+md-list-item {
+}
+.main {
+    background-color: grey;
+    border-bottom: 2px solid white;
+    color: white;
+}
+.sub {
+    background-color: lightgrey;
+    border-bottom: 2px solid white;
+}
+.subsub {
+    background-color: white;
+    border-bottom: 2px solid lightgrey;
+}

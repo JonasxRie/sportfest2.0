@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SportfestService } from '../sportfest.service';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-password-change',
@@ -29,32 +30,38 @@ export class PasswordChangeComponent implements OnInit {
     this.pwCancel.emit();
   }
   public save() {
+    let newEncrypt = Md5.hashStr(this.new);
     if (this.inputsValid()) {
-      // this.sfService.changePassword(this.new).subscribe((data) => {
-      //     console.log(data);
-      //   },
-      //   (err) => {
-      //     console.error('GET-Service "changePassword()" not reachable.');
-      // });
+      this.sfService.changePassword(newEncrypt).subscribe((data) => {
+          console.log(data); // Response
+        },
+        (err) => {
+          console.error('GET-Service "changePassword()" not reachable.');
+      });
       this.pwSave.emit();
     }
   }
   private inputsValid() {
+    // Verschlüsseln
+    let recentEncrypt = Md5.hashStr(this.recent);
+    let newEncrypt = Md5.hashStr(this.new);
+    let newSubmitEncrypt = Md5.hashStr(this.newSubmit);
+    
     let valid = true;
     let recentPasswordValid = (this.recent && this.recent.length > 0);
-    // this.sfService.validatePassword(this.recent).subscribe((data) => {
-    //     recentPasswordValid = data;
-    //   },
-    //   (err) => {
-    //     console.error('GET-Service "validatePassword()" not reachable.');
-    // });
-    if (this.recent && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
+    this.sfService.validatePassword(this.recent).subscribe((data) => {
+        recentPasswordValid = data;
+      },
+      (err) => {
+        console.error('GET-Service "validatePassword()" not reachable.');
+    });
+    if (recentEncrypt && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
       this.recentInvalid = false;      
     } else {
       valid = false;
       this.recentInvalid = true;
     }
-    if (this.new && this.newSubmit && this.new === this.newSubmit) {
+    if (newEncrypt && newSubmitEncrypt && newEncrypt === newSubmitEncrypt) {
       this.newNotEqual = false;
     } else {
       valid = false;
