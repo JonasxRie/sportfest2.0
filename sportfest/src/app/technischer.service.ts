@@ -33,7 +33,7 @@ export class TechnischerService {
   }
   
   public postFormRequest(ressourceAPI: string, body: any) {
-    return this.http.post(this.api + ressourceAPI, body, ).map(data => data.json()).catch(
+    return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);

@@ -1,3 +1,4 @@
+<iframe name="noDisplay" style="display:none"></iframe>
 <!-- Anmeldebogen-Export -->
 <md-card>
   <md-card-header>
@@ -23,28 +24,27 @@
   <md-card-header>
     <h3>Anmeldebogen - Import</h3>
   </md-card-header>
-  <md-card-content>
-    <table>
-      <tr>
-        <td>
-          Bitte laden Sie hier den <b>vollständig ausgefüllten Anmeldebogen</b> (Excel-Datei) hoch.
-        </td>
-      </tr>
-      <tr></tr>
-      <tr>
-        <td>
-          <!-- Action anpassen (/schueler/disziplin/upload), File-Name-->
-          <form ngNoForm action="http://172.20.3.18:8080/backend/" method="POST" target="noDisplay" enctype="multipart/form-data">
-            <input type="file" name="file" size="45" accept=".xls, .xlsx" />
-            <input type="submit" value="Anmeldebogen hochladen" (click)="openAnmeldungHochgeladenSnackbar()"/>
-          </form>
-        </td>
-      </tr>
-    </table>
-  </md-card-content>
-  <md-card-actions>
-    <button md-raised-button color="primary" (click)="sendAnmeldebogen()" [disabled]="!isAnmeldebogenSelected()">Anmeldebogen abschicken</button>
-  </md-card-actions>
+  <!-- Action anpassen (/schueler/disziplin/upload), File-Name-->
+  <form ngNoForm action="http://172.20.3.18:8080/backend/" method="POST" target="noDisplay" enctype="multipart/form-data">          
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            Bitte laden Sie hier den <b>vollständig ausgefüllten Anmeldebogen</b> (Excel-Datei) hoch.
+          </td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td>
+            <input md-button type="file" name="file" size="45" accept=".xls, .xlsx" (change)="anmeldebogenChange($event)"/>
+          </td>
+        </tr>
+      </table>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color="primary" type="submit" (click)="openAnmeldungHochgeladenSnackbar()" [disabled]="!isAnmeldebogenSelected()">Anmeldebogen abschicken</button>
+    </md-card-actions>
+  </form>
 </md-card>
 
 <!-- Teilnehmerimport -->
@@ -52,29 +52,27 @@
   <md-card-header>
     <h3>Import der Teilnehmer</h3>
   </md-card-header>
-  <md-card-content>
-    <table>
-      <tr>
-        <td>
-          Bitte laden Sie die CSV-Datei, die alle Schüler und Lehrer des ATIWs enthält 
-          (Name; Vorname; Klasse; Geschlecht), aus, um die Daten für das Tunier bereitzustellen.
-          <br><br>
-          Mögliche Dateiformate sind .csv, .xls und .xlsx.
-        </td>
-      </tr>
-      <tr></tr>
-      <tr>
-        <td>
-          <iframe name="noDisplay" style="display:none"></iframe>
-           <form ngNoForm action="http://172.20.3.18:8080/backend/schueler/upload" method="POST" target="noDisplay" enctype="multipart/form-data">
-            <input type="file" name="file" size="45" accept=".csv, .xls, .xlsx" />
-            <input type="submit" value="Schülerliste hochladen" (click)="openSchuelerHochgeladenSnackbar()"/>
-          </form>
-        </td>
-      </tr>
-    </table>
-  </md-card-content>
-  <md-card-actions>
-    <button md-raised-button color="primary" (click)="sendTeilnehmer()" [disabled]="!isTeilnehmerSelected()">Teilnehmerliste abschicken</button>
-  </md-card-actions>
+  <form ngNoForm action="http://172.20.3.18:8080/backend/schueler/upload" method="POST" target="noDisplay" enctype="multipart/form-data">    
+    <md-card-content>
+      <table>
+        <tr>
+          <td>
+            Bitte laden Sie die CSV-Datei, die alle Schüler und Lehrer des ATIWs enthält 
+            (Name; Vorname; Klasse; Geschlecht), aus, um die Daten für das Tunier bereitzustellen.
+            <br><br>
+            Mögliche Dateiformate sind .csv, .xls und .xlsx.
+          </td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td>
+            <input md-raised-button type="file" name="file" size="45" accept=".csv, .xls, .xlsx" (change)="teilnehmerChange($event)"/>            
+          </td>
+        </tr>
+      </table>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color="primary" type="submit" (click)="openSchuelerHochgeladenSnackbar()" [disabled]="!isTeilnehmerSelected()">Teilnehmerliste abschicken</button>
+    </md-card-actions>
+  </form>
 </md-card>
