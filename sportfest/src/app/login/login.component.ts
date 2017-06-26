@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
         data => {
           // Token in localStorage packen
           console.log("Token: " + data);
-          localStorage.setItem('token', JSON.stringify(data));
+          localStorage.setItem('token', (data));
+          console.log(localStorage.getItem('token'));
           this.loginSubmit.emit();
         },
         err => {

@@ -17,60 +17,53 @@
 <md-card>
   <md-card-content>
     <md-card>
+      <!--Eingabe neuer Spielergebnisse-->
       <md-card-header>
-    <h4>Neue Begegnung</h4>
-    </md-card-header>
-    <!--Eingabe neuer Spielergebnisse-->
-    <table align="center">
-      <!--<tr>
-        <th colspan="2" align="center">
-          <p>Neue Begegnung</p>
-        </th>
-      </tr>-->
-      <tr align="right" >
-        <td>
-          <!--<div align="right" valign="bottom">-->
-
-            <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
-              <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-                {{ klasse.viewValue }}
-              </md-option>
-            </md-select>
+        <h4>Begegnung</h4>
+      </md-card-header>
+      <md-card-content>
+        <table>
+          <tr>
+            <td align="right">
+                <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
+                  <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+                    {{ klasse.viewValue }}
+                  </md-option>
+                </md-select>
+            </td>
+            <td class="short" align="center">
+                <span>vs.</span>
+            </td>
+            <td align="left">
+                <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
+                  <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+                    {{ klasse.viewValue }}
+                  </md-option>
+                </md-select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <md-input-container >
+                  <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
+                </md-input-container>
+            </td>
+            <td class="short" align="center">
+              <span>:</span>
             </td>
             <td>
-            <span >vs.</span>
+                <md-input-container>
+                  <input type="number" mdInput placeholder="Punkte B" [(ngModel)]="pointsB">
+                </md-input-container>
             </td>
-            <td>
-            <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
-              <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-                {{ klasse.viewValue }}
-              </md-option>
-            </md-select>
-          <!--</div>-->
-        </td>
-        <td style="padding-left:20px" align="left">
-          <!--<div align="left">-->
-
-            <md-input-container >
-              <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
-            </md-input-container>
-          </td>
-          <td align="left" style="width: 5px !important">
-           :
-          </td>
-          <td align="left">
-            <md-input-container>
-              <input type="number" mdInput placeholder="Punkte B" [(ngModel)]="pointsB">
-            </md-input-container>
-          <!--</div>-->
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6" align="center" style="padding-top: 10px">
-          <button md-raised-button color="primary" (click)="sendTeamErgebnis(selectedClassA, selectedClassB, pointsA, pointsB)">Abschicken</button>
-        </td>
-      </tr>
-    </table>
+          </tr>
+          <tr>
+            <td colspan="3" align="center" valign="middle">
+              <button md-raised-button color="primary" (click)="sendTeamErgebnis(selectedClassA, selectedClassB, pointsA, pointsB)">Abschicken</button>
+            </td>
+          </tr>
+        </table>
+      </md-card-content>
     </md-card>
     <br><br>
     <!--Anzeige der Ergebnisse-->
@@ -97,5 +90,5 @@
             </tr>
           </tbody>
         </table>
-      </md-card-content>
-    </md-card>
+    </md-card-content>
+  </md-card>

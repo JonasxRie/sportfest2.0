@@ -1,3 +1,4 @@
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
 import { LoginComponent } from './login/login.component';

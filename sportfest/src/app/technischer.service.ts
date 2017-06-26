@@ -8,7 +8,6 @@ import 'rxjs/Rx';
 export class TechnischerService {
 
   private api = 'http://172.20.3.18:8080/backend';
-  // public token: any;
 
   constructor(private http: AuthHttp) { }
 
@@ -20,11 +19,6 @@ export class TechnischerService {
 
   public getRequest(ressourceAPI: string) {
     console.log(this.api + ressourceAPI);
-    
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);    
-    // let options = new RequestOptions({ Headers: headers });
-    
     return this.http.get(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
@@ -34,36 +28,41 @@ export class TechnischerService {
 
   }
 
-  public postRequest(ressourceAPI: string, body: any) {
-    // Token aus localStorage
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
+  public postRequest(ressourceAPI: string, body: any) {    
     return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
-        if (e.status >= 403) {
+        if (e.status >= 400) {
+          return Observable.throw(e);
+        }
+    });
+
+  }
+  
+  public postFormRequest(ressourceAPI: string, body: any) {
+    let headers = new Headers();
+    return this.http.post(this.api + ressourceAPI, body, ).map(data => data.json()).catch(
+      (e) => {
+        if (e.status >= 400) {
           return Observable.throw(e);
         }
       });
 
   }
 
+
   public putRequest(ressourceAPI: string, body: any) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
     return this.http.put(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
-        if (e.status >= 403) {
+        if (e.status >= 400) {
           return Observable.throw(e);
         }
       });
   }
 
   public deleteRequest(ressourceAPI: string) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
     return this.http.delete(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
-        if (e.status >= 403) {
+        if (e.status >= 400) {
           return Observable.throw(e);
         }
       });
