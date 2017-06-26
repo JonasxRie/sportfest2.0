@@ -15,18 +15,20 @@ export class TeamComponent implements OnInit {
 
   punkteStand = [{classA: 'FS151', classB: 'FI151', pointsA: 6, pointsB: 3}, {classA: 'FI151', classB: 'FI152', pointsA: 2, pointsB: 1}]
 
-  klassen = [{value: 1, viewValue: "FS151"},
-              {value: 2, viewValue: "FS152"},
-              {value: 3, viewValue: "FI151"},
-              {value: 4, viewValue: "FI152"},
-              {value: 5, viewValue: "FV151"}];
+  klassen = [
+    {value: 1, viewValue: "FS151"},
+    {value: 2, viewValue: "FS152"},
+    {value: 3, viewValue: "FI151"},
+    {value: 4, viewValue: "FI152"},
+    {value: 5, viewValue: "FV151"}
+  ];
   selectedClassA: number;
   selectedClassB: number;
   pointsA: number;
   pointsB: number;
 
-  sortRevA= true;
-  sortRevB= true;
+  sortRevA = true;
+  sortRevB = true;
 
   constructor(private route: ActivatedRoute, 
               private sfService: SportfestService) { }
