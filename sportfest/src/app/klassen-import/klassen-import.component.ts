@@ -1,6 +1,7 @@
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Http } from '@angular/http';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-klassen-import',
@@ -13,7 +14,8 @@ export class KlassenImportComponent implements OnInit {
   teilnehmerFile: File;
 
   constructor(private http: Http,
-              private sfService: SportfestService) { }
+              private sfService: SportfestService,
+              public snackBar: MdSnackBar) { }
 
   ngOnInit() {
   }
@@ -91,5 +93,16 @@ export class KlassenImportComponent implements OnInit {
       return false;
     }
   }
+  
+  public openSchuelerHochgeladenSnackbar(){
+    this.snackBar.open("Schülerliste wurde hochgeladen", "OK",{
+      duration: 2000,
+    });
+  }
 
+  public openAnmeldungHochgeladenSnackbar(){
+    this.snackBar.open("Anmeldebogen wurde hochgeladen", "OK",{
+      duration: 2000,
+    });
+  }
 }

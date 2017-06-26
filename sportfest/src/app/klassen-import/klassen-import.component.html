@@ -33,7 +33,11 @@
       <tr></tr>
       <tr>
         <td>
-          <input type="file" (change)="anmeldebogenChange($event)" placeholder="Anmeldebogen hochladen" accept=".xls,.xlsx">
+          <!-- Action anpassen (/schueler/disziplin/upload), File-Name-->
+          <form ngNoForm action="http://172.20.3.18:8080/backend/" method="POST" target="noDisplay" enctype="multipart/form-data">
+            <input type="file" name="file" size="45" accept=".xls, .xlsx" />
+            <input type="submit" value="Anmeldebogen hochladen" (click)="openAnmeldungHochgeladenSnackbar()"/>
+          </form>
         </td>
       </tr>
     </table>
@@ -61,7 +65,11 @@
       <tr></tr>
       <tr>
         <td>
-          <input type="file" (change)="teilnehmerChange($event)" placeholder="Datei hochladen" accept=".csv,.xls,.xlsx">
+          <iframe name="noDisplay" style="display:none"></iframe>
+           <form ngNoForm action="http://172.20.3.18:8080/backend/schueler/upload" method="POST" target="noDisplay" enctype="multipart/form-data">
+            <input type="file" name="file" size="45" accept=".csv, .xls, .xlsx" />
+            <input type="submit" value="Schülerliste hochladen" (click)="openSchuelerHochgeladenSnackbar()"/>
+          </form>
         </td>
       </tr>
     </table>
