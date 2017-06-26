@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
 /* https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser */
-
   public isMobile() {
     let check = false;
     (function(a){
