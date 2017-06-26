@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.loginSubmit.emit();
         },
         err => {
-          console.log(err);
+          console.error(err);
           this.error();
         }
       );
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   public error() {
-    this.errorMsg = "Bitte Eingaben überprüfen."
+    this.errorMsg = "Fehlgeschlagen."
   }
 
   public keypress(event: any) {
