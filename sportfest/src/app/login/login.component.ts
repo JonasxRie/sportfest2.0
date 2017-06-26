@@ -30,14 +30,16 @@ export class LoginComponent implements OnInit {
       // Logindaten übermitteln
       this.sfService.userLogin(this.username, encryptpwd).subscribe(
         data => {
+          
+          let token = data.text();
           // Token in localStorage packen
-          console.log("Token: " + data);
-          localStorage.setItem('token', (data));
+          console.log("Token: ", token);
+          localStorage.setItem('token', token);
           console.log(localStorage.getItem('token'));
           this.loginSubmit.emit();
         },
         err => {
-          console.log(err);
+          console.error(err);
           this.error();
         }
       );
