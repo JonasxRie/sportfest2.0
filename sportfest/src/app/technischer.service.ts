@@ -1,5 +1,5 @@
-import { Http } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Request, RequestMethod } from '@angular/http';
+import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/Rx';
@@ -8,6 +8,10 @@ import 'rxjs/Rx';
 export class TechnischerService {
 
   private api = 'http://172.20.3.18:8080/backend';
+  private createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', 'Basic ' +
+      'blablabla'); 
+  }
 
   constructor(private http: Http) { }
 
@@ -22,8 +26,10 @@ export class TechnischerService {
 
   }
 
-  public postRequest(ressourceAPI: string, body: any) {
-    return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
+  public postFormRequest(ressourceAPI: string, body: any) {
+  let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post(this.api + ressourceAPI, body, {headers: headers}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);
@@ -32,7 +38,7 @@ export class TechnischerService {
 
   }
   
-  public postFormRequest(ressourceAPI: string, body: any) {
+  public postRequest(ressourceAPI: string, body: any) {
     return this.http.post(this.api + ressourceAPI, body, ).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
