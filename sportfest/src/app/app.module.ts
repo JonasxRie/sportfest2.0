@@ -26,6 +26,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 import { MobileHeaderComponent } from './mobile-header/mobile-header.component';
+import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.component';
+import { MobileHeaderImageComponent } from './mobile-header-image/mobile-header-image.component';
 
 const routConfig: Routes = [
     {
@@ -98,7 +100,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     FooterComponent,
     CreateSportfestComponent,
     AreYouSureComponent,
-    MobileHeaderComponent
+    MobileHeaderComponent,
+    MobileMenuListComponent,
+    MobileHeaderImageComponent
   ],
   imports: [
     BrowserModule,

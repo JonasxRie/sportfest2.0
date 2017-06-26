@@ -1,12 +1,9 @@
-<div class="header">
-   <a (click)="navigateToDashboard()"><img [src]="atiwImage" alt="Atiw Logo"></a>
-</div>
-<md-toolbar color="primary" class="navbar">
+<md-toolbar color="primary">
     <md-icon (click)="changeSidenav()">menu</md-icon>
-    <md-icon (click)="navigateToDashboard()">home</md-icon>
+    <md-icon (click)="navigateToDashboard()" style="margin-left: 15px">home</md-icon>
     <span class="fill-remaining-space"></span>
     <div *ngIf="username">
-      <span class="user" >{{ username }}</span>
+      <span>{{ username }}</span>
       <md-icon [mdMenuTriggerFor]="menu">more_vert</md-icon>
       <md-menu #menu="mdMenu">
         <button md-menu-item (click)="openChangePassword()">Passwort ändern</button>
@@ -14,7 +11,7 @@
       </md-menu>
       &nbsp;
     </div>
-    <div class="user" *ngIf="!username"><span>Gast</span>
+    <div *ngIf="!username"><span>Gast</span>
       &nbsp;
       <button md-button (click)="login()">Login</button>
     </div>

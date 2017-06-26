@@ -25,18 +25,19 @@
           <button md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
         </div>
     </md-menu>
-
-    <button md-button (click)="navigateToImportKlasse()">
-      Import
-    </button>
     
     <button md-button [mdMenuTriggerFor]="menu2">Admin</button>
     <md-menu #menu2="mdMenu">
       <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
       <button md-menu-item (click)="navigateToActivateDiscipline()">Disziplin aktivieren</button>
       <button md-menu-item (click)="navigateToUAC()">Benutzerverwaltung</button>
-      <button md-menu-item (click)="navigateToCreateSportfest()" >Neues Sportfest</button>
+      <button md-menu-item (click)="navigateToCreateSportfest()">Neues Sportfest</button>
     </md-menu>
+    
+    <button md-button (click)="navigateToImportKlasse()">
+      Import
+    </button>
+    
     <span class="fill-remaining-space"></span>
 
     <div *ngIf="username">
@@ -52,6 +53,6 @@
       &nbsp;
       <button md-button (click)="login()">Login</button>
     </div>
-
+    
   </md-toolbar>
 </div>

@@ -37,6 +37,9 @@ p{
     padding-right:  15px;
     padding-left:  15px;
 }
+h1, h3, md-card-header {
+    text-align: center;
+}
 
 
 /*cdk-overlay-0, .cdk-overlay-pane, .cdk-overlay-container, .cdk-global-overlay-wrapper {
