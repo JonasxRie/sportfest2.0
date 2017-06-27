@@ -10,7 +10,6 @@
         <th>aktiviert</th>
         <th></th>
       </tr>
-
       <tr *ngFor="let dis of disziplinen, let i = index" >
         <td>{{ dis.name }}</td>
         <td>
@@ -20,20 +19,6 @@
           <md-icon (click)="editDiscipline(dis)" >edit</md-icon>
         </td>
       </tr>
-      <!--je nach dem in welchem Format die Daten kommen müssen die Schleifen anders gebaut werden-->
-      <!--<tr *ngFor="let dis of disziplinen.team" >
-        <td>{{ dis.bezeichnung }}</td>
-        <td>
-          <md-slide-toggle [(ngModel)]="dis.aktiv"></md-slide-toggle>
-        </td>
-        <td>
-          <md-icon (click)="editDiscipline(dis.did)" >edit</md-icon>
-        </td>
-      </tr>-->
-
     </table>
   </md-card-content>
-  <!--<md-card-actions>
-    <button md-raised-button color="primary" (click)="save()">Speichern</button>
-  </md-card-actions>-->
 </md-card>

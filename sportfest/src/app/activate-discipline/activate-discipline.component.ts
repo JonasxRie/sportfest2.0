@@ -20,45 +20,13 @@ export class ActivateDisciplineComponent implements OnInit {
 
       this.sfService.disziplinen().subscribe((data: Disziplin[]) => {
         this.disziplinen=data;
-        // Daten in die entsprechenden Felder füllen
-        console.log(data);
+        if (!this.disziplinen) {
+          this.disziplinen = [];
+        }
       },
       (err) => {
         console.error('GET-Service "disziplin()" not reachable.');
       });
-
-    
-    // this.disziplinen = {
-    //   einzel: [
-    //     {
-    //       id: 0,
-    //       bezeichnung: 'Weitsprung',
-    //       aktiv: true
-    //     },
-    //     {
-    //       id: 1,
-    //       bezeichnung: 'Hochspring',
-    //       aktiv: false
-    //     },
-    //     {
-    //       id: 2,
-    //       bezeichnung: 'Medizinballstoßen',
-    //       aktiv: true
-    //     }
-    //   ],
-    //   team: [
-    //     {
-    //       id: 3,
-    //       bezeichnung: 'Fußball',
-    //       aktiv: true
-    //     },
-    //     {
-    //       id: 4,
-    //       bezeichnung: 'Hockey',
-    //       aktiv: false
-    //     }
-    //   ]
-    // };
   }
   
   public save(dis:Disziplin) {
@@ -71,8 +39,6 @@ export class ActivateDisciplineComponent implements OnInit {
   }
   
   public editDiscipline(dis: Disziplin) {
-    console.log('dis');
-    console.log(dis);
     this.router.navigate(['/createDiscipline/' + dis.did]);
   }
 
