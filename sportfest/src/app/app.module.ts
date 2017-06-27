@@ -135,5 +135,4 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent
   ]
 })
-
 export class AppModule { }

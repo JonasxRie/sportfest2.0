@@ -14,7 +14,7 @@ body {
 }
 
 #body {
-   padding-bottom:63px;   /* Height of the footer */
+   padding-bottom:63px ;   /* Height of the footer */
 }
 #footer {
    position:absolute;
@@ -22,10 +22,24 @@ body {
    width:100%;
    height:63px;   /* Height of the footer */
 }
+
+
 md-sidenav-container {
     height: 100vh;
 }
 md-sidenav {
     height: 100vh;
-    width: 30vh;
+    width: 65vw;
+}
+
+.fill-remaining-space {
+  /* this fills the remaining space, by using flexbox. 
+  / every toolbar row uses a flexbox row layout.*/
+  flex: 1 1 auto;
+  
+}
+
+.credits{
+    font-size: 0.6em;
+    opacity: 0.1;
 }

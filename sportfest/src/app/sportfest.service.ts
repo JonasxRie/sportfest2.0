@@ -74,7 +74,10 @@ export class SportfestService {
   public schueler(schueler: any): Observable<any> {
     return this.techService.putRequest('/schueler', schueler);
   }
-
+  
+  public schuelerAnmeldebogen(classId: number): Observable<any> {
+    return this.techService.getRequest('/klasse/' + classId  + '/anmeldung');
+  }
   /**
    * ***********************************************
    * Disziplin Resource

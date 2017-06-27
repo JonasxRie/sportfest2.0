@@ -9,9 +9,18 @@ import {MdSnackBar} from '@angular/material';
   styleUrls: ['./klassen-import.component.css']
 })
 export class KlassenImportComponent implements OnInit {
-  
+  returnStatus: number;
   anmeldebogenFile: File;
   teilnehmerFile: File;
+  klassen = [
+    {value: 1, viewValue: "FS151"},
+    {value: 2, viewValue: "FS152"},
+    {value: 3, viewValue: "FI151"},
+    {value: 4, viewValue: "FI152"},
+    {value: 5, viewValue: "FV151"}
+  ];
+  selectedClass: number;
+  showDownloadButton: boolean = false;
 
   constructor(private http: Http,
               private sfService: SportfestService,
@@ -23,12 +32,8 @@ export class KlassenImportComponent implements OnInit {
   // Button Download wurde geklickt
   public download() { }
   
-  // Gibt zurück, ob Download-Button gedrückt werden kann (sonst disabled)
-  public isDownloadable() { }
-  
   // Dateiauswahl für Anmeldebogen geändert
   public anmeldebogenChange(event: any) {
-    console.log(event);
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
         this.anmeldebogenFile = fileList[0];
