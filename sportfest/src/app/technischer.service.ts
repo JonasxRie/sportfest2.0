@@ -39,8 +39,7 @@ export class TechnischerService {
   }
   
   public postFormRequest(ressourceAPI: string, body: any) {
-    let headers = new Headers();
-    return this.http.post(this.api + ressourceAPI, body, ).map(data => data.json()).catch(
+    return this.http.post(this.api + ressourceAPI, body).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);

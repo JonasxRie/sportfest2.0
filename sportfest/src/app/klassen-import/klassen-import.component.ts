@@ -28,6 +28,7 @@ export class KlassenImportComponent implements OnInit {
   
   // Dateiauswahl für Anmeldebogen geändert
   public anmeldebogenChange(event: any) {
+    console.log(event);
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
         this.anmeldebogenFile = fileList[0];
