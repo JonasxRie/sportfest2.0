@@ -12,7 +12,7 @@ export class RouteGuard implements CanActivate {
     // Schiedrichter: Sportarten (Ergebnisse) bearbeiten
     // Admin: Admin, Import
     
-    /*this.sfService.userPrivileges().subscribe(
+    this.sfService.userPrivileges().subscribe(
       data => {
         console.log("UserPrivileges: " + data);
         let url = state.url;
@@ -41,7 +41,6 @@ export class RouteGuard implements CanActivate {
       },
       err => {
         console.error(err);
-      });*/
-    return true;
+      });
   }
 }
