@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MobileHeaderComponent implements OnInit {
   
-  username: string = "Admin";
+  username: string;
 
   @Output() sidenavChange = new EventEmitter<any>();
   
