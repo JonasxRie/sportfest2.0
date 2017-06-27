@@ -15,8 +15,8 @@ export class EinzelComponent implements OnInit {
   klassen: Array<Klasse> = [];
   schueler = [];
   bestenSchueler = [];
-  //Länge der klassen
-  aufgeklappt= [false, false, false, false];
+  aufgeklappt: Array<boolean> = [] ;
+  klasseAufklappen: boolean = false;
   sortRev = false;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
