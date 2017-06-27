@@ -32,8 +32,7 @@ import { MobileHeaderImageComponent } from './mobile-header-image/mobile-header-
 const routConfig: Routes = [
     {
       path: '',
-      redirectTo: 'home',
-      pathMatch: 'full'
+      component: DashboardComponent
     },
     {
       path: 'home',
