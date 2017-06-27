@@ -32,8 +32,7 @@ import { MobileHeaderImageComponent } from './mobile-header-image/mobile-header-
 const routConfig: Routes = [
     {
       path: '',
-      redirectTo: 'home',
-      pathMatch: 'full'
+      component: DashboardComponent
     },
     {
       path: 'home',
@@ -54,27 +53,28 @@ const routConfig: Routes = [
       component: EinzelComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'team/:did/:name',
+    { 
+      path: 'team/:did/:name',
       component: TeamComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'import',
+    { 
+      path: 'import',
       component: KlassenImportComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'activateDiscipline',
+    { 
+      path: 'activateDiscipline',
       component: ActivateDisciplineComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'createDiscipline/:did',
-      component: CreateDisciplineComponent,
-      canActivate: [RouteGuard]
-    },
-    { path: 'uac',
+    { 
+      path: 'uac',
       component: UserAccountControlComponent,
       canActivate: [RouteGuard]
     },
-    { path: 'createSportfest',
+    { 
+      path: 'createSportfest',
       component: CreateSportfestComponent,
       canActivate: [RouteGuard]
     }
@@ -135,5 +135,4 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent
   ]
 })
-
 export class AppModule { }

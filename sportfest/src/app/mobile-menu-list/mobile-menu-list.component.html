@@ -1,7 +1,7 @@
 <md-list>
-  <md-list-item class="main" (click)="selectedSportart=!selectedSportart">Sportarten</md-list-item>
-  <div *ngIf="selectedSportart">
-    <md-list-item class="sub" (click)="selectedEinzel=!selectedEinzel">Einzel</md-list-item>
+  <md-list-item class="main" (click)="expandSportarten()">Sportarten</md-list-item>
+  <div *ngIf="selectedSportarten">
+    <md-list-item class="sub" (click)="expandEinzel()">Einzel</md-list-item>
       <div *ngIf="selectedEinzel">
         <md-list-item class="subsub"
                       *ngFor="let einzel of disziplinenEinzel"
@@ -9,7 +9,7 @@
                       {{ einzel.name }}
         </md-list-item>
       </div>
-    <md-list-item class="sub" (click)="selectedTeam=!selectedTeam">Team</md-list-item>
+    <md-list-item class="sub" (click)="expandTeam()">Team</md-list-item>
       <div *ngIf="selectedTeam">
         <md-list-item class="subsub"
                       *ngFor="let team of disziplinenTeam"
@@ -19,7 +19,7 @@
       </div>
   </div>
     
-  <md-list-item class="main" (click)="selectedAdmin=!selectedAdmin">Admin</md-list-item>
+  <md-list-item class="main" (click)="expandAdmin()">Admin</md-list-item>
     <div *ngIf="selectedAdmin">
       <md-list-item class="sub" (click)="navigateToCreateDiscipline()">Disziplin anlegen</md-list-item>
       <md-list-item class="sub" (click)="navigateToActivateDiscipline()">Disziplin aktivieren</md-list-item>
