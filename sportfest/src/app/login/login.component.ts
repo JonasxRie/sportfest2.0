@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
           console.log(localStorage.getItem('token'));
           this.sfService.userPrivileges().subscribe(data => {
             this.username = data.aud;
+            localStorage.setItem('role',data.role);
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');

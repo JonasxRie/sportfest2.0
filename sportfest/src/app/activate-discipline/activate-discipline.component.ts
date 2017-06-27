@@ -60,9 +60,9 @@ export class ActivateDisciplineComponent implements OnInit {
     //   ]
     // };
   }
-
-  public save(index: number, dis: Disziplin) {
-    this.sfService.disziplinAendern(index, dis).subscribe(data => {
+  
+  public save(dis:Disziplin) {
+    this.sfService.disziplinAendern(dis.did, dis).subscribe(data => {
         
       },
       (err) => {
