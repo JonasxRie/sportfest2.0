@@ -1,3 +1,4 @@
+import { Klasse } from '../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Http } from '@angular/http';
@@ -12,14 +13,9 @@ export class KlassenImportComponent implements OnInit {
   
   anmeldebogenFile: File;
   teilnehmerFile: File;
-  klassen = [
-    {value: 1, viewValue: "FS151"},
-    {value: 2, viewValue: "FS152"},
-    {value: 3, viewValue: "FI151"},
-    {value: 4, viewValue: "FI152"},
-    {value: 5, viewValue: "FV151"}
-  ];
-  selectedClass: number;
+  klassen: Array<Klasse> = [];
+  selectedDownloadableClass: number;
+  downloadPath:string;
   showDownloadButton: boolean = false;
 
   constructor(private http: Http,
@@ -27,10 +23,19 @@ export class KlassenImportComponent implements OnInit {
               public snackBar: MdSnackBar) { }
 
   ngOnInit() {
+     this.sfService.klassen().subscribe((data: Klasse[]) => {
+        this.klassen = data;
+      },
+      (err) => {
+        console.error('GET-Service "klassen()" not reachable.');
+      })
   }
   
   // Button Download wurde geklickt
-  public download() { }
+  public download() {
+    console.log(this.selectedDownloadableClass);
+    this.sfService.schuelerAnmeldebogen(this.selectedDownloadableClass).subscribe();    
+   }
   
   // Dateiauswahl für Anmeldebogen geändert
   public anmeldebogenChange(event: any) {
@@ -55,6 +60,10 @@ export class KlassenImportComponent implements OnInit {
         }
       );
     }
+  }
+  
+  public changeDownloadPath(){
+    this.downloadPath = "http://172.20.3.18:8080/backend/klasse/" + this.selectedDownloadableClass + "/anmeldung";
   }
   
   // Gibt zurück, ob der "Anmeldebogen abschicken"-Button geklickt werden kann (sonst disabled)

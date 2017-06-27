@@ -18,3 +18,8 @@ export interface Disziplin {
     aktiviert?: boolean,
     teamleistung?: boolean
 }
+
+export interface Klasse {
+    kid?: number,
+    name?: string
+}

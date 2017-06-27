@@ -27,7 +27,7 @@
               <h4>Ergebnisse eintragen</h4>
             </md-card-header>
             <md-list *ngFor="let klasse of klassen, let i=index">
-              <h3 (click)="aufklappen(i)">{{klasse.viewValue}}</h3>
+              <h3 (click)="aufklappen(i)">{{klasse.name}}</h3>
               <div *ngIf="aufgeklappt[i]">
                 <table>
                   <tr *ngFor="let s of schueler">
