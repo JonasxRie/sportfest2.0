@@ -39,7 +39,7 @@ export class SportfestService {
   /**
    * Gibt die User Privilegien zurück
    */
-  public userPrivileges(id: number): Observable<any> {
+  public userPrivileges(id?: number): Observable<any> {
     return this.techService.getRequest('user/privileges/' + id);
   }
   /**
