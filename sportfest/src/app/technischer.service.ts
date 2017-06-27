@@ -16,7 +16,6 @@ export class TechnischerService {
   constructor(private http: Http) { }
 
   public getRequest(ressourceAPI: string) {
-    localStorage.setItem('token', 'DefaultToken');
     return this.http.get(this.api + ressourceAPI).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
