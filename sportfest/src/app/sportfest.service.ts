@@ -24,7 +24,6 @@ export class SportfestService {
     return this.techService.postRequest('/data', data);
   }
 
-
   /**
    * ***********************************************
    * User Resource
