@@ -32,10 +32,9 @@ export class LoginComponent implements OnInit {
           let token = data.text();
 
           // Token in localStorage packen
-          console.log("Token: ", token);
           localStorage.setItem('token', token);
-          console.log(localStorage.getItem('token'));
           this.sfService.userPrivileges().subscribe(data => {
+            console.log(data);
             this.username = data.aud;
             console.log('Rolle: '+  data.role);
             localStorage.setItem('role',data.role);
