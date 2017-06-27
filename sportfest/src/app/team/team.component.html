@@ -26,8 +26,8 @@
           <tr>
             <td align="right">
                 <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
-                  <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-                    {{ klasse.viewValue }}
+                  <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
+                    {{ klasse.name }}
                   </md-option>
                 </md-select>
             </td>
@@ -36,8 +36,8 @@
             </td>
             <td align="left">
                 <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
-                  <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
-                    {{ klasse.viewValue }}
+                  <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
+                    {{ klasse.name }}
                   </md-option>
                 </md-select>
             </td>

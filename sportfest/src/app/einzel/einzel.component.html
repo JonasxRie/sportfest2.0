@@ -21,34 +21,39 @@
 
     <table width="100%">
       <tr>
-        <td align="left">
-          <md-card>
-            <md-card-header>
-              <h4>Ergebnisse eintragen</h4>
-            </md-card-header>
-            <md-list *ngFor="let klasse of klassen, let i=index">
-              <h3 (click)="aufklappen(i)">{{klasse.name}}</h3>
-              <div *ngIf="aufgeklappt[i]">
-                <table>
-                  <tr *ngFor="let s of schueler">
-                    <td>
-                      <span>{{ s.viewValue }}:</span>
-                    </td>
-                    <td>
-                      <md-input-container>
-                        <input mdInput placeholder="Ergebnis" type="number">
-                      </md-input-container>
-                      <!-- Inputfeld (disabled, wenn nicht login) -->
-                      <!-- vorhandene Values einfügen-->
-                    </td>
-                  </tr>      
-                  
-                </table>
-              </div>
-            </md-list>
-          </md-card>
-        </td>
+        <th (click)="(klasseAufklappen = !klasseAufklappen)">Klassenlisten anzeigen</th>
       </tr>
+      <div *ngIf="klasseAufklappen">
+        <tr>
+          <td>
+            <md-card>
+              <md-card-header>
+                <h4>Ergebnisse eintragen</h4>
+              </md-card-header>
+              <md-list *ngFor="let klasse of klassen, let i=index">
+                <h3 (click)="aufklappen(i)">{{klasse.name}}</h3>
+                <div *ngIf="aufgeklappt[i]">
+                  <table width="100%">
+                    <tr *ngFor="let s of schueler">
+                      <td width="50%">
+                        <span>{{ s.viewValue }}:</span>
+                      </td>
+                      <td width="50%">
+                        <md-input-container>
+                          <input mdInput placeholder="Ergebnis" type="number">
+                        </md-input-container>
+                        <!-- Inputfeld (disabled, wenn nicht login) -->
+                        <!-- vorhandene Values einfügen-->
+                      </td>
+                    </tr>      
+                    
+                  </table>
+                </div>
+              </md-list>
+            </md-card>
+          </td>
+        </tr>
+      </div>
       <tr>
         <td align="center" valign="top">
           <!--Bestenliste der Sportart-->
@@ -57,18 +62,19 @@
               <h4>Bestenliste im {{sportart}}</h4>
             </md-card-header>
             <md-card-content>
-              <table width="100%">
+              <table>
                 <tr>
                   <th align="left" (click)="(sortRev)? sortByRangRev() : sortByRang()">
-                    <p>Platzierung <md-icon>import_export</md-icon></p>
+                    Platzierung <md-icon>import_export</md-icon>
                   </th>
                   <th align="left">Name</th>
                   <th align="left">Ergebnis</th>
                 </tr>
-                <tr *ngFor="let s of bestenSchueler, let i=index">
+                <tr *ngFor="let s of bestenSchueler">
                   <td>{{s.value + 1}}</td>
                   <td>{{s.viewValue}}</td>
                   <td>{{s.ergebnis}}<td>
+                    
                 </tr>
               </table>
             </md-card-content>
