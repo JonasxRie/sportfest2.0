@@ -25,10 +25,11 @@ export class LoginComponent implements OnInit {
     if (this.username !== "" && this.password !== "" && this.username && this.password) {      
       // Logindaten verschlüsseln
       let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
-      console.log(encryptpwd);
+      
+      console.log(this.username + ' ' + encryptpwd);
 
       // Logindaten übermitteln
-      this.sfService.userLogin(this.username, encryptpwd).subscribe(
+      this.sfService.userLogin(this.username, encryptpwd.toString()).subscribe(
         data => {
           
           let token = data.text();
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   public error() {
-    this.errorMsg = "Bitte Eingaben überprüfen."
+    this.errorMsg = "Fehlgeschlagen."
   }
 
   public keypress(event: any) {

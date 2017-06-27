@@ -1,7 +1,6 @@
 import { Http, Headers, RequestOptions, Request, RequestMethod } from '@angular/http';
 import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -15,19 +14,16 @@ export class TechnischerService {
      return header;
   }
 
-  constructor(private http: Http) { }
-
   public getRequest(ressourceAPI: string) {
-    
     return this.http.get(this.api + ressourceAPI, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
           return Observable.throw(e);
         }
-    });
+      });
 
   }
-
+  
   public postFormRequest(ressourceAPI: string, body: any) {
   let headers = this.createAuthorizationHeader();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -46,7 +42,7 @@ export class TechnischerService {
         if (e.status >= 400) {
           return Observable.throw(e);
         }
-    });
+      });
 
   }
 
@@ -57,7 +53,7 @@ export class TechnischerService {
         if (e.status >= 400) {
           return Observable.throw(e);
         }
-    });
+      });
   }
 
   public deleteRequest(ressourceAPI: string) {
@@ -66,7 +62,7 @@ export class TechnischerService {
         if (e.status >= 400) {
           return Observable.throw(e);
         }
-    });
+      });
   }
 
 }
