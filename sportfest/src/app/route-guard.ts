@@ -13,25 +13,20 @@ export class RouteGuard implements CanActivate {
     // Schiedrichter: Sportarten (Ergebnisse) bearbeiten
     // Admin: Admin, Import
     
-    let url = state.url;
-    console.log("URL", url);    
-    let url1 = url.split('/');
-    console.log("URL1", url1);
-    console.log("URL1", url1[1]);
+    let url = state.url.split('/')[1];
+    console.log("URL1", url);
     
     let role = localStorage.getItem("role");
     console.log("ROLE", role);
     
-    if (url == "home" || url1 ) {
-      
-    }
     switch (url) {
       // Gast darf:
       case "home":
-        return true;
-      // Schiedsrichter und Admin darf:
       case "einzel":
       case "team":
+        return true;
+      // Schiedsrichter und Admin darf:
+      case "blabla":
         return (role == "schiedsrichter" || role == "admin");
       // Admin darf:
       case "createDiscipline":
