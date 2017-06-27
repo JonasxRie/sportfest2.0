@@ -8,15 +8,18 @@ import 'rxjs/Rx';
 export class TechnischerService {
 
   private api = 'http://172.20.3.18:8080/backend';
-  private createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Basic ' +
-      'blablabla'); 
+  private createAuthorizationHeader(): Headers {
+    let header = new Headers();
+    if(localStorage.getItem('token'))
+      header.append('Authorization', 'Bearer ' + localStorage.getItem('token')); 
+     return header;
   }
 
   constructor(private http: Http) { }
 
   public getRequest(ressourceAPI: string) {
-    return this.http.get(this.api + ressourceAPI).map(data => data.json()).catch(
+    
+    return this.http.get(this.api + ressourceAPI, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 403) {
           return Observable.throw(e);
@@ -26,7 +29,7 @@ export class TechnischerService {
   }
 
   public postFormRequest(ressourceAPI: string, body: any) {
-  let headers = new Headers();
+  let headers = this.createAuthorizationHeader();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(this.api + ressourceAPI, body, {headers: headers}).catch(
       (e) => {
@@ -38,7 +41,7 @@ export class TechnischerService {
   }
   
   public postRequest(ressourceAPI: string, body: any) {
-    return this.http.post(this.api + ressourceAPI, body, ).map(data => data.json()).catch(
+    return this.http.post(this.api + ressourceAPI, body, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);
@@ -49,7 +52,7 @@ export class TechnischerService {
 
 
   public putRequest(ressourceAPI: string, body: any) {
-    return this.http.put(this.api + ressourceAPI, body).map(data => data.json()).catch(
+    return this.http.put(this.api + ressourceAPI, body, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);
@@ -58,7 +61,7 @@ export class TechnischerService {
   }
 
   public deleteRequest(ressourceAPI: string) {
-    return this.http.delete(this.api + ressourceAPI).map(data => data.json()).catch(
+    return this.http.delete(this.api + ressourceAPI, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);
