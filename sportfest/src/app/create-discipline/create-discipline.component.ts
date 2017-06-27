@@ -56,7 +56,9 @@ export class CreateDisciplineComponent implements OnInit {
       minTeilnehmer: this.minTeilnehmeranzahl,
       maxTeilnehmer: this.maxTeilnehmeranzahl,
       teamleistung: this.teamleistung,
-      aktiviert: true      
+      aktiviert: true,
+      regeln: this.rules,
+      variable: this.rulesVar       
     }
     
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
