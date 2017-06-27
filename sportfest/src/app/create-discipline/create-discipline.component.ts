@@ -1,6 +1,5 @@
-// import { Disziplin } from './../interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Variable, Regel } from '../interfaces';
+import { Variable, Regel, Disziplin } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -38,9 +37,12 @@ export class CreateDisciplineComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let sportartID = params['did'];
-      this.sfService.disziplin(sportartID).subscribe((data) => {
-        // Daten in die entsprechenden Felder füllen
-        console.log(data);
+      this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
+        this.sportart = data.name;
+        this.beschreibung = data.beschreibung;
+        this.minTeilnehmeranzahl = data.minTeilnehmer;
+        this.maxTeilnehmeranzahl = data.maxTeilnehmer;
+        this.teamleistung = data.teamleistung;
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -63,6 +65,7 @@ export class CreateDisciplineComponent implements OnInit {
     
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
       (data) => {
+        console.log('toDo');
         console.log(data);
       },
       (err) => {

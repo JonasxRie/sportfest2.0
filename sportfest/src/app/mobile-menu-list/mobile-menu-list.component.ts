@@ -77,5 +77,39 @@ export class MobileMenuListComponent implements OnInit {
     this.router.navigate(['/createSportfest']);
     this.itemSelected.emit();
   }
-
+  
+  public expandSportarten() {
+    if (this.selectedSportarten) {
+      this.selectedSportarten = false;
+    } else {
+      this.selectedAdmin = false;
+      this.selectedEinzel = false;
+      this.selectedTeam = false;
+      this.selectedSportarten = true;
+    }
+  }
+  public expandAdmin() {
+    if (this.selectedAdmin) {
+      this.selectedAdmin = false;
+    } else {
+      this.selectedSportarten = false;
+      this.selectedAdmin = true;
+    }
+  }
+  public expandEinzel() {
+    if (this.selectedEinzel) {
+      this.selectedEinzel = false;
+    } else {
+      this.selectedTeam = false;
+      this.selectedEinzel = true;
+    }
+  }
+  public expandTeam() {
+    if (this.selectedTeam) {
+      this.selectedTeam = false;
+    } else {
+      this.selectedEinzel = false;
+      this.selectedTeam = true;
+    }
+  }
 }

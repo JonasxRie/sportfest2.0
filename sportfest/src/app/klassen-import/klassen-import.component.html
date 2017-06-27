@@ -10,12 +10,18 @@
         <td>
           Laden Sie hier die Excel-Datei herunter, in der sich die Schüler einer Klasse für die einzelnen Disziplinen anmelden können.
           <br><br> Bitte die <b>ausgefüllte Datei unten wieder hochladen</b>.
+          <br><br>
+          <md-select placeholder="Klasse" [(ngModel)]="selectedDownloadableClass">
+            <md-option *ngFor="let klasse of klassen" [value]="klasse.value">
+              {{ klasse.viewValue }}
+            </md-option>
+          </md-select>
         </td>
       </tr>
     </table>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button color="primary" (click)="download()" [disabled]="!isDownloadable()">Download</button>
+    <button md-raised-button color="primary" (click)="download()" [disabled]="!selectedDownloadableClass">Download</button>
   </md-card-actions>
 </md-card>
 
