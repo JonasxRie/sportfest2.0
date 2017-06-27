@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
-  regeln: string = '';  // TODO: richtige Regeln
+  beschreibung: string = '';  // TODO: richtige Regeln
   klassen = [];
   schueler = [];
   bestenSchueler = [];
@@ -26,6 +26,7 @@ export class EinzelComponent implements OnInit {
       let sportartID = params['did'];
       this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
+        this.beschreibung=data.beschreibung;
         // Daten in die entsprechenden Felder füllen
         console.log(data);
       },
