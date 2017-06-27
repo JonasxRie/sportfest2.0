@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MobileHeaderComponent implements OnInit {
   
-  username: string = "Admin";
+  username: string;
 
   @Output() sidenavChange = new EventEmitter<any>();
   
@@ -43,11 +43,5 @@ export class MobileHeaderComponent implements OnInit {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
-    this.sfService.user().subscribe(data => {
-      this.username = data;
-    },
-      (err) => {
-        console.error('GET-Service "user()" not reachable.');
-    });
   }
 }

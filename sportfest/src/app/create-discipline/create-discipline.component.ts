@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-discipline.component.css']
 })
 export class CreateDisciplineComponent implements OnInit {
-
+    
+    sportartID: number;
     sportart: string;
     beschreibung: string;
     minTeilnehmeranzahl: number;
@@ -36,17 +37,19 @@ export class CreateDisciplineComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      let sportartID = params['did'];
-      this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
-        this.sportart = data.name;
-        this.beschreibung = data.beschreibung;
-        this.minTeilnehmeranzahl = data.minTeilnehmer;
-        this.maxTeilnehmeranzahl = data.maxTeilnehmer;
-        this.teamleistung = data.teamleistung;
-      },
-      (err) => {
-        console.error('GET-Service "disziplin(sportartID)" not reachable.');
-      });
+      this.sportartID = +params['did'];
+      console.log('sportartID');
+      console.log(this.sportartID);
+    });
+    this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
+      this.sportart = data.name;
+      this.beschreibung = data.beschreibung;
+      this.minTeilnehmeranzahl = data.minTeilnehmer;
+      this.maxTeilnehmeranzahl = data.maxTeilnehmer;
+      this.teamleistung = data.teamleistung;
+    },
+    (err) => {
+      console.error('GET-Service "disziplin(sportartID)" not reachable.');
     });
   }
   

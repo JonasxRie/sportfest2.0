@@ -39,8 +39,8 @@ export class SportfestService {
   /**
    * Gibt die User Privilegien zurück
    */
-  public userPrivileges(id?: number): Observable<any> {
-    return this.techService.getRequest('user/privileges/' + id);
+  public userPrivileges(): Observable<any> {
+    return this.techService.getRequest('/user/privileges/');
   }
   /**
    * Gibt den User zurück
@@ -100,13 +100,13 @@ export class SportfestService {
    * Ändert eine Disziplin
    */
   public disziplinAendern(did: number, disziplin: any): Observable<any> {
-    return this.techService.postRequest('/disziplin/' + did, disziplin)
+    return this.techService.postRequest('/disziplin/' + did, disziplin);
   }
   /**
    * Schreibt eine Disziplin
    */
   public disziplinSchreiben(disziplin: any): Observable<any> {
-    return this.techService.putRequest('/disziplin/0', disziplin)
+    return this.techService.putRequest('/disziplin/0', disziplin);
   }
 
   /**
