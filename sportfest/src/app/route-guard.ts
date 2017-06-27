@@ -42,6 +42,5 @@ export class RouteGuard implements CanActivate {
       err => {
         console.error(err);
       });
-    return true;
   }
 }
