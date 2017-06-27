@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
@@ -80,6 +80,10 @@ const routConfig: Routes = [
     }
 ];
 
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp( new AuthConfig({}), http, options);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,6 +119,11 @@ const routConfig: Routes = [
     TechnischerService,
     SportfestService,
     RouteGuard,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [ Http, RequestOptions ]
+    },
     Md5
   ],
   entryComponents: [
@@ -126,4 +135,5 @@ const routConfig: Routes = [
     AppComponent
   ]
 })
+
 export class AppModule { }
