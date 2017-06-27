@@ -62,10 +62,8 @@ export class CreateDisciplineComponent implements OnInit {
       regeln: this.rules,
       variable: this.rulesVar       
     }
-    
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
       (data) => {
-        console.log('toDo');
         console.log(data);
       },
       (err) => {

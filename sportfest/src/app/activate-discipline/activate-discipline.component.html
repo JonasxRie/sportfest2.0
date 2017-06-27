@@ -11,10 +11,10 @@
         <th></th>
       </tr>
 
-      <tr *ngFor="let dis of disziplinen.einzel" >
+      <tr *ngFor="let dis of disziplinen.einzel, let i = index" >
         <td>{{ dis.bezeichnung }}</td>
         <td>
-          <md-slide-toggle [(ngModel)]="dis.aktiv"></md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="dis.aktiv" (change)="save(i,dis)"></md-slide-toggle>
         </td>
         <td>
           <md-icon (click)="editDiscipline(dis.id)" >edit</md-icon>
