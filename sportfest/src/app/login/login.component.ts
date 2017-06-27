@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
       // Logindaten verschlüsseln
       let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
 
-      console.log(this.username + ' ' + encryptpwd);
-
       // Logindaten übermitteln
       this.sfService.userLogin(this.username, encryptpwd.toString()).subscribe(
         data => {
