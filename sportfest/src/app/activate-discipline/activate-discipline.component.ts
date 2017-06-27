@@ -60,9 +60,9 @@ export class ActivateDisciplineComponent implements OnInit {
     //   ]
     // };
   }
-
-  public save(index: number, dis:Disziplin) {
-    this.sfService.disziplinAendern(index, dis).subscribe(data => {
+  
+  public save(dis:Disziplin) {
+    this.sfService.disziplinAendern(dis.did, dis).subscribe(data => {
         
       },
       (err) => {
@@ -70,8 +70,10 @@ export class ActivateDisciplineComponent implements OnInit {
       });
   }
   
-  public editDiscipline(did: number) {
-    this.router.navigate(['/createDiscipline/' + did]);
+  public editDiscipline(dis: Disziplin) {
+    console.log('dis');
+    console.log(dis);
+    this.router.navigate(['/createDiscipline/' + dis.did]);
   }
 
 }

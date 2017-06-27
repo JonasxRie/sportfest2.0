@@ -26,19 +26,18 @@ export class LoginComponent implements OnInit {
       // Logindaten verschlüsseln
       let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
 
-      console.log(this.username + ' ' + encryptpwd);
-
       // Logindaten übermitteln
       this.sfService.userLogin(this.username, encryptpwd.toString()).subscribe(
         data => {
           let token = data.text();
 
           // Token in localStorage packen
-          console.log("Token: ", token);
           localStorage.setItem('token', token);
-          console.log(localStorage.getItem('token'));
           this.sfService.userPrivileges().subscribe(data => {
+            console.log(data);
             this.username = data.aud;
+            console.log('Rolle: '+  data.role);
+            localStorage.setItem('role',data.role);
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');
