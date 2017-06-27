@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TechnischerService {
-
+  
   private api = 'http://172.20.3.18:8080/backend';
   
   constructor(private http: Http) {}

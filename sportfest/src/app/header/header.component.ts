@@ -81,8 +81,8 @@ export class HeaderComponent implements OnInit {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
-    this.sfService.user().subscribe(data => {
-      this.username = data;
+    this.sfService.userPrivileges().subscribe(data => {
+      this.username = data.aud;
     },
       (err) => {
         console.error('GET-Service "user()" not reachable.');

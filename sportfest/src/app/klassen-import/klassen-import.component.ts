@@ -10,7 +10,7 @@ import {MdSnackBar} from '@angular/material';
   styleUrls: ['./klassen-import.component.css']
 })
 export class KlassenImportComponent implements OnInit {
-  
+  returnStatus: number;
   anmeldebogenFile: File;
   teilnehmerFile: File;
   klassen: Array<Klasse> = [];

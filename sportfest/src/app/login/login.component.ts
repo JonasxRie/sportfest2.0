@@ -22,22 +22,27 @@ export class LoginComponent implements OnInit {
   }
 
   public submit() {
-    if (this.username !== "" && this.password !== "" && this.username && this.password) {      
+    if (this.username !== "" && this.password !== "" && this.username && this.password) {
       // Logindaten verschlüsseln
       let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion
-      
+
       console.log(this.username + ' ' + encryptpwd);
 
       // Logindaten übermitteln
       this.sfService.userLogin(this.username, encryptpwd.toString()).subscribe(
-        data => {          
+        data => {
           let token = data.text();
-          
+
           // Token in localStorage packen
           console.log("Token: ", token);
-          localStorage.setItem('token', token);          
+          localStorage.setItem('token', token);
           console.log(localStorage.getItem('token'));
-          
+          this.sfService.userPrivileges().subscribe(data => {
+            this.username = data.aud;
+          },
+            (err) => {
+              console.error('GET-Service "userPrivileges()" not reachable.');
+            });
           this.loginSubmit.emit();
         },
         err => {
@@ -56,7 +61,7 @@ export class LoginComponent implements OnInit {
 
   public keypress(event: any) {
     if (event.keyCode == 13) { // Enter gedrückt
-      this.submit();      
+      this.submit();
     }
   }
 
