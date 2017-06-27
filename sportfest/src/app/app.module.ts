@@ -84,6 +84,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
 
+export function enoughPermissionsToWrite() {
+  let role = localStorage.getItem('role');
+  if(role == 'admin' || role == 'schiedsrichter'){
+    return true;
+  }else {
+    return false;
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
