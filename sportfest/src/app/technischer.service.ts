@@ -7,6 +7,9 @@ import 'rxjs/Rx';
 export class TechnischerService {
 
   private api = 'http://172.20.3.18:8080/backend';
+  
+  constructor(private http:Http){}
+  
   private createAuthorizationHeader(): Headers {
     let header = new Headers();
     if(localStorage.getItem('token'))
