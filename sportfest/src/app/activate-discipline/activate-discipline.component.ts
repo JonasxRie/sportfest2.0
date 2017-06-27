@@ -61,9 +61,13 @@ export class ActivateDisciplineComponent implements OnInit {
     // };
   }
 
-  public save() {
-    // this.sfService.disziplinAendern()
-    console.log('TODO: Abklären, wie die Schnittstelle des Backend zum ändern der Aktiv-Zustand aussieht')
+  public save(index: number, dis:Disziplin) {
+    this.sfService.disziplinAendern(index, dis).subscribe(data => {
+        
+      },
+      (err) => {
+        console.error('POST-Service "disziplinAendern()" not reachable.');
+      });
   }
   
   public editDiscipline(did: number) {
