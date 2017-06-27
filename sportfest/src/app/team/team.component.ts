@@ -1,4 +1,4 @@
-import { Disziplin } from './../interfaces';
+import { Disziplin, Klasse } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -16,13 +16,7 @@ export class TeamComponent implements OnInit {
 
   punkteStand = [{classA: 'FS151', classB: 'FI151', pointsA: 6, pointsB: 3}, {classA: 'FI151', classB: 'FI152', pointsA: 2, pointsB: 1}]
 
-  klassen = [
-    {value: 1, viewValue: "FS151"},
-    {value: 2, viewValue: "FS152"},
-    {value: 3, viewValue: "FI151"},
-    {value: 4, viewValue: "FI152"},
-    {value: 5, viewValue: "FV151"}
-  ];
+  klassen: Array<Klasse>;
   selectedClassA: number;
   selectedClassB: number;
   pointsA: number;
@@ -35,11 +29,6 @@ export class TeamComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
-    // this.route.params.forEach((params: Params) => {
-    //   this.did = params['did'];
-    //   this.currentSportart = params['name']; //getDisziplin(did).name
-    //   this.beschreibung = params['did']; //getDisziplin(did).regel
-    // });
     
     this.route.params.forEach((params: Params) => {
       let sportartID = params['did'];
@@ -52,6 +41,12 @@ export class TeamComponent implements OnInit {
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
+      this.sfService.klassen().subscribe((data: Klasse[]) => {
+        this.klassen = data;
+      },
+      (err) => {
+        console.error('GET-Service "klassen()" not reachable.');
+      })
     });
   }
   sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){

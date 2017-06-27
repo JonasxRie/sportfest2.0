@@ -1,4 +1,4 @@
-import { Disziplin } from '../interfaces';
+import { Disziplin, Klasse } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,7 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
-  klassen = [];
+  klassen: Array<Klasse> = [];
   schueler = [];
   bestenSchueler = [];
   //Länge der klassen
@@ -33,13 +33,14 @@ export class EinzelComponent implements OnInit {
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
+      this.sfService.klassen().subscribe((data: Klasse[]) => {
+        this.klassen = data;
+      },
+      (err) => {
+        console.error('GET-Service "klassen()" not reachable.');
+      })
     });
-    this.klassen = [
-      {value: 0, viewValue: 'FS151'},
-      {value: 0, viewValue: 'FI151'},
-      {value: 0, viewValue: 'FS161'},
-      {value: 0, viewValue: 'FV151'}
-    ];
+    
     this.schueler = [
       {value: 0, viewValue: 'Mirco'},
       {value: 1, viewValue: 'Michi'},
