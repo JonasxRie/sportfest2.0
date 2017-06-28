@@ -69,6 +69,7 @@ export class UserAccountControlComponent implements OnInit {
   }
   
   public resetPassword(user: any){
+    console.log(user);
     this.deleteUser(user.name);
     this.username = user.name;
     this.selectedRole = user.role;
