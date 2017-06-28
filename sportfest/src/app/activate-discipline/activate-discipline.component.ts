@@ -23,11 +23,11 @@ export class ActivateDisciplineComponent implements OnInit {
         if (!this.disziplinen) {
           this.disziplinen = [];
         }
-        this.disziplinen.forEach(element => {
-          if(element.regeln==null){
-            element.regeln=[];
-          }
-        });
+        // this.disziplinen.forEach(element => {
+        //   if(element.regeln==null){
+        //     element.regeln=[];
+        //   }
+        // });
       },
       (err) => {
         console.error('GET-Service "disziplin()" not reachable.');

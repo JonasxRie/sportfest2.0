@@ -84,14 +84,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
 
-export function enoughPermissionsToWrite() {
-  let role = localStorage.getItem('role');
-  if(role == 'admin' || role == 'schiedsrichter'){
-    return true;
-  }else {
-    return false;
-  }
-}
+export const BASEPATH = 'http://172.20.3.18:8080/backend'; 
 
 @NgModule({
   declarations: [

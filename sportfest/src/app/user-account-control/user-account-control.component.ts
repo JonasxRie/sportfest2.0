@@ -31,9 +31,9 @@ export class UserAccountControlComponent implements OnInit {
       })
   }
 
-  public deleteUser(uid: string) {
-    alert('User mit der id' + uid + 'wird gelöscht');
-    this.sfService.userLoeschen(uid).subscribe(
+  public deleteUser(user: any) {
+    alert('User mit der id' + user.name + 'wird gelöscht');
+    this.sfService.userLoeschen(user.name).subscribe(
       (data) => {
         console.log(data);
       },
@@ -69,7 +69,8 @@ export class UserAccountControlComponent implements OnInit {
   }
   
   public resetPassword(user: any){
-    this.deleteUser(user.name);
+    console.log(user);
+    this.deleteUser(user);
     this.username = user.name;
     this.selectedRole = user.role;
     this.addUser();
