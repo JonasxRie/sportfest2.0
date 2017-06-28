@@ -60,7 +60,7 @@ export class TechnischerService {
   }
 
   public deleteRequest(ressourceAPI: string) {
-    return this.http.delete(BASEPATH + ressourceAPI, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
+    return this.http.delete(BASEPATH + ressourceAPI, {headers: this.createAuthorizationHeader()}).catch(
       (e) => {
         if (e.status >= 400) {
           return Observable.throw(e);
