@@ -28,12 +28,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
-        console.log(data[i]);
-          if(data[i].teamleistung == false || data[i].did == 3) {
-            this.disziplinenEinzel.push(data[i]);
-          }else {
-            this.disziplinenTeam.push(data[i]);
-          }
+        if(data[i].teamleistung == false || data[i].did == 3) {
+          this.disziplinenEinzel.push(data[i]);
+        }else {
+          this.disziplinenTeam.push(data[i]);
+        }
       }
     },
       (err) => {

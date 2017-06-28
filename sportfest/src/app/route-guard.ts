@@ -14,10 +14,9 @@ export class RouteGuard implements CanActivate {
     // Admin: Admin, Import
     
     let url = state.url.split('/')[1];
-    console.log("URL1", url);
     
     let role = localStorage.getItem("role");
-    console.log("ROLE", role);
+    console.log("ROLE --> ", role);
     
     switch (url) {
       // Gast darf:
