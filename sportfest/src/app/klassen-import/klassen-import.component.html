@@ -34,7 +34,7 @@
     <h3>Anmeldebogen - Import</h3>
   </md-card-header>
   <!-- Action anpassen (/schueler/disziplin/upload), File-Name-->
-  <form ngNoForm action="{{BATHPATH}}/klasse/anmeldung" method="POST" target="noDisplay" enctype="multipart/form-data">          
+  <form ngNoForm [action]="importPath" method="POST" target="noDisplay" enctype="multipart/form-data">          
     <md-card-content>
       <table>
         <tr>
@@ -61,7 +61,7 @@
   <md-card-header>
     <h3>Import der Teilnehmer</h3>
   </md-card-header>
-  <form ngNoForm action="{{BATHPATH}}/schueler/upload" method="POST" target="noDisplay" enctype="multipart/form-data" >    
+  <form ngNoForm [action]="uploadPath" method="POST" target="noDisplay" enctype="multipart/form-data" >    
     <md-card-content>
       <table>
         <tr>
