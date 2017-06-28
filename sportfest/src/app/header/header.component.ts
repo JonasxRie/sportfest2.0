@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit {
   disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
-              private dialog: MdDialog,
-              private sfService: SportfestService) { }
+    private dialog: MdDialog,
+    private sfService: SportfestService) { }
 
   ngOnInit() {
     this.sfService.disziplinen().subscribe(data => {
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     },
       (err) => {
         console.error('GET-Service "disziplinen()" not reachable.');
-    });
+      });
   }
 
   public navigateToEinzel(did: number, name: string) {
@@ -83,12 +83,16 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
-          this.username = data.aud;
+          if (data.role != "gast") {
+            this.username = data.aud;
+          } else {
+            this.username = "Gast";
+          }
           this.role = data.role;
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
-      });
+        });
     });
   }
 

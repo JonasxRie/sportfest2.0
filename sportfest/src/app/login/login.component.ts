@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             if (data.role != 'gast') {
               this.username = data.aud;
               localStorage.setItem('role', data.role);
-            }else{
+            } else {
               this.username = "Gast";
             }
           },
