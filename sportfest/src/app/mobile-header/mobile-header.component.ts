@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
 export class MobileHeaderComponent implements OnInit {
   
   username: string;
+  role: string;
 
   @Output() sidenavChange = new EventEmitter<any>();
+  @Output() roleChanged = new EventEmitter<string>();
   
   constructor(private router: Router,
               public dialog: MdDialog,
@@ -36,7 +38,7 @@ export class MobileHeaderComponent implements OnInit {
   }
   public logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.setItem('role','gast');
     this.username=null;
     this.router.navigate(['/home']); 
   }
@@ -48,12 +50,20 @@ export class MobileHeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
-          console.log(data);
-          this.username = data.aud;
+          console.log("UserLoginPrivilegien", data);
+          if (data.role != "gast") {
+            this.username = data.aud;
+          } else {
+            this.username = null;
+          }
+          this.role = data.role;
+          this.roleChanged.emit(this.role);
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
-      });
+          this.username = null;
+          this.navigateToDashboard();
+        });
     });
   }
 }

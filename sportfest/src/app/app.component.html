@@ -13,7 +13,7 @@
 <div id="container" *ngIf="isMobile()">
     <md-sidenav-container>
         <app-mobile-header-image></app-mobile-header-image>
-        <app-mobile-header (sidenavChange)="sidenav.open()"></app-mobile-header>
+        <app-mobile-header (sidenavChange)="sidenav.open()" (roleChanged)="setRole($event)"></app-mobile-header>
         <router-outlet></router-outlet>
         <md-sidenav #sidenav class="example-sidenav" mode="over">
             <app-mobile-header-image (closeSideNav)="sidenav.close()"></app-mobile-header-image>
@@ -22,7 +22,7 @@
                 <span class="fill-remaining-space"></span>
                 <span class="credits">FS151</span>
             </md-toolbar>
-            <app-mobile-menu-list (itemSelected)="sidenav.close()"></app-mobile-menu-list>
+            <app-mobile-menu-list (itemSelected)="sidenav.close()" [role]="role"></app-mobile-menu-list>
         </md-sidenav>
     </md-sidenav-container>
 </div>
