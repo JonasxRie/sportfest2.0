@@ -23,10 +23,10 @@ export class UserAccountControlComponent implements OnInit {
         console.error(err);
       })
       this.users.forEach(element => {
-        if(element.berid == 1){
-          element.role = "amdin";
+        if(element.berid == '1'){
+          element.role = 'admin';
         }else{
-          element.role = "schiedsrichter";
+          element.role = 'schiedsrichter';
         }
       });
   }
