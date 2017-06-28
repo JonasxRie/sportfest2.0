@@ -87,6 +87,7 @@ export class HeaderComponent implements OnInit {
         (data) => {
           console.log(data);
           this.username = data.aud;
+          this.role = data.role;
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
