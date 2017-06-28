@@ -32,7 +32,7 @@ export class UserAccountControlComponent implements OnInit {
   }
 
   public deleteUser(user: any) {
-    alert('User mit der id' + user.name + 'wird gelöscht');
+    alert('User ' + user.name + ' wird gelöscht!');
     this.sfService.userLoeschen(user.name).subscribe(
       (data) => {
         console.log(data);
