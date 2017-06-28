@@ -13,7 +13,7 @@ export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
-  allSchueler: Array<Schueler>;
+  allSchueler: Array<Schueler> = [];
   bestenSchueler = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
@@ -38,10 +38,10 @@ export class EinzelComponent implements OnInit {
         this.klassen = data;
         for(let i = 0; i< this.klassen.length; i++){
           this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+            console.log(this.klassen[i].kid);
+            console.log(schuelerData);
             this.allSchueler[this.klassen[i].kid] = schuelerData;
-          },
-          (err) => {
-            console.error('GET-Service "schuelerPerDisziplin()" not reachable.');
+            
           })
         }
       },
