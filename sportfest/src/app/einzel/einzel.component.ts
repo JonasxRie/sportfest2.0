@@ -110,10 +110,10 @@ export class EinzelComponent implements OnInit {
     });
   }
     
-  public inputDisabled(): boolean {
-    console.log("enoughPermissionsToWrite --> " + enoughPermissionsToWrite());
-    console.log("enoughPermissionsToChange --> " + enoughPermissionsToChange());
-    if ((enoughPermissionsToWrite() && this.isFirstEntry()) || enoughPermissionsToChange()) {
+  public inputDisabled(input: any): boolean {
+    console.log('input');
+    console.log(input);
+    if ((this.enoughPermissionsToWrite() && this.isFirstEntry()) || this.enoughPermissionsToChange()) {
       return false;
     } else {
       return true;
@@ -124,22 +124,20 @@ export class EinzelComponent implements OnInit {
     // in dem Feld selber auf leer überprüfen?
     return true;
   }
-}
-export function enoughPermissionsToWrite() {
+  private enoughPermissionsToWrite() {
   let role = localStorage.getItem('role');
-  console.log('role --> '+role);
   if (role == 'admin' || role == 'schiedsrichter'){
     return true;
   } else {
     return false;
   }
 }
-export function enoughPermissionsToChange() {
+private enoughPermissionsToChange() {
   let role = localStorage.getItem('role');
-  console.log('role --> '+role);
   if (role == 'admin') {
     return true;
   } else {
     return false;
   }
+}
 }
