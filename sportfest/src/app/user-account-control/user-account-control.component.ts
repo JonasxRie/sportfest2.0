@@ -16,55 +16,44 @@ export class UserAccountControlComponent implements OnInit {
 
   ngOnInit() {
     // TODO: aktuelle User aus der DB lesen
-    this.users = [
-      {
-        id: 0,
-        name: 'Maja',
-        role: 'admin'
-      },
-      {
-        id: 1,
-        name: 'Michi',
-        role: 'admin'
-      },
-      {
-        id: 2,
-        name: 'Mirco',
-        role: 'admin'
-      },
-      {
-        id: 3,
-        name: 'Maxi',
-        role: 'admin'
-      },
-      {
-        id: 4,
-        name: 'Jonas',
-        role: 'admin'
-      }
-    ];
+    this.sfService.user().subscribe(data => {
+      this.users = data;
+    },
+      (err) => {
+        console.error(err);
+      })
   }
 
-  public deleteUser(uid: number) {
+  public deleteUser(uid: string) {
     alert('User mit der id' + uid + 'wird gelöscht');
     this.sfService.userLoeschen(uid).subscribe(
       (data) => {
         console.log(data);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
 
 
   public addUser() {
-    console.log({id: 5, name: this.username, role: this.selectedRole})
     if (this.selectedRole && this.username) {
-      // this.sfService.
-      // Abklären mit Backend ob hierfür eine Schnittstelle existiert
-      alert(this.selectedRole + ' ' + this.username);
-      this.users.push({id: 5, name: this.username, role: this.selectedRole})
+      this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(
+        (data) => {
+          console.log(data);
+          this.sfService.user().subscribe(
+            (data) => {
+              this.users = data;
+            },
+            (err) => {
+              console.error(err);
+            })
+        },
+        (err) => {
+          console.error(err);
+        }
+      )
     } else {
       alert('Fehler bei der Eingabe');
     }
