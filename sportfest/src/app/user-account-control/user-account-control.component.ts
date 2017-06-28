@@ -45,7 +45,6 @@ export class UserAccountControlComponent implements OnInit {
         console.error(err);
       }
     );
-    window.location.reload();
   }
 
 
