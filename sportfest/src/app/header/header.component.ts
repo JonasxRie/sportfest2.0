@@ -81,11 +81,13 @@ export class HeaderComponent implements OnInit {
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
       dlg.close();
-      this.sfService.userPrivileges().subscribe(data => {
-        this.username = data.aud;
-      },
+      this.sfService.userPrivileges().subscribe(
+        (data) => {
+          console.log(data);
+          this.username = data.aud;
+        },
         (err) => {
-          console.error('GET-Service "user()" not reachable.');
+          console.error('GET-Service "userPrivileges()" not reachable.');
       });
     });
   }
