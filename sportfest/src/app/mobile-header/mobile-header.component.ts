@@ -39,16 +39,20 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('role');
     this.username=null;
   }
-
+  
   public login() {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
-    dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
-    this.sfService.userPrivileges().subscribe(data => {
-      this.username = data.aud;
-    },
-      (err) => {
-        console.error('GET-Service "user()" not reachable.');
+    dlg.componentInstance.loginSubmit.subscribe(data => {
+      dlg.close();
+      this.sfService.userPrivileges().subscribe(
+        (data) => {
+          console.log(data);
+          this.username = data.aud;
+        },
+        (err) => {
+          console.error('GET-Service "userPrivileges()" not reachable.');
+      });
     });
   }
 }
