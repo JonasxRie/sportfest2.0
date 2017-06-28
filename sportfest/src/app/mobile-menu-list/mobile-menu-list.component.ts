@@ -1,3 +1,5 @@
+import { MdDialog } from '@angular/material';
+import { LoginComponent } from '../login/login.component';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SportfestService } from '../sportfest.service';
@@ -15,23 +17,36 @@ export class MobileMenuListComponent implements OnInit {
   selectedEinzel = false;
   selectedTeam = false;
   selectedAdmin = false;
+  role: string;
   
   disziplinenTeam: Array<any> = [];
   disziplinenEinzel: Array<any> = [];
   
-  constructor(private router: Router, private sfService: SportfestService) { }
+  constructor(private router: Router,
+              private sfService: SportfestService,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
+    let dlg = this.dialog.open(LoginComponent);
+    dlg.componentInstance.loginClose.subscribe(data => dlg.close());
+    dlg.componentInstance.loginSubmit.subscribe(data => {
+      dlg.close();
+      this.sfService.userPrivileges().subscribe(
+        (data) => {
+          this.role = data.role;
+        },
+        (err) => {
+          console.error('GET-Service "userPrivileges()" not reachable.');
+      });
+    });
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         console.log(data[i]);
-        //if(data[i].aktiviert) {
-          if(data[i].teamleistung == false || data[i].did == 3) {
-            this.disziplinenEinzel.push(data[i]);
-          }else {
-            this.disziplinenTeam.push(data[i]);
-          }
-       // }
+        if(data[i].teamleistung == false || data[i].did == 3) {
+          this.disziplinenEinzel.push(data[i]);
+        }else {
+          this.disziplinenTeam.push(data[i]);
+        }
       }
     },
       (err) => {

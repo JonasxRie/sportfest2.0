@@ -21,7 +21,9 @@
 
     <table width="100%">
       <tr>
-        <th (click)="(klasseAufklappen = !klasseAufklappen)">Klassenlisten anzeigen</th>
+        <th>
+          <button md-raised-button (click)="klasseAufklappen=!klasseAufklappen">Klassenlisten anzeigen</button>
+        </th>
       </tr>
       <div *ngIf="klasseAufklappen">
         <tr>

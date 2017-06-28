@@ -18,10 +18,6 @@ export class UserAccountControlComponent implements OnInit {
     // TODO: aktuelle User aus der DB lesen
     this.sfService.user().subscribe(data => {
       this.users = data;
-    },
-      (err) => {
-        console.error(err);
-      })
       this.users.forEach(element => {
         if(element.berid == '1'){
           element.role = 'admin';
@@ -29,6 +25,10 @@ export class UserAccountControlComponent implements OnInit {
           element.role = 'schiedsrichter';
         }
       });
+    },
+      (err) => {
+        console.error(err);
+      })
   }
 
   public deleteUser(uid: string) {
