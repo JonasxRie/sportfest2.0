@@ -57,8 +57,8 @@ export class SportfestService {
   /**
    * Löscht den User
    */
-  public userLoeschen(id: string): Observable<any> {
-    return this.techService.deleteRequest('/user/' + id);
+  public userLoeschen(username: string): Observable<any> {
+    return this.techService.deleteRequest('/user/' + username);
   }
 
 
