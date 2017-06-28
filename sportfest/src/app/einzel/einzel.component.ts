@@ -110,19 +110,19 @@ export class EinzelComponent implements OnInit {
     });
   }
     
-  public inputDisabled(input: any): boolean {
-    console.log('input');
-    console.log(input);
-    if ((this.enoughPermissionsToWrite() && this.isFirstEntry()) || this.enoughPermissionsToChange()) {
+  public inputDisabled(value): boolean {
+    if ((this.enoughPermissionsToWrite() && this.isFirstEntry(value)) || this.enoughPermissionsToChange()) {
       return false;
     } else {
       return true;
     }
   }
-  private isFirstEntry() {
-    //Gibt zurück, ob Ausgangsvalue leer ist
-    // in dem Feld selber auf leer überprüfen?
-    return true;
+  private isFirstEntry(value) {
+    if (value == "" || value == null) {  
+      return true;
+    } else {
+      return false;
+    }
   }
   private enoughPermissionsToWrite() {
   let role = localStorage.getItem('role');
