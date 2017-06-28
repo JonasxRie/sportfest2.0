@@ -34,10 +34,12 @@ export class LoginComponent implements OnInit {
           // Token in localStorage packen
           localStorage.setItem('token', token);
           this.sfService.userPrivileges().subscribe(data => {
-            console.log(data);
-            this.username = data.aud;
-            console.log('Rolle: '+  data.role);
-            localStorage.setItem('role', data.role);
+            if (data.role != 'gast') {
+              console.log(data);
+              this.username = data.aud;
+              console.log('Rolle: ' + data.role);
+              localStorage.setItem('role', data.role);
+            }
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');
