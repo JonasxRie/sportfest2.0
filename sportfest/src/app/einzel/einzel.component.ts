@@ -18,7 +18,7 @@ export class EinzelComponent implements OnInit {
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
-  disableInput: boolean = false;
+  disableInput: boolean;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -58,7 +58,7 @@ export class EinzelComponent implements OnInit {
       {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
-    //this.disableInputFunc();
+    this.disableInputFunc();
   }
   
   

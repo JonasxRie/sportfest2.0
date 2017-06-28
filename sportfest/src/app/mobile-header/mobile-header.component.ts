@@ -45,10 +45,10 @@ export class MobileHeaderComponent implements OnInit {
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
     this.sfService.userPrivileges().subscribe(data => {
-      this.username = data.aud;
-    },
-      (err) => {
-        console.error('GET-Service "user()" not reachable.');
+          this.username = data.aud;
+      },
+        (err) => {
+          console.error('GET-Service "user()" not reachable.');
     });
   }
 }
