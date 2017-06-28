@@ -29,7 +29,7 @@ export interface Klasse {
 export interface Schueler {
     sid?: number,
     vorname?: string,
-    nachname?: string,
+    name?: string,
     kid?: number,
     gid?: number
 }

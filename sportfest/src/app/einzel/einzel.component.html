@@ -39,12 +39,12 @@
                   <table width="100%">
                     <tr *ngFor="let s of allSchueler[klasse.kid], let i=index">
                       <td width="50%">
-                        <span>{{ s.vorname }} {{ s.nachname }}:</span>
+                        <span>{{ s.vorname }} {{ s.name }}:</span>
                       </td>
                       <td width="50%">
                         <md-input-container>
                           <input #input mdInput placeholder="Ergebnis" type="number"
-                                [disabled]="inputDisabled(input.value)" [(ngModel)]="allSchueler[klasse.kid][i].sid">
+                                [disabled]="inputDisabled(input.value)" [(ngModel)]="ergebnis[klasse.kid][sid]"><!--LeistungsId Hinzu-->
                         </md-input-container>
                       </td>
                     </tr>

@@ -14,6 +14,7 @@ export class EinzelComponent implements OnInit {
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [];
+  ergebnis: Array<number> = [];
   bestenSchueler = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
