@@ -35,10 +35,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', token);
           this.sfService.userPrivileges().subscribe(data => {
             if (data.role != 'gast') {
-              this.username = data.aud;
               localStorage.setItem('role', data.role);
             } else {
-              this.username = "Gast";
+              localStorage.setItem('role', 'gast');
             }
           },
             (err) => {
