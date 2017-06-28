@@ -16,30 +16,30 @@ export class UserAccountControlComponent implements OnInit {
 
   ngOnInit() {
     // TODO: aktuelle User aus der DB lesen
+
+  }
+
+  private rollenLaden() {
     this.sfService.user().subscribe(data => {
       this.users = data;
-      this.rollenBestimmen();
+      this.users.forEach(element => {
+        if (element.berid == '1') {
+          element.role = 'admin';
+        } else {
+          element.role = 'schiedsrichter';
+        }
+      });
     },
       (err) => {
         console.error(err);
       })
   }
-
-private rollenBestimmen(){
-  this.users.forEach(element => {
-        if(element.berid == '1'){
-          element.role = 'admin';
-        }else{
-          element.role = 'schiedsrichter';
-        }
-      });
-}
   public deleteUser(user: any) {
     alert('User ' + user.name + ' wird gelöscht!');
     this.sfService.userLoeschen(user.name).subscribe(
       (data) => {
         console.log(data);
-        this.ngOnInit();
+        this.rollenLaden();
       },
       (err) => {
         console.error(err);
@@ -54,7 +54,7 @@ private rollenBestimmen(){
       this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(
         (data) => {
           console.log(data);
-        this.ngOnInit();
+          this.rollenLaden();
         },
         (err) => {
           console.error(err);
@@ -63,10 +63,10 @@ private rollenBestimmen(){
     } else {
       alert('Fehler bei der Eingabe');
     }
-    
+
   }
-  
-  public resetPassword(user: any){
+
+  public resetPassword(user: any) {
     console.log(user);
     this.deleteUser(user);
     this.username = user.name;
