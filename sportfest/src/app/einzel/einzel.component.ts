@@ -18,7 +18,6 @@ export class EinzelComponent implements OnInit {
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
-  disableInput: boolean;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -58,9 +57,7 @@ export class EinzelComponent implements OnInit {
       {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
-    this.disableInputFunc();
   }
-  
   
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
@@ -68,7 +65,6 @@ export class EinzelComponent implements OnInit {
   switchSort(){
     this.sortRev = !this.sortRev;
   }
-  
   public sortByRang(){
     this.switchSort()
     this.bestenSchueler = this.bestenSchueler.sort((n1,n2)=>{
@@ -113,35 +109,37 @@ export class EinzelComponent implements OnInit {
       return 0;
     });
   }
-  
-  
-  
-  public disableInputFunc(){
-    //Erste Input
-    if((enoughPermissionsToWrite() && this.isFirstEntry())|| enoughPermissionsToChange()){
-      this.disableInput = false;
-    }else{
-      this.disableInput = true;
+    
+  public inputDisabled(): boolean {
+    console.log("enoughPermissionsToWrite --> " + enoughPermissionsToWrite());
+    console.log("enoughPermissionsToChange --> " + enoughPermissionsToChange());
+    if ((enoughPermissionsToWrite() && this.isFirstEntry()) || enoughPermissionsToChange()) {
+      return false;
+    } else {
+      return true;
     }
   }
-  private isFirstEntry(){
+  private isFirstEntry() {
     //Gibt zurück, ob Ausgangsvalue leer ist
+    // in dem Feld selber auf leer überprüfen?
     return true;
   }
 }
 export function enoughPermissionsToWrite() {
   let role = localStorage.getItem('role');
-  if(role == 'admin' || role == 'schiedsrichter'){
+  console.log('role --> '+role);
+  if (role == 'admin' || role == 'schiedsrichter'){
     return true;
-  }else {
+  } else {
     return false;
   }
 }
 export function enoughPermissionsToChange() {
   let role = localStorage.getItem('role');
-  if(role == 'admin'){
+  console.log('role --> '+role);
+  if (role == 'admin') {
     return true;
-  }else {
+  } else {
     return false;
   }
 }
