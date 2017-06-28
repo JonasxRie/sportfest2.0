@@ -18,6 +18,7 @@ export class EinzelComponent implements OnInit {
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
+  disableInput: boolean = false;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -57,7 +58,10 @@ export class EinzelComponent implements OnInit {
       {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
+    //this.disableInputFunc();
   }
+  
+  
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
   }
@@ -110,4 +114,34 @@ export class EinzelComponent implements OnInit {
     });
   }
   
+  
+  
+  public disableInputFunc(){
+    //Erste Input
+    if((enoughPermissionsToWrite() && this.isFirstEntry())|| enoughPermissionsToChange()){
+      this.disableInput = false;
+    }else{
+      this.disableInput = true;
+    }
+  }
+  private isFirstEntry(){
+    //Gibt zurück, ob Ausgangsvalue leer ist
+    return true;
+  }
+}
+export function enoughPermissionsToWrite() {
+  let role = localStorage.getItem('role');
+  if(role == 'admin' || role == 'schiedsrichter'){
+    return true;
+  }else {
+    return false;
+  }
+}
+export function enoughPermissionsToChange() {
+  let role = localStorage.getItem('role');
+  if(role == 'admin'){
+    return true;
+  }else {
+    return false;
+  }
 }
