@@ -73,6 +73,7 @@ export class HeaderComponent implements OnInit {
   public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    this.username=null;
   }
 
   public login() {
