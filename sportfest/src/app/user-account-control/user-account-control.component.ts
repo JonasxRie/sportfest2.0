@@ -22,6 +22,13 @@ export class UserAccountControlComponent implements OnInit {
       (err) => {
         console.error(err);
       })
+      this.users.forEach(element => {
+        if(element.berid == 1){
+          element.role = "amdin";
+        }else{
+          element.role = "schiedsrichter";
+        }
+      });
   }
 
   public deleteUser(uid: string) {
@@ -57,6 +64,15 @@ export class UserAccountControlComponent implements OnInit {
     } else {
       alert('Fehler bei der Eingabe');
     }
+    this.selectedRole = "";
+    this.username = "";
+  }
+  
+  public resetPassword(user: any){
+    this.deleteUser(user.uid);
+    this.username = user.uid;
+    this.selectedRole = user.role;
+    this.addUser();
   }
 
 }
