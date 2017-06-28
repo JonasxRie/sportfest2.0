@@ -74,6 +74,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
+    this.navigateToDashboard();
   }
 
   public login() {
@@ -83,16 +84,18 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
+          console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
             this.username = data.aud;
           } else {
-            this.username = "Gast";
+            this.username = null;
           }
           this.role = data.role;
         },
         (err) => {
-            this.username = "Gast";
           console.error('GET-Service "userPrivileges()" not reachable.');
+          this.username = null;
+          this.navigateToDashboard();
         });
     });
   }

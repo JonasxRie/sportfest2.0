@@ -1,4 +1,4 @@
-import { Disziplin, Klasse } from '../interfaces';
+import { Disziplin, Klasse, Schueler } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,7 +13,7 @@ export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
-  schueler = [];
+  allSchueler: Array<Schueler> = [];
   bestenSchueler = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
@@ -33,22 +33,34 @@ export class EinzelComponent implements OnInit {
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
+      
       this.sfService.klassen().subscribe((data: Klasse[]) => {
         this.klassen = data;
+        for(let i = 0; i< this.klassen.length; i++){
+          this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+            console.log(this.klassen[i].kid);
+            console.log(schuelerData);
+            this.allSchueler[this.klassen[i].kid] = schuelerData;
+            
+          })
+        }
       },
       (err) => {
         console.error('GET-Service "klassen()" not reachable.');
       })
     });
     
-    this.schueler = [
-      {value: 0, viewValue: 'Mirco'},
-      {value: 1, viewValue: 'Michi'},
-      {value: 2, viewValue: 'Maja'},
-      {value: 3, viewValue: 'David'},
-      {value: 4, viewValue: 'Maxi'},
-      {value: 5, viewValue: 'Jonas'}
-    ];
+     
+    
+    
+    /*
+    getSchueler(did, kid)data[]=>{
+      schueler[kid] = data;
+    }
+    
+    
+    
+    */
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
       {value: 1, viewValue: 'Michi', ergebnis: 5.3},
@@ -125,19 +137,22 @@ export class EinzelComponent implements OnInit {
     }
   }
   private enoughPermissionsToWrite() {
-  let role = localStorage.getItem('role');
-  if (role == 'admin' || role == 'schiedsrichter'){
-    return true;
-  } else {
-    return false;
+    let role = localStorage.getItem('role');
+    if (role == 'admin' || role == 'schiedsrichter'){
+      return true;
+    } else {
+      return false;
+    }
   }
-}
-private enoughPermissionsToChange() {
-  let role = localStorage.getItem('role');
-  if (role == 'admin') {
-    return true;
-  } else {
-    return false;
+  private enoughPermissionsToChange() {
+    let role = localStorage.getItem('role');
+    if (role == 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
-}
+  public save() {
+    
+  }
 }
