@@ -16,7 +16,7 @@ export class UserAccountControlComponent implements OnInit {
 
   ngOnInit() {
     // TODO: aktuelle User aus der DB lesen
-
+    this.rollenLaden();
   }
 
   private rollenLaden() {
