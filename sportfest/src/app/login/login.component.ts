@@ -35,9 +35,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', token);
           this.sfService.userPrivileges().subscribe(data => {
             if (data.role != 'gast') {
-              console.log(data);
               this.username = data.aud;
-              console.log('Rolle: ' + data.role);
               localStorage.setItem('role', data.role);
             } else {
               this.username = "Gast";
@@ -69,8 +67,8 @@ export class LoginComponent implements OnInit {
   }
 
   public close(event: any) {
-    if (event.clientX !== 0 || event.clientY !== 0)
+    if (event.clientX !== 0 || event.clientY !== 0) {
       this.loginClose.emit();
+    }
   }
-
 }
