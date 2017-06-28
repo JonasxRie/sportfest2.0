@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   title = 'Sportfest';
   year = '2017';
   username: string;
+  role: string;
   disziplinenTeam: Array<any> = [];
   disziplinenEinzel: Array<any> = [];
 
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         console.log(data[i]);
