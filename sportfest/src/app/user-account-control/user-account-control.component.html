@@ -9,13 +9,17 @@
         <th>Benutzer</th>
         <th>Rolle</th>
         <th></th>
+        <th></th>
       </tr>
 
       <tr *ngFor="let user of users" >
         <td>{{ user.name }}</td>
         <td>{{ user.role }}</td>
         <td>
-          <md-icon (click)="deleteUser(user.id)" >delete forever</md-icon>
+          <md-icon (click)="resetPassword(user.name)">settings backup restore</md-icon>
+        </td>
+        <td>
+          <md-icon (click)="deleteUser(user.name)" >delete forever</md-icon>
         </td>
       </tr>
       <tr>

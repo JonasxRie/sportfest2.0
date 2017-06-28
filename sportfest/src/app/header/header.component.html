@@ -26,7 +26,7 @@
         </div>
     </md-menu>
     
-    <button md-button [mdMenuTriggerFor]="menu2">Admin</button>
+    <button md-button *ngIf="username && role=='admin'" [mdMenuTriggerFor]="menu2">Admin</button>
     <md-menu #menu2="mdMenu">
       <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
       <button md-menu-item (click)="navigateToActivateDiscipline()">Disziplin aktivieren</button>
@@ -34,7 +34,7 @@
       <button md-menu-item (click)="navigateToCreateSportfest()">Neues Sportfest</button>
     </md-menu>
     
-    <button md-button (click)="navigateToImportKlasse()">
+    <button md-button *ngIf="username && role=='admin'" (click)="navigateToImportKlasse()">
       Import
     </button>
     

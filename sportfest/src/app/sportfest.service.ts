@@ -43,21 +43,21 @@ export class SportfestService {
     return this.techService.getRequest('/user/privileges/');
   }
   /**
-   * Gibt den User zurück
+   * Gibt alle User zurück
    */
   public user(): Observable<any> {
     return this.techService.getRequest('/user');
   }
   /**
-   * Ändert den User
+   * Fügt einen User hinzu
    */
-  public userAendern(user: any): Observable<any> {
-    return this.techService.postRequest('/user', user);
+  public userHinzufuegen(username: string, userrole: string): Observable<any> {
+    return this.techService.postFormRequest('/user', encodeURI('name=' + username + '&role=' + userrole));
   }
   /**
    * Löscht den User
    */
-  public userLoeschen(id: number): Observable<any> {
+  public userLoeschen(id: string): Observable<any> {
     return this.techService.deleteRequest('/user/' + id);
   }
 
@@ -167,8 +167,8 @@ export class SportfestService {
   /**
    * Ändert das Passwort
    */
-  public changePassword(newPassword: any): Observable<any> {
-    return this.techService.putRequest('/changePassword', newPassword);
+  public changePassword(oldPassword:any, newPassword: any): Observable<any> {
+    return this.techService.postFormRequest('/user/password', encodeURI('currpw=' + oldPassword + '&newpw=' + newPassword));
   }
   /**
    * Fragt ab, ob das Passwort valide ist.
