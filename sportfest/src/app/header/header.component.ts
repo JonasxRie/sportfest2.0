@@ -83,9 +83,12 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
+          console.log(data);
           if (data.role != "gast") {
+            console.log("Rolle1: " + data.role);
             this.username = data.aud;
           } else {
+            console.log("Rolle2: " + data.role);
             this.username = "Gast";
           }
           this.role = data.role;
