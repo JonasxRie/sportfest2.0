@@ -56,12 +56,12 @@ export class PasswordChangeComponent implements OnInit {
     //   (err) => {
     //     console.error('GET-Service "validatePassword()" not reachable.');
     // });
-    if (recentEncrypt && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
-      this.recentInvalid = false;      
-    } else {
-      valid = false;
-      this.recentInvalid = true;
-    }
+    // if (recentEncrypt && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
+    //   this.recentInvalid = false;      
+    // } else {
+    //   valid = false;
+    //   this.recentInvalid = true;
+    // }
     if (newEncrypt && newSubmitEncrypt && newEncrypt === newSubmitEncrypt) {
       this.newNotEqual = false;
     } else {
