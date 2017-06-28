@@ -83,16 +83,16 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
-          console.log(data);
+          console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
             this.username = data.aud;
           } else {
-            this.username = undefined;
+            this.username = null;
           }
           this.role = data.role;
         },
         (err) => {
-            this.username = undefined;
+            this.username = null;
           console.error('GET-Service "userPrivileges()" not reachable.');
         });
     });
