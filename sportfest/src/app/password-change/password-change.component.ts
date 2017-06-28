@@ -30,9 +30,10 @@ export class PasswordChangeComponent implements OnInit {
     this.pwCancel.emit();
   }
   public save() {
+    let oldEncrypt = Md5.hashStr(this.recent);
     let newEncrypt = Md5.hashStr(this.new);
     if (this.inputsValid()) {
-      this.sfService.changePassword(newEncrypt).subscribe((data) => {
+      this.sfService.changePassword(oldEncrypt,newEncrypt).subscribe((data) => {
           console.log(data); // Response
         },
         (err) => {

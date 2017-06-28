@@ -35,13 +35,20 @@ export class MobileHeaderComponent implements OnInit {
     dlg.componentInstance.pwSave.subscribe(data => dlg.close());
   }
   public logout() {
-    this.username = null;
-    // TODO: ausloggen
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    this.username=null;
   }
 
   public login() {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => dlg.close());
+    this.sfService.userPrivileges().subscribe(data => {
+      this.username = data.aud;
+    },
+      (err) => {
+        console.error('GET-Service "user()" not reachable.');
+    });
   }
 }

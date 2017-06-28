@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             console.log(data);
             this.username = data.aud;
             console.log('Rolle: '+  data.role);
-            localStorage.setItem('role',data.role);
+            localStorage.setItem('role', data.role);
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');
