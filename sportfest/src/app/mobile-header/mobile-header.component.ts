@@ -38,6 +38,7 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username=null;
+    this.router.navigate(['/home']); 
   }
   
   public login() {
