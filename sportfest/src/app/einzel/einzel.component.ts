@@ -18,7 +18,6 @@ export class EinzelComponent implements OnInit {
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
-  disableInput: boolean;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -112,12 +111,13 @@ export class EinzelComponent implements OnInit {
   }
     
   public inputDisabled(): boolean {
+    console.log("enoughPermissionsToWrite --> " + enoughPermissionsToWrite());
+    console.log("enoughPermissionsToChange --> " + enoughPermissionsToChange());
     if ((enoughPermissionsToWrite() && this.isFirstEntry()) || enoughPermissionsToChange()) {
-      this.disableInput = false;
+      return false;
     } else {
-      this.disableInput = true;
+      return true;
     }
-    return this.disableInput;
   }
   private isFirstEntry() {
     //Gibt zurück, ob Ausgangsvalue leer ist
