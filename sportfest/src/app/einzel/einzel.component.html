@@ -22,7 +22,7 @@
     <table width="100%">
       <tr>
         <th>
-          <button md-raised-button (click)="klasseAufklappen=!klasseAufklappen">Klassenlisten anzeigen</button>
+          <button md-raised-button (click)="klasseAufklappen=!klasseAufklappen" color="accent">Klassenlisten anzeigen</button>
         </th>
       </tr>
       <div *ngIf="klasseAufklappen">
@@ -31,22 +31,23 @@
             <md-card>
               <md-card-header>
                 <h4>Ergebnisse eintragen</h4>
+                <button md-raised-button (click)="save()" color="accent">Speichern</button>
               </md-card-header>
-              <md-list *ngFor="let klasse of klassen, let i=index">
-                <h3 (click)="aufklappen(i)">{{klasse.name}}</h3>
-                <div *ngIf="aufgeklappt[i]">
+              <md-list *ngFor="let klasse of klassen">
+                <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
+                <div *ngIf="aufgeklappt[klasse.kid]">
                   <table width="100%">
-                    <tr *ngFor="let s of schueler">
+                    <tr *ngFor="let s of allSchueler[klasse.kid], let i=index">
                       <td width="50%">
-                        <span>{{ s.viewValue }}:</span>
+                        <span>{{ s.vorname }} {{ s.nachname }}:</span>
                       </td>
                       <td width="50%">
                         <md-input-container>
-                          <input #input mdInput placeholder="Ergebnis" type="number" [disabled]="inputDisabled(input.value)">
+                          <input #input mdInput placeholder="Ergebnis" type="number"
+                                [disabled]="inputDisabled(input.value)" [(ngModel)]="allSchueler[klasse.kid][i].sid">
                         </md-input-container>
                       </td>
-                    </tr>      
-                    
+                    </tr>
                   </table>
                 </div>
               </md-list>
