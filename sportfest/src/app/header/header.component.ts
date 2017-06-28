@@ -74,6 +74,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
+    this.navigateToDashboard();
   }
 
   public login() {
@@ -92,8 +93,9 @@ export class HeaderComponent implements OnInit {
           this.role = data.role;
         },
         (err) => {
-            this.username = null;
           console.error('GET-Service "userPrivileges()" not reachable.');
+          this.username = null;
+          this.navigateToDashboard();
         });
     });
   }
