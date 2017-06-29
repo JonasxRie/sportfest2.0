@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit {
   }
   
   
-  public loadDD(){
+  public loadDD(){ //Lädt Disziplinen bei Klick auf Sportarten
     this.disziplinenEinzel=[];
     this.disziplinenTeam=[];
     this.sfService.disziplinen().subscribe(data => {
