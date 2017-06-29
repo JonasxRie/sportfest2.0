@@ -33,3 +33,7 @@ export interface Schueler {
     kid?: number,
     gid?: number
 }
+export interface Ergebnis {
+    ergebnis?: number,
+    firstEntry?: boolean
+}
