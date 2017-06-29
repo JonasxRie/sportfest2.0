@@ -36,16 +36,16 @@ export class LoginComponent implements OnInit {
           this.sfService.userPrivileges().subscribe(data => { //Fragt Benutzernamen und Rolle des Benutzers ab
             if (data.role != 'gast') {
               localStorage.setItem('role', data.role); //Setzt Rolle des Benutzers
-              localStorage.setItem('username',data.username);
+              localStorage.setItem('username', data.username);
             } else {
               localStorage.setItem('role', 'gast');
-              localStorage.setItem('username',null);
+              localStorage.setItem('username', null);
             }
+            this.loginSubmit.emit(); //Overlay schließen wenn alle Request fertig sind
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');
             });
-          this.loginSubmit.emit(); //Overlay schließen
         },
         err => {
           console.error(err);
