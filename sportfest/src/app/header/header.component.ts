@@ -22,10 +22,11 @@ export class HeaderComponent implements OnInit {
   disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
-    private dialog: MdDialog,
-    private sfService: SportfestService) { }
+              private dialog: MdDialog,
+              private sfService: SportfestService) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         if(data[i].teamleistung == false || data[i].did == 3) {
