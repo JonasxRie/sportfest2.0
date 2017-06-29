@@ -43,8 +43,8 @@
                       </td>
                       <td width="50%">
                         <md-input-container>
-                          <input #input mdInput placeholder="Ergebnis" type="number" 
-                            [disabled]="inputDisabled(input.value)" [(ngModel)]="ergebnis[sid]"><!--LeistungsId Hinzu-->
+                          <input #input mdInput placeholder="Ergebnis" type="number"
+                            [disabled]="inputDisabled(ergebnis[s.sid])" [(ngModel)]="ergebnis[s.sid].ergebnis"><!--LeistungsId Hinzu-->
                         </md-input-container>
                       </td>
                     </tr>

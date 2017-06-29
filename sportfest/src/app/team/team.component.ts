@@ -12,10 +12,8 @@ export class TeamComponent implements OnInit {
   sportart: string = '';
   beschreibung: string = '';
   klassen: Array<Klasse> = [];
-  allSchueler: Array<Schueler> = [];
   
-  did: number;
-  
+  did: number;  
 
   punkteStand = [{classA: 'FS151', classB: 'FI151', pointsA: 6, pointsB: 3}, 
                   {classA: 'FI151', classB: 'FI152', pointsA: 2, pointsB: 1}] // TODO
@@ -34,6 +32,7 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let sportartID = params['did'];
+      
       this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
@@ -46,38 +45,13 @@ export class TeamComponent implements OnInit {
       
       this.sfService.klassen().subscribe((data: Klasse[]) => {
         this.klassen = data;
-        for(let i = 0; i< this.klassen.length; i++){
-          this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
-            console.log(this.klassen[i].kid);
-            console.log(schuelerData);
-            this.allSchueler[this.klassen[i].kid] = schuelerData;
-            
-          })
-        }
       },
       (err) => {
         console.error('GET-Service "klassen()" not reachable.');
       })
     });
-    // this.route.params.forEach((params: Params) => {
-    //   let sportartID = params['did'];
-    //   this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
-    //     this.sportart = data.name;
-    //     this.beschreibung = data.beschreibung;
-    //     // Daten in die entsprechenden Felder füllen
-    //     console.log(data);
-    //   },
-    //   (err) => {
-    //     console.error('GET-Service "disziplin(sportartID)" not reachable.');
-    //   });
-    //   this.sfService.klassen().subscribe((data: Klasse[]) => {
-    //     this.klassen = data;
-    //   },
-    //   (err) => {
-    //     console.error('GET-Service "klassen()" not reachable.');
-    //   })
-    // });
   }
+  
   sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
     //Clear Inputs
     this.selectedClassA = null;

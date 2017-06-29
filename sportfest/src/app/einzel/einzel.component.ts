@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Ergebnis } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -14,7 +14,7 @@ export class EinzelComponent implements OnInit {
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [];
-  ergebnis: Array<number> = [];
+  ergebnis: Array<Ergebnis> = [];
   bestenSchueler = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
@@ -39,11 +39,13 @@ export class EinzelComponent implements OnInit {
         this.klassen = data;
         for(let i = 0; i< this.klassen.length; i++){
           this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
-            console.log(this.klassen[i].kid);
-            console.log(schuelerData);
             this.allSchueler[this.klassen[i].kid] = schuelerData;
-            
-          })
+          },
+          (err) => {},
+          () => {
+            console.log('schueler complete');
+            this.save();
+          });
         }
       },
       (err) => {
@@ -52,16 +54,6 @@ export class EinzelComponent implements OnInit {
     });
     
      
-    
-    
-    /*
-    getSchueler(did, kid)data[]=>{
-      schueler[kid] = data;
-    }
-    
-    
-    
-    */
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
       {value: 1, viewValue: 'Michi', ergebnis: 5.3},
@@ -123,18 +115,11 @@ export class EinzelComponent implements OnInit {
     });
   }
     
-  public inputDisabled(value): boolean {
-    if ((this.enoughPermissionsToWrite() && this.isFirstEntry(value)) || this.enoughPermissionsToChange()) {
+  public inputDisabled(ergObj: Ergebnis): boolean {
+    if ((this.enoughPermissionsToWrite() && ergObj.firstEntry) || this.enoughPermissionsToChange()) {
       return false;
     } else {
       return true;
-    }
-  }
-  private isFirstEntry(value) {
-    if (value == "" || value == null) {  
-      return true;
-    } else {
-      return false;
     }
   }
   private enoughPermissionsToWrite() {
@@ -153,7 +138,15 @@ export class EinzelComponent implements OnInit {
       return false;
     }
   }
+  //Hinzufügen der LeistungId
   public save() {
-    
+    for(let i = 0; i < this.ergebnis.length; i++){
+      if(this.ergebnis[i] && this.ergebnis[i].ergebnis){
+        this.ergebnis[i].firstEntry = false;
+      }
+      else{
+        this.ergebnis[i].firstEntry = true;
+      }
+    }
   }
 }
