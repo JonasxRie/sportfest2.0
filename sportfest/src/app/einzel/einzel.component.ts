@@ -120,8 +120,6 @@ export class EinzelComponent implements OnInit {
   }
     
   public inputDisabled(ergObj: Ergebnis): boolean {
-    console.log(ergObj);
-    console.log(this.ergebnis);
     if ((this.enoughPermissionsToWrite() && ergObj.firstEntry) || this.enoughPermissionsToChange()) {
       return false;
     } else {
