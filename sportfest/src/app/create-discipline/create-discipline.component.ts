@@ -60,16 +60,97 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   public sendToBackend() {
+    /*{
+      "name": "Weitsprung",
+      "beschreibung": "Weit springen",
+      "minTeilnehmer": 2,
+      "maxTeilnehmer": 2,
+      "aktiviert": true,
+      "teamleistung": false,
+      "variablen": [
+        {
+          "var_id": 2000,
+          "name": "Weite",
+          "desc": "Weite in cm",
+          "expressionParameter": "w",
+          "typ": {
+            "tid": 100,
+            "name": "Ganzzahl",
+            "desc": "Einfacher Zahlewert",
+            "zustaende": [],
+            "typ": "int"
+          }
+        }
+      ],
+      "regeln": [
+        {
+          "index": 0,
+          "expression": "geschlecht == \"m\" && weite >= 2.4",
+          "points": 10
+        },
+        {
+          "index": 1,
+          "expression": "geschlecht == \"m\" && weite >= 1.2",
+          "points": 5
+        },
+        {
+          "index": 2,
+          "expression": "geschlecht == \"m\" && weite >= 0.6",
+          "points": 2
+        },
+        {
+          "index": 3,
+          "expression": "geschlecht == \"m\" && weite >= 0.3",
+          "points": 1
+        },
+        {
+          "index": 4,
+          "expression": "geschlecht == \"w\" && weite >= 1.2",
+          "points": 10
+        },
+        {
+          "index": 5,
+          "expression": "geschlecht == \"w\" && weite >= 0.6",
+          "points": 5
+        },
+        {
+          "index": 6,
+          "expression": "geschlecht == \"w\" && weite >= 0.3",
+          "points": 2
+        },
+        {
+          "index": 7,
+          "expression": "geschlecht == \"w\" && weite >= 0.15",
+          "points": 1
+        }
+      ],
+      "kontrahentenAnzahl": 0
+    }*/
+    console.log("DisAnl - this.rulesVar", this.rulesVar);
+    console.log("DisAnl - this.rules", this.rules);
     let disziplinDTO = {
-      did: -1,
       name: this.sportart,
       beschreibung: this.beschreibung,
       minTeilnehmer: this.minTeilnehmeranzahl,
       maxTeilnehmer: this.maxTeilnehmeranzahl,
-      teamleistung: this.teamleistung,
       aktiviert: true,
-      regeln: this.rules,
-      variable: this.rulesVar       
+      teamleistung: this.teamleistung,
+      variablen: [
+        {
+          var_id: 2000,
+          name: "Weite",
+          desc: "Weite in cm",
+          expressionParameter: "w",
+          typ: {
+            tid: 100,
+            name: "Ganzzahl",
+            desc: "Einfacher Zahlenwert",
+            zustaende: [],
+            typ: "int"
+          }
+        }
+      ],   
+      regeln: this.rules,  
     }
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
       (data) => {
