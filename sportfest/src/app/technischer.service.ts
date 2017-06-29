@@ -20,7 +20,7 @@ export class TechnischerService {
   public getRequest(ressourceAPI: string) {
     return this.http.get(BASEPATH + ressourceAPI, {headers: this.createAuthorizationHeader()}).map(data => data.json()).catch(
       (e) => {
-        if (e.status >= 403) {
+        if (e.status >= 400) {
           return Observable.throw(e);
         }
       });
@@ -28,7 +28,7 @@ export class TechnischerService {
   }
   
   public postFormRequest(ressourceAPI: string, body: any) {
-  let headers = this.createAuthorizationHeader();
+    let headers = this.createAuthorizationHeader();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(BASEPATH + ressourceAPI, body, {headers: headers}).catch(
       (e) => {
