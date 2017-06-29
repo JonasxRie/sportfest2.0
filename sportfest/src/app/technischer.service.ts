@@ -2,15 +2,18 @@ import { BASEPATH } from './app.module';
 import { Http, Headers, RequestOptions, Request, RequestMethod } from '@angular/http';
 import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import {Location } from '@angular/common';
 import 'rxjs/Rx';
 
 @Injectable()
 export class TechnischerService {
   
   
-  constructor(private http: Http) {}
+  constructor(private http: Http, private loction:Location) {}
   
   private createAuthorizationHeader(): Headers {
+    console.log("URL Path: "+this.loction.path(true));
+    console.log("External URL: "+this.loction.prepareExternalUrl("test"));
     let header = new Headers();
     if(localStorage.getItem('token'))
       header.append('Authorization', 'Bearer ' + localStorage.getItem('token')); 
