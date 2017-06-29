@@ -42,8 +42,9 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
-    this.navigateToDashboard();
+    this.role = localStorage.getItem('role');
     this.roleChanged.emit(this.role);
+    this.navigateToDashboard();
   }
   
   public login() {
