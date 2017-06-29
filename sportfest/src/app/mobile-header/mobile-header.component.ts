@@ -57,6 +57,8 @@ export class MobileHeaderComponent implements OnInit {
             this.username = null;
           }
           this.role = data.role;
+          console.log('emit Rolle --> ' + this.role);
+          this.roleChanged.emit(this.role);
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
