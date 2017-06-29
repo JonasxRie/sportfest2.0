@@ -103,6 +103,8 @@ export class HeaderComponent implements OnInit {
   
   
   public loadDD(){
+    this.disziplinenEinzel=[];
+    this.disziplinenTeam=[];
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         if(data[i].teamleistung == false || data[i].did == 3) {
