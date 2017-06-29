@@ -22,10 +22,11 @@ export class HeaderComponent implements OnInit {
   disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
-              private dialog: MdDialog,
+              public dialog: MdDialog,
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
         console.log(data[i]);
@@ -75,6 +76,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
+    this.router.navigate(['/home']);    
   }
 
   public login() {
@@ -84,6 +86,7 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
+          console.log(data);
           this.username = data.aud;
           this.role = data.role;
         },
