@@ -26,21 +26,11 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
-    this.role = localStorage.getItem('role');
-    // this.sfService.disziplinen().subscribe(data => {
-    //   for(let i = 0; i < data.length; i++) {
-    //     if(data[i].teamleistung == false || data[i].did == 3) {
-    //       this.disziplinenEinzel.push(data[i]);
-    //     }else {
-    //       this.disziplinenTeam.push(data[i]);
-    //     }
-    //   }
-    // },
-    //   (err) => {
-    //     console.error('GET-Service "disziplinen()" not reachable.');
-    //   });
+    this.role = localStorage.getItem('role'); //Rolle aus dem Speicher laden (wichtig beim neuladen der Seite)
+    this.username = localStorage.getItem('username'); //Benutzernamen aus dem speicher laden (wichtig beim neuladen der Seite)
   }
 
+//Routing bei Klick auf Button im Menü
   public navigateToEinzel(did: number, name: string) {
     this.router.navigate(['/einzel/' + did + '/' + name]);
   }
@@ -74,30 +64,18 @@ export class HeaderComponent implements OnInit {
   public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
     this.username = null;
     this.navigateToDashboard();
   }
 
   public login() {
-    let dlg = this.dialog.open(LoginComponent);
+    let dlg = this.dialog.open(LoginComponent); //Login-Overlay öffnen
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
       dlg.close();
-      this.sfService.userPrivileges().subscribe(
-        (data) => {
-          console.log("UserLoginPrivilegien", data);
-          if (data.role != "gast") {
-            this.username = data.username;
-          } else {
-            this.username = null;
-          }
-          this.role = data.role;
-        },
-        (err) => {
-          console.error('GET-Service "userPrivileges()" not reachable.');
-          this.username = null;
-          this.navigateToDashboard();
-        });
+      this.username = localStorage.getItem('username'); //Benutzernamen aus dem Local Storage auslesen
+      this.role = localStorage.getItem('role'); //Rolle aus dem Local Storage auslesen
     });
   }
   
