@@ -23,45 +23,6 @@
       </md-card-header>
       <md-card-content>
         <table>
-          <!--<tr>
-            <td align="right">
-                <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
-                  <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
-                    {{ klasse.name }}
-                  </md-option>
-                </md-select>
-            </td>
-            <td class="short" align="center">
-                <span>vs.</span>
-            </td>
-            <td align="left">
-                <md-select placeholder="Klasse B" [(ngModel)]="selectedClassB">
-                  <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
-                    {{ klasse.name }}
-                  </md-option>
-                </md-select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-                <md-input-container >
-                  <input type="number" mdInput placeholder="Punkte A" [(ngModel)]="pointsA">
-                </md-input-container>
-            </td>
-            <td class="short" align="center">
-              <span>:</span>
-            </td>
-            <td>
-                <md-input-container>
-                  <input type="number" mdInput placeholder="Punkte B" [(ngModel)]="pointsB">
-                </md-input-container>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3" align="center" valign="middle">
-              <button md-raised-button color="primary" (click)="sendTeamErgebnis(selectedClassA, selectedClassB, pointsA, pointsB)">Abschicken</button>
-            </td>
-          </tr>-->
           <tr>
             <div *ngFor="sportart.kontrahentenAnzahl, let i=index">
               <td>
@@ -101,12 +62,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let begegnung of punkteStand">
+            <!--<tr *ngFor="let begegnung of punkteStand">
               <td>{{ begegnung.classA }}</td>
               <td>{{ begegnung.classB }}</td>
               <td>{{ begegnung.pointsA }}</td>
               <td>{{ begegnung.pointsB }}</td>
-            </tr>
+            </tr>-->
           </tbody>
         </table>
     </md-card-content>
