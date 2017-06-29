@@ -38,9 +38,9 @@ export class MobileHeaderComponent implements OnInit {
   }
   public logout() {
     localStorage.removeItem('token');
-    localStorage.setItem('role','gast');
-    this.username=null;
-    this.router.navigate(['/home']); 
+    localStorage.removeItem('role');
+    this.username = null;
+    this.navigateToDashboard();
   }
   
   public login() {
@@ -57,7 +57,6 @@ export class MobileHeaderComponent implements OnInit {
             this.username = null;
           }
           this.role = data.role;
-          this.roleChanged.emit(this.role);
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
