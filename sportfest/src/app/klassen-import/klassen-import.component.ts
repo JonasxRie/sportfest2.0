@@ -3,6 +3,7 @@ import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Http } from '@angular/http';
 import {MdSnackBar} from '@angular/material';
+import { BASEPATH } from '../app.module';
 
 @Component({
   selector: 'app-klassen-import',
@@ -17,7 +18,10 @@ export class KlassenImportComponent implements OnInit {
   selectedDownloadableClass: number;
   downloadPath:string;
   showDownloadButton: boolean = false;
-
+  
+  importPath = BASEPATH + '/klasse/anmeldung';
+  uploadPath = BASEPATH + '/schueler/upload';
+  
   constructor(private http: Http,
               private sfService: SportfestService,
               public snackBar: MdSnackBar) { }
@@ -63,7 +67,7 @@ export class KlassenImportComponent implements OnInit {
   }
   
   public changeDownloadPath(){
-    this.downloadPath = "http://172.20.3.18:8080/backend/klasse/" + this.selectedDownloadableClass + "/anmeldung";
+    this.downloadPath = BASEPATH+ "/klasse/" + this.selectedDownloadableClass + "/anmeldung";
   }
   
   // Gibt zurück, ob der "Anmeldebogen abschicken"-Button geklickt werden kann (sonst disabled)

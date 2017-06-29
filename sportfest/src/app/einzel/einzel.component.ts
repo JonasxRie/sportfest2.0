@@ -1,4 +1,4 @@
-import { Disziplin, Klasse } from '../interfaces';
+import { Disziplin, Klasse, Schueler } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,12 +13,12 @@ export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
-  schueler = [];
+  allSchueler: Array<Schueler> = [];
+  ergebnis: Array<number> = [];
   bestenSchueler = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
-  disableInput: boolean;
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -34,22 +34,34 @@ export class EinzelComponent implements OnInit {
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
+      
       this.sfService.klassen().subscribe((data: Klasse[]) => {
         this.klassen = data;
+        for(let i = 0; i< this.klassen.length; i++){
+          this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+            console.log(this.klassen[i].kid);
+            console.log(schuelerData);
+            this.allSchueler[this.klassen[i].kid] = schuelerData;
+            
+          })
+        }
       },
       (err) => {
         console.error('GET-Service "klassen()" not reachable.');
       })
     });
     
-    this.schueler = [
-      {value: 0, viewValue: 'Mirco'},
-      {value: 1, viewValue: 'Michi'},
-      {value: 2, viewValue: 'Maja'},
-      {value: 3, viewValue: 'David'},
-      {value: 4, viewValue: 'Maxi'},
-      {value: 5, viewValue: 'Jonas'}
-    ];
+     
+    
+    
+    /*
+    getSchueler(did, kid)data[]=>{
+      schueler[kid] = data;
+    }
+    
+    
+    
+    */
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
       {value: 1, viewValue: 'Michi', ergebnis: 5.3},
@@ -58,9 +70,7 @@ export class EinzelComponent implements OnInit {
       {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
-    this.disableInputFunc();
   }
-  
   
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
@@ -68,7 +78,6 @@ export class EinzelComponent implements OnInit {
   switchSort(){
     this.sortRev = !this.sortRev;
   }
-  
   public sortByRang(){
     this.switchSort()
     this.bestenSchueler = this.bestenSchueler.sort((n1,n2)=>{
@@ -113,35 +122,38 @@ export class EinzelComponent implements OnInit {
       return 0;
     });
   }
-  
-  
-  
-  public disableInputFunc(){
-    //Erste Input
-    if((enoughPermissionsToWrite() && this.isFirstEntry())|| enoughPermissionsToChange()){
-      this.disableInput = false;
-    }else{
-      this.disableInput = true;
+    
+  public inputDisabled(value): boolean {
+    if ((this.enoughPermissionsToWrite() && this.isFirstEntry(value)) || this.enoughPermissionsToChange()) {
+      return false;
+    } else {
+      return true;
     }
   }
-  private isFirstEntry(){
-    //Gibt zurück, ob Ausgangsvalue leer ist
-    return true;
+  private isFirstEntry(value) {
+    if (value == "" || value == null) {  
+      return true;
+    } else {
+      return false;
+    }
   }
-}
-export function enoughPermissionsToWrite() {
-  let role = localStorage.getItem('role');
-  if(role == 'admin' || role == 'schiedsrichter'){
-    return true;
-  }else {
-    return false;
+  private enoughPermissionsToWrite() {
+    let role = localStorage.getItem('role');
+    if (role == 'admin' || role == 'schiedsrichter'){
+      return true;
+    } else {
+      return false;
+    }
   }
-}
-export function enoughPermissionsToChange() {
-  let role = localStorage.getItem('role');
-  if(role == 'admin'){
-    return true;
-  }else {
-    return false;
+  private enoughPermissionsToChange() {
+    let role = localStorage.getItem('role');
+    if (role == 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public save() {
+    
   }
 }

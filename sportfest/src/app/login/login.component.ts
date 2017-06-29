@@ -34,10 +34,11 @@ export class LoginComponent implements OnInit {
           // Token in localStorage packen
           localStorage.setItem('token', token);
           this.sfService.userPrivileges().subscribe(data => {
-            console.log(data);
-            this.username = data.aud;
-            console.log('Rolle: '+  data.role);
-            localStorage.setItem('role', data.role);
+            if (data.role != 'gast') {
+              localStorage.setItem('role', data.role);
+            } else {
+              localStorage.setItem('role', 'gast');
+            }
           },
             (err) => {
               console.error('GET-Service "userPrivileges()" not reachable.');
@@ -65,8 +66,8 @@ export class LoginComponent implements OnInit {
   }
 
   public close(event: any) {
-    if (event.clientX !== 0 || event.clientY !== 0)
+    if (event.clientX !== 0 || event.clientY !== 0) {
       this.loginClose.emit();
+    }
   }
-
 }

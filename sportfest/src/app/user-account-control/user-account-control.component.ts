@@ -16,12 +16,16 @@ export class UserAccountControlComponent implements OnInit {
 
   ngOnInit() {
     // TODO: aktuelle User aus der DB lesen
+    this.rollenLaden();
+  }
+
+  private rollenLaden() {
     this.sfService.user().subscribe(data => {
       this.users = data;
       this.users.forEach(element => {
-        if(element.berid == '1'){
+        if (element.berid == '1') {
           element.role = 'admin';
-        }else{
+        } else {
           element.role = 'schiedsrichter';
         }
       });
@@ -30,12 +34,12 @@ export class UserAccountControlComponent implements OnInit {
         console.error(err);
       })
   }
-
-  public deleteUser(uid: string) {
-    alert('User mit der id' + uid + 'wird gelöscht');
-    this.sfService.userLoeschen(uid).subscribe(
+  public deleteUser(user: any) {
+    alert('User ' + user.name + ' wird gelöscht!');
+    this.sfService.userLoeschen(user.name).subscribe(
       (data) => {
         console.log(data);
+        this.rollenLaden();
       },
       (err) => {
         console.error(err);
@@ -49,13 +53,7 @@ export class UserAccountControlComponent implements OnInit {
       this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(
         (data) => {
           console.log(data);
-          this.sfService.user().subscribe(
-            (data) => {
-              this.users = data;
-            },
-            (err) => {
-              console.error(err);
-            })
+          this.rollenLaden();
         },
         (err) => {
           console.error(err);
@@ -64,13 +62,13 @@ export class UserAccountControlComponent implements OnInit {
     } else {
       alert('Fehler bei der Eingabe');
     }
-    this.selectedRole = "";
-    this.username = "";
+
   }
-  
-  public resetPassword(user: any){
-    this.deleteUser(user.uid);
-    this.username = user.uid;
+
+  public resetPassword(user: any) {
+    console.log(user);
+    this.deleteUser(user);
+    this.username = user.name;
     this.selectedRole = user.role;
     this.addUser();
   }

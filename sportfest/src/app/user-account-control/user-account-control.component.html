@@ -16,10 +16,10 @@
         <td>{{ user.name }}</td>
         <td>{{ user.role }}</td>
         <td>
-          <md-icon (click)="resetPassword(user.name)">restore</md-icon>
+          <md-icon (click)="resetPassword(user)">restore</md-icon>
         </td>
         <td>
-          <md-icon (click)="deleteUser(user.name)" >delete forever</md-icon>
+          <md-icon (click)="deleteUser(user)" >delete forever</md-icon>
         </td>
       </tr>
       <tr>

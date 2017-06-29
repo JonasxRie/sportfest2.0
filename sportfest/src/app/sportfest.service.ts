@@ -57,8 +57,8 @@ export class SportfestService {
   /**
    * Löscht den User
    */
-  public userLoeschen(id: string): Observable<any> {
-    return this.techService.deleteRequest('/user/' + id);
+  public userLoeschen(username: string): Observable<any> {
+    return this.techService.deleteRequest('/user/' + username);
   }
 
 
@@ -77,6 +77,9 @@ export class SportfestService {
   
   public schuelerAnmeldebogen(classId: number): Observable<any> {
     return this.techService.getRequest('/klasse/' + classId  + '/anmeldung');
+  }
+  public schuelerPerDisziplin(classId: number, disziplinId: number){
+    return this.techService.getRequest('/schueler/klasse/' + classId + '/disziplin/' + disziplinId);
   }
   /**
    * ***********************************************
@@ -106,7 +109,7 @@ export class SportfestService {
    * Schreibt eine Disziplin
    */
   public disziplinSchreiben(disziplin: any): Observable<any> {
-    return this.techService.putRequest('/disziplin/0', disziplin);
+    return this.techService.putRequest('/disziplin/', disziplin);
   }
 
   /**

@@ -21,7 +21,9 @@
 
     <table width="100%">
       <tr>
-        <th (click)="(klasseAufklappen = !klasseAufklappen)">Klassenlisten anzeigen</th>
+        <th>
+          <button md-raised-button (click)="klasseAufklappen=!klasseAufklappen" color="accent">Klassenlisten anzeigen</button>
+        </th>
       </tr>
       <div *ngIf="klasseAufklappen">
         <tr>
@@ -30,23 +32,22 @@
               <md-card-header>
                 <h4>Ergebnisse eintragen</h4>
               </md-card-header>
-              <md-list *ngFor="let klasse of klassen, let i=index">
-                <h3 (click)="aufklappen(i)">{{klasse.name}}</h3>
-                <div *ngIf="aufgeklappt[i]">
+              <button md-raised-button (click)="save()" color="accent">Speichern</button>
+              <md-list *ngFor="let klasse of klassen">
+                <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
+                <div *ngIf="aufgeklappt[klasse.kid]">
                   <table width="100%">
-                    <tr *ngFor="let s of schueler">
+                    <tr *ngFor="let s of allSchueler[klasse.kid], let i=index">
                       <td width="50%">
-                        <span>{{ s.viewValue }}:</span>
+                        <span>{{ s.vorname }} {{ s.name }}:</span>
                       </td>
                       <td width="50%">
                         <md-input-container>
-                          <input mdInput placeholder="Ergebnis" type="number"  [disabled]="disableInput">
+                          <input #input mdInput placeholder="Ergebnis" type="number"
+                                [disabled]="inputDisabled(input.value)" [(ngModel)]="ergebnis[klasse.kid][sid]"><!--LeistungsId Hinzu-->
                         </md-input-container>
-                        <!-- Inputfeld (disabled, wenn nicht login) -->
-                        <!-- vorhandene Values einfügen-->
                       </td>
-                    </tr>      
-                    
+                    </tr>
                   </table>
                 </div>
               </md-list>
@@ -74,7 +75,6 @@
                   <td>{{s.value + 1}}</td>
                   <td>{{s.viewValue}}</td>
                   <td>{{s.ergebnis}}<td>
-                    
                 </tr>
               </table>
             </md-card-content>

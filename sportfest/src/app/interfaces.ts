@@ -26,3 +26,10 @@ export interface Klasse {
     kid?: number,
     name?: string
 }
+export interface Schueler {
+    sid?: number,
+    vorname?: string,
+    name?: string,
+    kid?: number,
+    gid?: number
+}

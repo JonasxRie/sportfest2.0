@@ -22,24 +22,23 @@ export class HeaderComponent implements OnInit {
   disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
-              public dialog: MdDialog,
+              private dialog: MdDialog,
               private sfService: SportfestService) { }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.sfService.disziplinen().subscribe(data => {
       for(let i = 0; i < data.length; i++) {
-        console.log(data[i]);
-          if(data[i].teamleistung == false || data[i].did == 3) {
-            this.disziplinenEinzel.push(data[i]);
-          }else {
-            this.disziplinenTeam.push(data[i]);
-          }
+        if(data[i].teamleistung == false || data[i].did == 3) {
+          this.disziplinenEinzel.push(data[i]);
+        }else {
+          this.disziplinenTeam.push(data[i]);
+        }
       }
     },
       (err) => {
         console.error('GET-Service "disziplinen()" not reachable.');
-    });
+      });
   }
 
   public navigateToEinzel(did: number, name: string) {
@@ -76,7 +75,11 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
+<<<<<<< HEAD
     this.router.navigate(['/home']);    
+=======
+    this.navigateToDashboard();
+>>>>>>> 2dab774d6de3aab3506503fdd58deb76d03dc894
   }
 
   public login() {
@@ -86,13 +89,24 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
+<<<<<<< HEAD
           console.log(data);
           this.username = data.aud;
+=======
+          console.log("UserLoginPrivilegien", data);
+          if (data.role != "gast") {
+            this.username = data.aud;
+          } else {
+            this.username = null;
+          }
+>>>>>>> 2dab774d6de3aab3506503fdd58deb76d03dc894
           this.role = data.role;
         },
         (err) => {
           console.error('GET-Service "userPrivileges()" not reachable.');
-      });
+          this.username = null;
+          this.navigateToDashboard();
+        });
     });
   }
 
