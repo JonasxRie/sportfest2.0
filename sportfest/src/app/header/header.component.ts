@@ -73,21 +73,23 @@ export class HeaderComponent implements OnInit {
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
       dlg.close();
-      this.sfService.userPrivileges().subscribe(
-        (data) => {
-          console.log("UserLoginPrivilegien", data);
-          if (data.role != "gast") {
-            this.username = data.username;
-          } else {
-            this.username = null;
-          }
-          this.role = data.role;
-        },
-        (err) => {
-          console.error('GET-Service "userPrivileges()" not reachable.');
-          this.username = null;
-          this.navigateToDashboard();
-        });
+      // this.sfService.userPrivileges().subscribe(
+      //   (data) => {
+      //     console.log("UserLoginPrivilegien", data);
+      //     if (data.role != "gast") {
+      //       this.username = data.username;
+      //     } else {
+      //       this.username = null;
+      //     }
+      //     this.role = data.role;
+      //   },
+      //   (err) => {
+      //     console.error('GET-Service "userPrivileges()" not reachable.');
+      //     this.username = null;
+      //     this.navigateToDashboard();
+      //   });
+      this.username = localStorage.getItem('username');
+      this.role = localStorage.getItem('role');
     });
   }
   
