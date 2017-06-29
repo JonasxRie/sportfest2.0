@@ -8,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './create-discipline.component.html',
   styleUrls: ['./create-discipline.component.css']
 })
-export class CreateDisciplineComponent implements OnInit {
-    
+export class CreateDisciplineComponent implements OnInit {    
     sportartID: number;
     sportart: string;
     beschreibung: string;
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
+    
+    datentypen: any;
     
     secondVisible = true;    
     rulesVar: Array<Variable>;
@@ -27,7 +28,8 @@ export class CreateDisciplineComponent implements OnInit {
       {
         name:'',
         expId:'',
-        desc:''
+        desc:'',
+        typ:''
       }
     ];
     this.rules = [
@@ -39,6 +41,7 @@ export class CreateDisciplineComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.sportartID = +params['did'];
     });
+    // Disziplin holen (beim Ändern)
     this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
       this.sportart = data.name;
       this.beschreibung = data.beschreibung;
@@ -57,6 +60,16 @@ export class CreateDisciplineComponent implements OnInit {
     (err) => {
       console.error('GET-Service "disziplin(sportartID)" not reachable.');
     });
+    // Datentypen holen
+    this.sfService.datentypenHolen().subscribe(
+      (data) => {
+        console.log("Datentypen DATA", data);
+        this.datentypen = data;
+      },
+      (err) => {
+        console.error('GET-Service "datantypenHolen()" not reachable.');
+      }
+    )
   }
   
   public sendToBackend() {
