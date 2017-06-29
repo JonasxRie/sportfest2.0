@@ -9,7 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  sportart: string = '';
+  sportart: any;
   beschreibung: string = '';
   klassen: Array<Klasse> = [];
   
@@ -25,6 +25,18 @@ export class TeamComponent implements OnInit {
 
   sortRevA = true;
   sortRevB = true;
+  
+  ergebnisse = [
+      {
+        tid:'',
+        variablen: [
+          {
+            id: '',
+            value: ''
+          }
+        ]
+      }
+    ];
 
   constructor(private route: ActivatedRoute, 
               private sfService: SportfestService) { }
@@ -34,8 +46,9 @@ export class TeamComponent implements OnInit {
       let sportartID = params['did'];
       
       this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
-        this.sportart = data.name;
+        this.sportart = data;
         this.beschreibung=data.beschreibung;
+        
         // Daten in die entsprechenden Felder füllen
         console.log(data);
       },
@@ -61,6 +74,10 @@ export class TeamComponent implements OnInit {
     
     //Hier senden
     this.sfService.ergebnisSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]) //TODO richtiges JSON
+  }
+  
+  public setVarValues(vid: number, ki: number, vi: number, event: any){
+    console.log(event);
   }
 
   switchSortA(){

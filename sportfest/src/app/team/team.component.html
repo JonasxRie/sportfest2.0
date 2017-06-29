@@ -1,6 +1,6 @@
 <md-card>
   <md-card-header>
-    <h3>{{ sportart }}</h3>
+    <h3>{{ sportart.name }}</h3>
   </md-card-header>
 </md-card>
 
@@ -23,7 +23,7 @@
       </md-card-header>
       <md-card-content>
         <table>
-          <tr>
+          <!--<tr>
             <td align="right">
                 <md-select placeholder="Klasse A" [(ngModel)]="selectedClassA">
                   <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
@@ -61,7 +61,26 @@
             <td colspan="3" align="center" valign="middle">
               <button md-raised-button color="primary" (click)="sendTeamErgebnis(selectedClassA, selectedClassB, pointsA, pointsB)">Abschicken</button>
             </td>
+          </tr>-->
+          <tr>
+            <div *ngFor="sportart.kontrahentenAnzahl, let i=index">
+              <td>
+                <md-select placeholder="Teilnehmer" [(ngModel)]="ergebnisse[i].tid">
+                  <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
+                    {{ klasse.name }}
+                  </md-option>
+                </md-select>
+              </td>
+          </div>           
           </tr>
+          <tr *ngFor="sportart.variablen, let vi=index">
+            <div *ngFor="sportarten.kontrahentenAnzahl, let ki=index">
+              <md-input-container>
+                  <input type="text" mdInput placeholder="Punkte" (blur)="setVarValues(sportart.vaiablen.vid, ki, vi, $event)" >
+              </md-input-container>
+            </div>
+          </tr>
+          
         </table>
       </md-card-content>
     </md-card>
