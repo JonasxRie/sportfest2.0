@@ -15,7 +15,6 @@ export class UserAccountControlComponent implements OnInit {
   constructor(private sfService: SportfestService) { }
 
   ngOnInit() {
-    // TODO: aktuelle User aus der DB lesen
     this.rollenLaden();
   }
 
@@ -46,8 +45,6 @@ export class UserAccountControlComponent implements OnInit {
       }
     );
   }
-
-
   public addUser() {
     if (this.selectedRole && this.username) {
       this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(
@@ -66,11 +63,11 @@ export class UserAccountControlComponent implements OnInit {
   }
 
   public resetPassword(user: any) {
-    console.log(user);
     this.deleteUser(user);
     this.username = user.name;
     this.selectedRole = user.role;
     this.addUser();
+    this.username = '';
+    this.selectedRole = null;
   }
-
 }
