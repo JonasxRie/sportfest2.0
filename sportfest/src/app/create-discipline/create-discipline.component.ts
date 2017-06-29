@@ -101,46 +101,15 @@ export class CreateDisciplineComponent implements OnInit {
           "expression": "geschlecht == \"m\" && weite >= 2.4",
           "points": 10
         },
-        {
-          "index": 1,
-          "expression": "geschlecht == \"m\" && weite >= 1.2",
-          "points": 5
-        },
-        {
-          "index": 2,
-          "expression": "geschlecht == \"m\" && weite >= 0.6",
-          "points": 2
-        },
-        {
-          "index": 3,
-          "expression": "geschlecht == \"m\" && weite >= 0.3",
-          "points": 1
-        },
-        {
-          "index": 4,
-          "expression": "geschlecht == \"w\" && weite >= 1.2",
-          "points": 10
-        },
-        {
-          "index": 5,
-          "expression": "geschlecht == \"w\" && weite >= 0.6",
-          "points": 5
-        },
-        {
-          "index": 6,
-          "expression": "geschlecht == \"w\" && weite >= 0.3",
-          "points": 2
-        },
-        {
-          "index": 7,
-          "expression": "geschlecht == \"w\" && weite >= 0.15",
-          "points": 1
-        }
       ],
       "kontrahentenAnzahl": 0
     }*/
     console.log("DisAnl - this.rulesVar", this.rulesVar);
     console.log("DisAnl - this.rules", this.rules);
+    // Idizees der Regeln setzen
+    for (let i = 0; i < this.rules.length; i++) {
+      this.rules[i].index = (i + 1) + '';
+    }
     let disziplinDTO = {
       name: this.sportart,
       beschreibung: this.beschreibung,
