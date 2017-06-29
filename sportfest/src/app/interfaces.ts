@@ -2,6 +2,7 @@ export interface Variable {
     name?: string,
     expId?:string,
     desc?:string,
+    typ?:string
 }
 
 export interface Regel{
