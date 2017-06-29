@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
         (data) => {
           console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
-            this.username = data.aud;
+            this.username = data.username;
           } else {
             this.username = null;
           }
