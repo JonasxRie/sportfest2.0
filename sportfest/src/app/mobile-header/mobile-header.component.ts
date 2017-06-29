@@ -43,6 +43,7 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('role');
     this.username = null;
     this.navigateToDashboard();
+    this.roleChanged.emit(this.role);
   }
   
   public login() {
