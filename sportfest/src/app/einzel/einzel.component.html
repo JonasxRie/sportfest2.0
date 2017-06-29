@@ -37,14 +37,15 @@
                 <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
                 <div *ngIf="aufgeklappt[klasse.kid]">
                   <table width="100%">
-                    <tr *ngFor="let s of allSchueler[klasse.kid], let i=index">
+                    <tr *ngFor="let s of allSchueler[klasse.kid]">
                       <td width="50%">
-                        <span>{{ s.vorname }} {{ s.name }}:</span>
+                        <span>{{ s.vorname }} {{ s.name }}: {{s.sid}}</span>
                       </td>
                       <td width="50%">
-                        <md-input-container>
-                          <input #input mdInput placeholder="Ergebnis" type="number"
-                            [disabled]="inputDisabled(ergebnis[s.sid])" [(ngModel)]="ergebnis[s.sid].ergebnis"><!--LeistungsId Hinzu-->
+                        <md-input-container><!--Hier Schleife für Leistung-->
+                          <input mdInput placeholder="Ergebnis" type="number"
+                            [disabled]="inputDisabled(ergebnis[s.sid])"
+                            [(ngModel)]="ergebnis[s.sid].ergebnis"><!--LeistungsId Hinzu-->
                         </md-input-container>
                       </td>
                     </tr>
