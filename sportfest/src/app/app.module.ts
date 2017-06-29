@@ -84,8 +84,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
 
-// export const BASEPATH = 'http://172.20.3.18:8080/backend'; 
-export const BASEPATH = 'http://localhost:8080/backend'; 
+export const BASEPATH = 'http://172.20.3.13:8080/backend'; 
+// export const BASEPATH = 'http://localhost:8080/backend'; 
 
 @NgModule({
   declarations: [
