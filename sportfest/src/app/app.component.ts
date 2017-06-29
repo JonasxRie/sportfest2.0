@@ -16,7 +16,6 @@ export class AppComponent {
     return check;
   }
   public setRole(role: string) {
-    console.log('setRole --> ' + role);
     this.role = role;
   }
 }

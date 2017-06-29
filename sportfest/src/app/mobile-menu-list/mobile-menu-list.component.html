@@ -11,11 +11,13 @@
       </div>
     <md-list-item class="sub" (click)="expandTeam()">Team</md-list-item>
       <div *ngIf="selectedTeam">
-        <md-list-item class="subsub"
-                      *ngFor="let team of disziplinenTeam"
-                      (click)="navigateToTeam(team.did, team.name)">
-                      {{ team.name }}
-        </md-list-item>
+        <div *ngFor="let team of disziplinenTeam">
+          <md-list-item class="subsub"
+                        *ngIf="team.aktiviert"
+                        (click)="navigateToTeam(team.did, team.name)">
+                        {{ team.name }}
+          </md-list-item>
+         </div>
       </div>
   </div>
     
@@ -28,5 +30,4 @@
     </div>
     
   <md-list-item *ngIf="role=='admin'" class="main" (click)="navigateToImportKlasse()">Import</md-list-item>
-  <md-list-item class="main"> Rolle --> {{ role }} </md-list-item>
 </md-list>

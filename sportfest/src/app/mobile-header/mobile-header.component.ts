@@ -52,12 +52,11 @@ export class MobileHeaderComponent implements OnInit {
         (data) => {
           console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
-            this.username = data.aud;
+            this.username = data.username;
           } else {
             this.username = null;
           }
           this.role = data.role;
-          console.log('emit Rolle --> ' + this.role);
           this.roleChanged.emit(this.role);
         },
         (err) => {
