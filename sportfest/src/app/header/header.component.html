@@ -12,7 +12,7 @@
       <md-icon>home</md-icon>
     </button>
 
-    <button md-button [mdMenuTriggerFor]="menu0">Sportarten</button>
+    <button md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Sportarten</button>
     <md-menu #menu0="mdMenu">
       <!--Einzel-->
       <div class="kategorie">&nbsp;Einzel</div>
