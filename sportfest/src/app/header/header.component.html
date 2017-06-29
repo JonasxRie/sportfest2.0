@@ -17,12 +17,12 @@
       <!--Einzel-->
       <div class="kategorie">&nbsp;Einzel</div>
         <div *ngFor="let einzel of disziplinenEinzel">
-          <button md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
+          <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
         </div>
       <!--Team-->
       <div class="kategorie">&nbsp;Team</div>
         <div *ngFor="let team of disziplinenTeam">
-          <button md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
+          <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
         </div>
     </md-menu>
     
