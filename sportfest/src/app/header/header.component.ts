@@ -100,5 +100,21 @@ export class HeaderComponent implements OnInit {
         });
     });
   }
+  
+  
+  public loadDD(){
+    this.sfService.disziplinen().subscribe(data => {
+      for(let i = 0; i < data.length; i++) {
+        if(data[i].teamleistung == false || data[i].did == 3) {
+          this.disziplinenEinzel.push(data[i]);
+        }else {
+          this.disziplinenTeam.push(data[i]);
+        }
+      }
+    },
+      (err) => {
+        console.error('GET-Service "disziplinen()" not reachable.');
+      });
+  }
 
 }
