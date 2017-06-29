@@ -23,6 +23,8 @@ export class MobileHeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
+    this.username = localStorage.getItem('username');
   }
   
   public changeSidenav() {
@@ -41,6 +43,7 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('role');
     this.username = null;
     this.navigateToDashboard();
+    this.roleChanged.emit(this.role);
   }
   
   public login() {
@@ -53,6 +56,7 @@ export class MobileHeaderComponent implements OnInit {
           console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
             this.username = data.username;
+            localStorage.setItem('username', data.username);
           } else {
             this.username = null;
           }

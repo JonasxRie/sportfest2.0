@@ -39,6 +39,12 @@ export class EinzelComponent implements OnInit {
         this.klassen = data;
         for(let i = 0; i< this.klassen.length; i++){
           this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+            console.log(schuelerData);
+            for (let j = 0; j< schuelerData.length; j++){
+              this.ergebnis[schuelerData[j].sid].ergebnis = null;
+              this.ergebnis[schuelerData[j].sid].firstEntry = true;  
+            }
+            
             this.allSchueler[this.klassen[i].kid] = schuelerData;
           },
           (err) => {},
