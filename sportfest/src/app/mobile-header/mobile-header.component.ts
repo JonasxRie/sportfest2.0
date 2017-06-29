@@ -42,32 +42,19 @@ export class MobileHeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
-    this.navigateToDashboard();
+    this.role = localStorage.getItem('role');
     this.roleChanged.emit(this.role);
+    this.navigateToDashboard();
   }
   
   public login() {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
+      this.username = localStorage.getItem('username'); //Benutzernamen aus dem Local Storage auslesen
+      this.role = localStorage.getItem('role'); //Rolle aus dem Local Storage auslesen
+      this.roleChanged.emit(this.role);
       dlg.close();
-      this.sfService.userPrivileges().subscribe(
-        (data) => {
-          console.log("UserLoginPrivilegien", data);
-          if (data.role != "gast") {
-            this.username = data.username;
-            localStorage.setItem('username', data.username);
-          } else {
-            this.username = null;
-          }
-          this.role = data.role;
-          this.roleChanged.emit(this.role);
-        },
-        (err) => {
-          console.error('GET-Service "userPrivileges()" not reachable.');
-          this.username = null;
-          this.navigateToDashboard();
-        });
     });
   }
 }
