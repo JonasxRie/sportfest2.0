@@ -75,11 +75,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.username = null;
-<<<<<<< HEAD
-    this.router.navigate(['/home']);    
-=======
     this.navigateToDashboard();
->>>>>>> 2dab774d6de3aab3506503fdd58deb76d03dc894
   }
 
   public login() {
@@ -89,17 +85,12 @@ export class HeaderComponent implements OnInit {
       dlg.close();
       this.sfService.userPrivileges().subscribe(
         (data) => {
-<<<<<<< HEAD
-          console.log(data);
-          this.username = data.aud;
-=======
           console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
             this.username = data.aud;
           } else {
             this.username = null;
           }
->>>>>>> 2dab774d6de3aab3506503fdd58deb76d03dc894
           this.role = data.role;
         },
         (err) => {
