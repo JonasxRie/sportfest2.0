@@ -19,11 +19,6 @@ export class EinzelComponent implements OnInit {
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
-  
-  private erg: Ergebnis = {
-    ergebnis: null,
-    firstEntry: true
-  };
 
   constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
 
@@ -44,9 +39,12 @@ export class EinzelComponent implements OnInit {
         this.klassen = data;
         for(let i = 0; i < this.klassen.length; i++){
           this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
-            console.log(schuelerData);
+            //console.log(schuelerData);
             for (let j = 0; j < schuelerData.length; j++){
-              this.ergebnis[schuelerData[j].sid] = this.erg;
+              this.ergebnis[schuelerData[j].sid] = {
+                ergebnis: null,
+                firstEntry: true
+              };
             }
             //getLeistung
             //{Ergebnis.setErgebnis}
@@ -122,6 +120,8 @@ export class EinzelComponent implements OnInit {
   }
     
   public inputDisabled(ergObj: Ergebnis): boolean {
+    console.log(ergObj);
+    console.log(this.ergebnis);
     if ((this.enoughPermissionsToWrite() && ergObj.firstEntry) || this.enoughPermissionsToChange()) {
       return false;
     } else {
