@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
+    this.username = localStorage.getItem('username');
     // this.sfService.disziplinen().subscribe(data => {
     //   for(let i = 0; i < data.length; i++) {
     //     if(data[i].teamleistung == false || data[i].did == 3) {
@@ -87,6 +88,7 @@ export class HeaderComponent implements OnInit {
         (data) => {
           console.log("UserLoginPrivilegien", data);
           if (data.role != "gast") {
+            localStorage.setItem('username',data.username);
             this.username = data.username;
           } else {
             this.username = null;
