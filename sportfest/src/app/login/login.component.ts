@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public submit() {
+  public submit() { //Drücken des Login-Buttons
     if (this.username !== "" && this.password !== "" && this.username && this.password) {
       // Logindaten verschlüsseln
       let encryptpwd = Md5.hashStr(this.password); // TODO: wenn mehr Zeit -> Umstellung auf sichere Hash-Funktion

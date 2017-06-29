@@ -1,13 +1,16 @@
 <md-list>
   <md-list-item class="main" (click)="expandSportarten()">Sportarten</md-list-item>
   <div *ngIf="selectedSportarten">
+    
     <md-list-item class="sub" (click)="expandEinzel()">Einzel</md-list-item>
       <div *ngIf="selectedEinzel">
-        <md-list-item class="subsub"
-                      *ngFor="let einzel of disziplinenEinzel"
-                      (click)="navigateToEinzel(einzel.did, einzel.name)">
-                      {{ einzel.name }}
-        </md-list-item>
+        <div *ngFor="let einzel of disziplinenEinzel"> 
+          <md-list-item class="subsub"
+                        *ngIf="einzel.aktiviert"
+                        (click)="navigateToEinzel(einzel.did, einzel.name)">
+                        {{ einzel.name }}
+          </md-list-item>
+        </div>
       </div>
     <md-list-item class="sub" (click)="expandTeam()">Team</md-list-item>
       <div *ngIf="selectedTeam">
