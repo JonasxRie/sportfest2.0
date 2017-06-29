@@ -112,7 +112,7 @@ export const BASEPATH = 'http://localhost:8080/backend';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routConfig),
+    RouterModule.forRoot(routConfig, { useHash: true}),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
