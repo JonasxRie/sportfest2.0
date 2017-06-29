@@ -187,7 +187,7 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   addNewRuleLine(){
-    let rule = { regeltext: '', punkte: this.dummynumber };
+    let rule = { expression: '', points: this.dummynumber };
     this.rules.push(rule);
   }
   
