@@ -68,7 +68,7 @@
           </md-input-container>
         </td>  
         <td> 
-          <md-select placeholder="Datentyp" [(ngModel)]="rulesVar[i].typ">
+          <md-select placeholder="Datentyp" [(ngModel)]="rulesVar[i].typ.tid">
             <md-option *ngFor="let t of datentypen" [value]="t.tid">
               {{ t.name }}
             </md-option>
@@ -92,12 +92,12 @@
       <tr *ngFor="let row of rules, let i = index">
         <td>
           <md-input-container style="width: 320px"> 
-              <input mdInput type="text" placeholder="Regel" [(ngModel)]="rules[i].regeltext">
+              <input mdInput type="text" placeholder="Regel" [(ngModel)]="rules[i].expression">
           </md-input-container>
         </td>  
         <td> 
           <md-input-container> 
-              <input mdInput type="number" placeholder="Punkte" [(ngModel)]="rules[i].punkte">
+              <input mdInput type="number" placeholder="Punkte" [(ngModel)]="rules[i].points">
           </md-input-container>
         </td>  
         <td>
