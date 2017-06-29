@@ -179,4 +179,10 @@ export class SportfestService {
   public validatePassword(password: any): Observable<any> {
     return this.techService.putRequest('/validatePassword', password);
   }
+  /**
+   * Gibt Informationen zu allen Datentypen (für Regelvariablen)
+   */
+  public datentypenHolen(): Observable<any> {
+    return this.techService.getRequest('/variable/typ');
+  }
 }

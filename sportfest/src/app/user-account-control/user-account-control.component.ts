@@ -14,11 +14,11 @@ export class UserAccountControlComponent implements OnInit {
 
   constructor(private sfService: SportfestService) { }
 
-  ngOnInit() {
+  ngOnInit() {//Laden der Seite
     this.rollenLaden();
   }
 
-  private rollenLaden() {
+  private rollenLaden() { //Lädt alle im System existierende Benutzer
     this.sfService.user().subscribe(data => {
       this.users = data;
       this.users.forEach(element => {
@@ -34,23 +34,24 @@ export class UserAccountControlComponent implements OnInit {
       })
   }
   public deleteUser(user: any) {
-    alert('User ' + user.name + ' wird gelöscht!');
-    this.sfService.userLoeschen(user.name).subscribe(
+    // alert('User ' + user.name + ' wird gelöscht!');
+    this.sfService.userLoeschen(user.name).subscribe(//Löscht Benutzer aus der Datenbank
       (data) => {
         console.log(data);
-        this.rollenLaden();
+        this.rollenLaden(); //Existierende Benutzer neu laden
       },
       (err) => {
         console.error(err);
       }
     );
   }
+
   public addUser() {
-    if (this.selectedRole && this.username) {
-      this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(
+    if (this.selectedRole && this.username) {//Benutzername und Rolle wurde gesetzt
+      this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(//Benutz in Datenbank einfügen
         (data) => {
           console.log(data);
-          this.rollenLaden();
+          this.rollenLaden();//Existierende Benutzer neu laden
         },
         (err) => {
           console.error(err);
@@ -62,8 +63,8 @@ export class UserAccountControlComponent implements OnInit {
 
   }
 
-  public resetPassword(user: any) {
-    this.deleteUser(user);
+  public resetPassword(user: any) {//Ausgewählten Benutzer löschen und mit initialpassword erstellen
+    this.deleteUser(user); 
     this.username = user.name;
     this.selectedRole = user.role;
     this.addUser();
