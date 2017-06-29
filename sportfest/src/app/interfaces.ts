@@ -1,13 +1,25 @@
 export interface Variable {
     name?: string,
-    expId?:string,
     desc?:string,
-    typ?:string
+    expId?:string,
+    typ?:Datentyp
 }
 
+export interface Datentyp {
+    tid?: string,
+}
+//     typ: {
+//       tid: 100,
+//       name: "Ganzzahl",
+//       desc: "Einfacher Zahlenwert",
+//       zustaende: [],
+//       typ: "int"
+//     }
+
 export interface Regel{
-    regeltext?: string,
-    punkte?: number,
+    index?: string;
+    expression?: string,
+    points?: number,
 }
 
 export interface Disziplin {

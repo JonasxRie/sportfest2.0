@@ -33,7 +33,7 @@ export class CreateDisciplineComponent implements OnInit {
       }
     ];
     this.rules = [
-      { regeltext: '', punkte: this.dummynumber }
+      { expression: '', points: this.dummynumber }
     ];
   }
 
@@ -148,23 +148,25 @@ export class CreateDisciplineComponent implements OnInit {
       maxTeilnehmer: this.maxTeilnehmeranzahl,
       aktiviert: true,
       teamleistung: this.teamleistung,
-      variablen: [
-        {
-          var_id: 2000,
-          name: "Weite",
-          desc: "Weite in cm",
-          expressionParameter: "w",
-          typ: {
-            tid: 100,
-            name: "Ganzzahl",
-            desc: "Einfacher Zahlenwert",
-            zustaende: [],
-            typ: "int"
-          }
-        }
-      ],   
+      variablen: this.rulesVar,
+      // [
+      //   {
+      //     var_id: 2000,
+      //     name: "Weite",
+      //     desc: "Weite in cm",
+      //     expressionParameter: "w",
+      //     typ: {
+      //       tid: 100,
+      //       name: "Ganzzahl",
+      //       desc: "Einfacher Zahlenwert",
+      //       zustaende: [],
+      //       typ: "int"
+      //     }
+      //   }
+      // ],   
       regeln: this.rules,  
     }
+    console.log("disziplinDTO", disziplinDTO);
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
       (data) => {
         console.log(data);
@@ -185,7 +187,7 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   addNewRuleLine(){
-    let rule = { regeltext: '', punkte: this.dummynumber };
+    let rule = { expression: '', points: this.dummynumber };
     this.rules.push(rule);
   }
   
