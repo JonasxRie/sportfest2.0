@@ -38,9 +38,9 @@ export class MobileHeaderComponent implements OnInit {
   }
   public logout() {
     localStorage.removeItem('token');
-    localStorage.setItem('role','gast');
-    this.username=null;
-    this.router.navigate(['/home']); 
+    localStorage.removeItem('role');
+    this.username = null;
+    this.navigateToDashboard();
   }
   
   public login() {
