@@ -151,9 +151,7 @@ export class CreateDisciplineComponent implements OnInit {
       name: '', 
       expId: '', 
       desc: '',
-      typ: {
-        tid: null
-      } 
+      typ: ''
     };
     this.rulesVar.push(line);
   }
