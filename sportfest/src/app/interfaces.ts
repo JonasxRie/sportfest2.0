@@ -50,3 +50,20 @@ export interface Ergebnis {
     ergebnis?: number,
     firstEntry?: boolean
 }
+
+export interface Ergebnis2 {
+    wert?: number,
+    var?: Array<VariableValue>
+}
+
+export interface VariableValue {
+    var_id?: number
+}
+
+export interface Leistung {
+    did?: number,
+    kid?: number,
+    sid?: number,
+    ergebnisse: Array<Ergebnis>,
+    timestamp: string
+}
