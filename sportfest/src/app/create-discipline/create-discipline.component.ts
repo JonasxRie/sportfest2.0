@@ -161,6 +161,7 @@ export class CreateDisciplineComponent implements OnInit {
       typ: 
         { tid: '0'}
     }
+    console.log("NEUE REGELVARIABLE", line);
     this.rulesVar.push(line);
   }
   
