@@ -26,6 +26,8 @@ export class TeamComponent implements OnInit {
   sortRevA = true;
   sortRevB = true;
   
+  anzahlSpalten;
+  
   ergebnisse = [
     {
       tid:'',
@@ -47,6 +49,7 @@ export class TeamComponent implements OnInit {
       
       this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
         this.sportart = data;
+        this.anzahlSpalten = new Array<number>(this.sportart.kontrahentenAnzahl);
         this.beschreibung = data.beschreibung;
         
         // Daten in die entsprechenden Felder füllen
