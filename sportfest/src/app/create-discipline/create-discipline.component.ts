@@ -147,7 +147,14 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   addNewRuleVarLine() {
-    let line = { name: '', expId: '', desc: '' };
+    let line: Variable = { 
+      name: '', 
+      expId: '', 
+      desc: '',
+      typ: {
+        tid: null
+      } 
+    };
     this.rulesVar.push(line);
   }
   
@@ -156,10 +163,9 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   addNewRuleLine(){
-    let rule = { 
+    let rule: Regel = { 
       expression: '', 
-      points: this.dummynumber,
-      tid: null };
+      points: this.dummynumber};
     this.rules.push(rule);
   }
   
