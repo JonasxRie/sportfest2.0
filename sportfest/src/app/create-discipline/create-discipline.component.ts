@@ -16,7 +16,7 @@ export class CreateDisciplineComponent implements OnInit {
     maxTeilnehmeranzahl: number;
     teamleistung: boolean;
     
-    datentypen: any;
+    datentypen: any[];
     
     secondVisible = true;    
     rulesVar: Array<Variable>;
@@ -29,11 +29,16 @@ export class CreateDisciplineComponent implements OnInit {
         name:'',
         expId:'',
         desc:'',
-        typ:''
+        typ: {
+          tid: '0'
+        }
       }
     ];
     this.rules = [
-      { expression: '', points: this.dummynumber }
+      { 
+        expression: '', 
+        points: this.dummynumber 
+      }
     ];
   }
 
@@ -60,7 +65,9 @@ export class CreateDisciplineComponent implements OnInit {
             expId:'',
             desc:'',
             typ: 
-              { tid: '0'}
+              { 
+                tid: '0'
+              }
           }
         ]
       }
@@ -73,9 +80,15 @@ export class CreateDisciplineComponent implements OnInit {
       (data) => {
         console.log("Datentypen DATA", data);
         this.datentypen = data;
+        this.datentypen.push({
+          desc: '',
+          name: '',
+          tid: '',
+          typ: ''
+        })
       },
       (err) => {
-        console.error('GET-Service "datantypenHolen()" not reachable.');
+        console.error('GET-Service "datentypenHolen()" not reachable.');
       }
     )
   }
@@ -160,7 +173,9 @@ export class CreateDisciplineComponent implements OnInit {
       expId:'',
       desc:'',
       typ: 
-        { tid: '0'}
+        { 
+          tid: '0'
+        }
     }
     console.log("NEUE REGELVARIABLE", line);
     this.rulesVar.push(line);
