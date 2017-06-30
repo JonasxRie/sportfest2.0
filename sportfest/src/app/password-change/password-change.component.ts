@@ -34,7 +34,7 @@ export class PasswordChangeComponent implements OnInit {
     let newEncrypt = Md5.hashStr(this.new);
     if (this.inputsValid()) {
       this.sfService.changePassword(oldEncrypt,newEncrypt).subscribe((data) => {
-          console.log(data); // Response
+          console.log(data);
         },
         (err) => {
           console.error('GET-Service "changePassword()" not reachable.');
@@ -49,20 +49,7 @@ export class PasswordChangeComponent implements OnInit {
     let newSubmitEncrypt = Md5.hashStr(this.newSubmit);
     
     let valid = true;
-    // let recentPasswordValid = (this.recent && this.recent.length > 0);
-    // this.sfService.validatePassword(this.recent).subscribe((data) => {
-    //     recentPasswordValid = data;
-    //   },
-    //   (err) => {
-    //     console.error('GET-Service "validatePassword()" not reachable.');
-    // });
-    // if (recentEncrypt && recentPasswordValid) { // this.recent.length > 0 --> durch Rest-Abfrage ersetzen
-    //   this.recentInvalid = false;      
-    // } else {
-    //   valid = false;
-    //   this.recentInvalid = true;
-    // }
-    if (newEncrypt && newSubmitEncrypt && newEncrypt === newSubmitEncrypt) {
+    if (newEncrypt && newSubmitEncrypt && (newEncrypt === newSubmitEncrypt)) {
       this.newNotEqual = false;
     } else {
       valid = false;

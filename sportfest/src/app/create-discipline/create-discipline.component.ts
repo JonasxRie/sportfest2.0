@@ -54,8 +54,15 @@ export class CreateDisciplineComponent implements OnInit {
         this.rules = [];
       }
       if (!this.rulesVar) {
-        this.rulesVar = [];
-      }
+        this.rulesVar = [
+          {
+            name:'',
+            expId:'',
+            desc:'',
+            typ: 
+              { tid: '0'}
+          }
+        ]
     },
     (err) => {
       console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -147,7 +154,14 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   addNewRuleVarLine() {
-    let line = { name: '', expId: '', desc: '' };
+    let line: Variable = { 
+      name:'',
+      expId:'',
+      desc:'',
+      typ: 
+        { tid: '0'}
+    }
+    console.log("NEUE REGELVARIABLE", line);
     this.rulesVar.push(line);
   }
   
@@ -156,10 +170,9 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   addNewRuleLine(){
-    let rule = { 
+    let rule: Regel = { 
       expression: '', 
-      points: this.dummynumber,
-      tid: null };
+      points: this.dummynumber};
     this.rules.push(rule);
   }
   
