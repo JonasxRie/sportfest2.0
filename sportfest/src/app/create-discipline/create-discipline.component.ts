@@ -54,7 +54,14 @@ export class CreateDisciplineComponent implements OnInit {
         this.rules = [];
       }
       if (!this.rulesVar) {
-        this.rulesVar = [];
+        this.rulesVar = [
+          {
+            name:'',
+            expId:'',
+            desc:'',
+            typ:''
+          }
+        ];
       }
     },
     (err) => {
