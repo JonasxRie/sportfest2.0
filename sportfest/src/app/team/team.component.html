@@ -35,8 +35,7 @@
           <tr *ngFor="let v of sportart.variablen, let vi=index">
             <td *ngFor="let s of sportart, let ki=index">
               <md-input-container *ngIf="i < s.kontrahentenAnzahl">
-                  <input type="text" mdInput placeholder="Punkte">
-                   <!--(blur)="setVarValues(sportart.vaiablen.vid, ki, vi, $event)"-->
+                  <input type="text" mdInput placeholder="Punkte"(blur)="setVarValues(sportart.vaiablen.vid, ki, vi, $event)"
               </md-input-container>
             </td>
           </tr>
