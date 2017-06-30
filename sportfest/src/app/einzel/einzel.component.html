@@ -42,10 +42,10 @@
                         <span>{{ s.vorname }} {{ s.name }}:</span>
                       </td>
                       <td width="50%">
-                        <md-input-container><!--Hier Schleife für Leistung-->
-                          <input mdInput placeholder="Ergebnis" type="number"
-                            [disabled]="inputDisabled(ergebnis[s.sid])"
-                            [(ngModel)]="ergebnis[s.sid].ergebnis"><!--LeistungsId Hinzu-->
+                        <md-input-container *ngFor="let v of variablen">
+                          <input mdInput placeholder="v.name" type="text"
+                            [disabled]="inputDisabled(ergebnis[s.sid][v.var_id])"
+                            [(ngModel)]="ergebnis[s.sid][v.var_id].ergebnis">
                         </md-input-container>
                       </td>
                     </tr>

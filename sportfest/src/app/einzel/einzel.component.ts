@@ -16,6 +16,7 @@ export class EinzelComponent implements OnInit {
   allSchueler: Array<Schueler> = [];
   ergebnis: Array<Ergebnis> = [];
   bestenSchueler = [];
+  variablen = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
@@ -28,34 +29,39 @@ export class EinzelComponent implements OnInit {
       this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
+        this.variablen = data.variablen;
         // Daten in die entsprechenden Felder füllen
         console.log(data);
+        
+        
+        this.sfService.klassen().subscribe((data: Klasse[]) => {
+          this.klassen = data;
+          for(let i = 0; i < this.klassen.length; i++){
+            this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+              //console.log(schuelerData);
+              for (let j = 0; j < schuelerData.length; j++){
+                for (let k = 0; k < this.variablen.length; k++){
+                  this.ergebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
+                    ergebnis: null,
+                    firstEntry: true
+                  } 
+                };
+              }
+              //  getErgebnis{
+              //    Ergebnis.setErgebnis}}
+              this.allSchueler[this.klassen[i].kid] = schuelerData;
+            });
+          }
+        },
+        (err) => {
+          console.error('GET-Service "klassen()" not reachable.');
+        })
+        
+        
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
-      
-      this.sfService.klassen().subscribe((data: Klasse[]) => {
-        this.klassen = data;
-        for(let i = 0; i < this.klassen.length; i++){
-          this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
-            //console.log(schuelerData);
-            for (let j = 0; j < schuelerData.length; j++){
-              this.ergebnis[schuelerData[j].sid] = { //Hier Ergebnis
-                ergebnis: null,
-                firstEntry: true
-              };
-            }
-            //getVariabel{
-            //  getErgebnis{
-            //    Ergebnis.setErgebnis}}
-            this.allSchueler[this.klassen[i].kid] = schuelerData;
-          });
-        }
-      },
-      (err) => {
-        console.error('GET-Service "klassen()" not reachable.');
-      })
     });
     // Funktion getBesteSchueler()
     this.bestenSchueler = [
