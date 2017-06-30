@@ -41,13 +41,14 @@ export class EinzelComponent implements OnInit {
           this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
             //console.log(schuelerData);
             for (let j = 0; j < schuelerData.length; j++){
-              this.ergebnis[schuelerData[j].sid] = {
+              this.ergebnis[schuelerData[j].sid] = { //Hier Ergebnis
                 ergebnis: null,
                 firstEntry: true
               };
             }
-            //getLeistung
-            //{Ergebnis.setErgebnis}
+            //getVariabel{
+            //  getErgebnis{
+            //    Ergebnis.setErgebnis}}
             this.allSchueler[this.klassen[i].kid] = schuelerData;
           });
         }
@@ -56,8 +57,7 @@ export class EinzelComponent implements OnInit {
         console.error('GET-Service "klassen()" not reachable.');
       })
     });
-    
-     
+    // Funktion getBesteSchueler()
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
       {value: 1, viewValue: 'Michi', ergebnis: 5.3},
@@ -142,6 +142,13 @@ export class EinzelComponent implements OnInit {
       return false;
     }
   }
+ /* public getBesteSchueler() {
+    let maxCount = 5;
+    this.ergebnis.forEach((erg: Ergebnis) => {
+      
+    });
+  }*/
+  
   //Hinzufügen der LeistungId
   public save() {
     for(let i = 0; i < this.ergebnis.length; i++){
