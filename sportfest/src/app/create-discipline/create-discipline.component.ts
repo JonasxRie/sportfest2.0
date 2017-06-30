@@ -63,6 +63,7 @@ export class CreateDisciplineComponent implements OnInit {
               { tid: '0'}
           }
         ]
+      }
     },
     (err) => {
       console.error('GET-Service "disziplin(sportartID)" not reachable.');
