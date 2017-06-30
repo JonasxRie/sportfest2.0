@@ -174,12 +174,6 @@ export class SportfestService {
     return this.techService.postFormRequest('/user/password', encodeURI('currpw=' + oldPassword + '&newpw=' + newPassword));
   }
   /**
-   * Fragt ab, ob das Passwort valide ist.
-   */
-  public validatePassword(password: any): Observable<any> {
-    return this.techService.putRequest('/validatePassword', password);
-  }
-  /**
    * Gibt Informationen zu allen Datentypen (für Regelvariablen)
    */
   public datentypenHolen(): Observable<any> {
