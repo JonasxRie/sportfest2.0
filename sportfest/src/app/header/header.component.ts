@@ -109,8 +109,6 @@ export class HeaderComponent implements OnInit {
     } else {
       this.einzelExtended = false;
     }
-    this.trigger.closeMenu();
-    this.trigger.openMenu();
   }
   public extendTeam() {
     if (!this.teamExtended) {
@@ -119,7 +117,5 @@ export class HeaderComponent implements OnInit {
     } else {
       this.teamExtended = false;
     }
-    this.trigger.closeMenu();
-    this.trigger.openMenu();
   }
 }

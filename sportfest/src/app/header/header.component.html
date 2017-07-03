@@ -14,20 +14,26 @@
 
     <button #btn0 md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Sportarten</button>
     <md-menu #menu0="mdMenu">
-      <!--Einzel-->
-      <div class="kategorie" (click)="extendEinzel()">&nbsp;Einzel</div>
-        <div *ngIf="einzelExtended">
-          <div *ngFor="let einzel of disziplinenEinzel">
-            <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
+      <md-grid-list cols="2" rowHeight="2:1">
+        <md-grid-tile>
+          <!--Einzel-->
+          <div class="kategorie" (click)="extendEinzel()">&nbsp;Einzel</div>
+          <div *ngIf="einzelExtended">
+            <div *ngFor="let einzel of disziplinenEinzel">
+              <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
+            </div>
           </div>
-        </div>
-      <!--Team-->
-      <div class="kategorie" (click)="extendTeam()">&nbsp;Team</div>
-        <div *ngIf="teamExtended">
-          <div *ngFor="let team of disziplinenTeam">
-            <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
+        </md-grid-tile>
+        <md-grid-tile>
+          <!--Team-->
+          <div class="kategorie" (click)="extendTeam()">&nbsp;Team</div>
+          <div *ngIf="teamExtended">
+            <div *ngFor="let team of disziplinenTeam">
+              <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
+            </div>
           </div>
-        </div>
+        </md-grid-tile>
+      </md-grid-list>
     </md-menu>
     
     <button md-button *ngIf="username && role=='admin'" [mdMenuTriggerFor]="menu2">Admin</button>
