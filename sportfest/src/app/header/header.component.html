@@ -12,17 +12,17 @@
       <md-icon>home</md-icon>
     </button>
 
-    <button md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Sportarten</button>
+    <button #btn0 md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Sportarten</button>
     <md-menu #menu0="mdMenu">
       <!--Einzel-->
-      <div class="kategorie" (click)="einzelExtended=!einzelExtended">&nbsp;Einzel</div>
+      <div class="kategorie" (click)="extendEinzel()">&nbsp;Einzel</div>
         <div *ngIf="einzelExtended">
           <div *ngFor="let einzel of disziplinenEinzel">
             <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
           </div>
         </div>
       <!--Team-->
-      <div class="kategorie" (click)="teamExtended=!teamExtended">&nbsp;Team</div>
+      <div class="kategorie" (click)="extendTeam()">&nbsp;Team</div>
         <div *ngIf="teamExtended">
           <div *ngFor="let team of disziplinenTeam">
             <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>

@@ -2,8 +2,8 @@ import { PasswordChangeComponent } from './../password-change/password-change.co
 import { LoginComponent } from '../login/login.component';
 import { SportfestService } from '../sportfest.service';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { MdDialog } from "@angular/material";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog, MdMenuTrigger } from "@angular/material";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,9 @@ import { MdDialog } from "@angular/material";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  
+  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+  
   headerImage = '/assets/images/tribune2.png';
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
@@ -83,7 +85,6 @@ export class HeaderComponent implements OnInit {
     });
   }
   
-  
   public loadDD(){ //Lädt Disziplinen bei Klick auf Sportarten
     this.disziplinenEinzel=[];
     this.disziplinenTeam=[];
@@ -101,4 +102,24 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  public extendEinzel() {
+    if (!this.einzelExtended) {
+      this.einzelExtended = true;
+      this.teamExtended = false;
+    } else {
+      this.einzelExtended = false;
+    }
+    this.trigger.closeMenu();
+    this.trigger.openMenu();
+  }
+  public extendTeam() {
+    if (!this.teamExtended) {
+      this.teamExtended = true;
+      this.einzelExtended = false;
+    } else {
+      this.teamExtended = false;
+    }
+    this.trigger.closeMenu();
+    this.trigger.openMenu();
+  }
 }
