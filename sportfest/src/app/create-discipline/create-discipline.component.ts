@@ -30,7 +30,7 @@ export class CreateDisciplineComponent implements OnInit {
         expId:'',
         desc:'',
         typ: {
-          tid: '0'
+          tid: ''
         }
       }
     ];
@@ -66,7 +66,7 @@ export class CreateDisciplineComponent implements OnInit {
             desc:'',
             typ: 
               { 
-                tid: '0'
+                tid: ''
               }
           }
         ]
@@ -174,7 +174,7 @@ export class CreateDisciplineComponent implements OnInit {
       desc:'',
       typ: 
         { 
-          tid: '0'
+          tid: ''
         }
     }
     console.log("NEUE REGELVARIABLE", line);
