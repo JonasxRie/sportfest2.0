@@ -1,9 +1,9 @@
-import { PasswordChangeComponent } from './../password-change/password-change.component';
+import { PasswordChangeComponent } from '../password-change/password-change.component';
 import { LoginComponent } from '../login/login.component';
 import { SportfestService } from '../sportfest.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdDialog, MdMenuTrigger } from "@angular/material";
+import { Component, OnInit } from '@angular/core';
+import { MdDialog } from "@angular/material";
 
 @Component({
   selector: 'app-header',
@@ -11,9 +11,7 @@ import { MdDialog, MdMenuTrigger } from "@angular/material";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
-  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
-  
+    
   headerImage = '/assets/images/tribune2.png';
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
@@ -22,8 +20,6 @@ export class HeaderComponent implements OnInit {
   role: string;
   disziplinenTeam: Array<any> = [];
   disziplinenEinzel: Array<any> = [];
-  einzelExtended = false;
-  teamExtended = false;
 
   constructor(private router: Router,
               private dialog: MdDialog,
@@ -100,22 +96,5 @@ export class HeaderComponent implements OnInit {
       (err) => {
         console.error('GET-Service "disziplinen()" not reachable.');
       });
-  }
-
-  public extendEinzel() {
-    if (!this.einzelExtended) {
-      this.einzelExtended = true;
-      this.teamExtended = false;
-    } else {
-      this.einzelExtended = false;
-    }
-  }
-  public extendTeam() {
-    if (!this.teamExtended) {
-      this.teamExtended = true;
-      this.einzelExtended = false;
-    } else {
-      this.teamExtended = false;
-    }
   }
 }
