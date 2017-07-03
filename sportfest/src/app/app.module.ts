@@ -9,6 +9,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
+import {Location } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
@@ -84,7 +85,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
 
-export const BASEPATH = 'http://172.20.3.13:8080/backend'; 
+export const BASEPATH = location.host+'/backend';  
 // export const BASEPATH = 'http://localhost:8080/backend'; 
 
 @NgModule({

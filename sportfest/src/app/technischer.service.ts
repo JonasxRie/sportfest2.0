@@ -12,8 +12,6 @@ export class TechnischerService {
   constructor(private http: Http, private location:Location) {}
   
   private createAuthorizationHeader(): Headers {
-    console.log(location.host);
-    console.log(location.hostname);
     let header = new Headers();
     if(localStorage.getItem('token'))
       header.append('Authorization', 'Bearer ' + localStorage.getItem('token')); 
