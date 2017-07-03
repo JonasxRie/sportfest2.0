@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
-    localStorage.setItem('role', 'admin');
-    localStorage.setItem('username', 'admin');
     this.role = localStorage.getItem('role'); //Rolle aus dem Speicher laden (wichtig beim neuladen der Seite)
     this.username = localStorage.getItem('username'); //Benutzernamen aus dem speicher laden (wichtig beim neuladen der Seite)
   }
