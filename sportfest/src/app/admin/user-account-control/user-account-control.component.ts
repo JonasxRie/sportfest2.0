@@ -11,6 +11,7 @@ export class UserAccountControlComponent implements OnInit {
   users: any;
   selectedRole: string;
   username: string = '';
+  password: string = '';
 
   constructor(private sfService: SportfestService) { }
 
@@ -48,10 +49,12 @@ export class UserAccountControlComponent implements OnInit {
 
   public addUser() {
     if (this.selectedRole && this.username) {//Benutzername und Rolle wurde gesetzt
-      this.sfService.userHinzufuegen(this.username, this.selectedRole).subscribe(//Benutz in Datenbank einfügen
+      this.sfService.userHinzufuegen(this.username, this.password, this.selectedRole).subscribe(//Benutz in Datenbank einfügen
         (data) => {
           console.log(data);
           this.rollenLaden();//Existierende Benutzer neu laden
+          this.username = '';
+          this.selectedRole = null;
         },
         (err) => {
           console.error(err);
@@ -64,7 +67,7 @@ export class UserAccountControlComponent implements OnInit {
   }
 
   public resetPassword(user: any) {//Ausgewählten Benutzer löschen und mit initialpassword erstellen
-    this.deleteUser(user); 
+    this.deleteUser(user);
     this.username = user.name;
     this.selectedRole = user.role;
     this.addUser();

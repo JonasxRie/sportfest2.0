@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler, Ergebnis, Leistung } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung, VariableValue } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -16,9 +16,10 @@ export class EinzelComponent implements OnInit {
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [{sid: 0, vorname: "", name: "", kid: 0, gid: 0}];
   eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
-  sendeErgebnis: Leistung = {did: this.sportartID, kid: null, sid: null, ergebnisse: null, timestamp: null};
+  ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
+  sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
-  variablen = [];
+  variablen: Array<VariableValue> = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
@@ -28,6 +29,7 @@ export class EinzelComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.sportartID = params['did'];
+      this.sendeErgebnis.did = this.sportartID;
       this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
@@ -158,7 +160,16 @@ export class EinzelComponent implements OnInit {
   }*/
   
   //Hinzufügen der LeistungId
+  public setVarId(varId: number, index: number){
+    console.log("dsg");
+    this.ergebnisse[index]["var"].var_id = varId;
+  }
+  
+  
   public save() {
+    this.sendeErgebnis.ergebnisse = this.ergebnisse;
+    console.log(this.sendeErgebnis);
+    
     for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
       for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){
         if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
