@@ -34,6 +34,10 @@ export class EinzelComponent implements OnInit {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
         this.variablen = data.variablen;
+        for (let i = 0; i < this.variablen.length; i++){
+          this.ergebnisse[i]["var"].var_id = this.variablen[i].var_id;
+        }
+        
         // Daten in die entsprechenden Felder füllen
         console.log(data);
         
@@ -159,13 +163,7 @@ export class EinzelComponent implements OnInit {
     });
   }*/
   
-  //Hinzufügen der LeistungId
-  public setVarId(varId: number, index: number){
-    console.log("dsg");
-    //this.ergebnisse[index]["var"].var_id = varId;
-  }
-  
-  
+    
   public save() {
     this.sendeErgebnis.ergebnisse = this.ergebnisse;
     console.log(this.sendeErgebnis);

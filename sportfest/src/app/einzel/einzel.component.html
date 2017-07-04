@@ -36,7 +36,7 @@
         </td>
         <td>
           <div *ngFor="let v of variablen, let i=index">
-            <input mdInput type="text" [placeholder]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
+            <input mdInput type="text" [placeholder]="v.desc" [(ngModel)]="ergebnisse[i].wert" (onInit)="setVarId(v.varId, i)"/>
           </div>
         </td>
       </tr>
