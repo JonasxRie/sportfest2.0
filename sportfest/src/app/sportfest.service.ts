@@ -114,6 +114,12 @@ export class SportfestService {
   public disziplinSchreiben(disziplin: any): Observable<any> {
     return this.techService.putRequest('/disziplin/', disziplin);
   }
+  /**
+   * Löscht eine Disziplin
+   */
+  public deleteDisziplin(did: any): Observable<any> {
+    return this.techService.deleteRequest('/disziplin/' + did);
+  }
 
   /**
    * ***********************************************
