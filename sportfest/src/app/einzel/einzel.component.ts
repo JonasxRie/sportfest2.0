@@ -170,4 +170,4 @@ export class EinzelComponent implements OnInit {
       }
     }
   }
-
+}

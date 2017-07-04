@@ -74,7 +74,7 @@ export class TeamComponent implements OnInit {
     this.pointsB = null;
     //Hier senden
     //TODO richtiges JSON
-    this.sfService.ergebnisSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]);
+    // this.sfService.leistungSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]);
   }
   
   public setVarValues(vid: number, ki: number, vi: number, event: any) {
