@@ -12,18 +12,19 @@
       <md-icon>home</md-icon>
     </button>
 
-    <button md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Sportarten</button>
+    <!--Einzel-->
+    <button md-button [mdMenuTriggerFor]="menu0" (click)="loadDD()">Einzel - Sportarten</button>
     <md-menu #menu0="mdMenu">
-      <!--Einzel-->
-      <div class="kategorie">&nbsp;Einzel</div>
-        <div *ngFor="let einzel of disziplinenEinzel">
-          <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
-        </div>
-      <!--Team-->
-      <div class="kategorie">&nbsp;Team</div>
-        <div *ngFor="let team of disziplinenTeam">
-          <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
-        </div>
+      <div *ngFor="let einzel of disziplinenEinzel">
+        <button *ngIf="einzel.aktiviert" md-menu-item (click)="navigateToEinzel(einzel.did, einzel.name)">{{ einzel.name }}</button>
+      </div>
+    </md-menu>
+    <!--Team-->
+    <button md-button [mdMenuTriggerFor]="menu1" (click)="loadDD()">Team - Sportarten</button>
+    <md-menu #menu1="mdMenu">
+      <div *ngFor="let team of disziplinenTeam">
+        <button *ngIf="team.aktiviert" md-menu-item (click)="navigateToTeam(team.did, team.name)">{{ team.name }}</button>
+      </div>
     </md-menu>
     
     <button md-button *ngIf="username && role=='admin'" [mdMenuTriggerFor]="menu2">Admin</button>
@@ -31,12 +32,9 @@
       <button md-menu-item (click)="navigateToCreateDiscipline()">Disziplin anlegen</button>
       <button md-menu-item (click)="navigateToActivateDiscipline()">Disziplin aktivieren</button>
       <button md-menu-item (click)="navigateToUAC()">Benutzerverwaltung</button>
+      <button md-menu-item (click)="navigateToImportKlasse()">Import</button>
       <button md-menu-item (click)="navigateToCreateSportfest()">Neues Sportfest</button>
     </md-menu>
-    
-    <button md-button *ngIf="username && role=='admin'" (click)="navigateToImportKlasse()">
-      Import
-    </button>
     
     <span class="fill-remaining-space"></span>
 

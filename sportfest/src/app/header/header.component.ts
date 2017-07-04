@@ -1,4 +1,4 @@
-import { PasswordChangeComponent } from './../password-change/password-change.component';
+import { PasswordChangeComponent } from '../password-change/password-change.component';
 import { LoginComponent } from '../login/login.component';
 import { SportfestService } from '../sportfest.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { MdDialog } from "@angular/material";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+    
   headerImage = '/assets/images/tribune2.png';
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
               private sfService: SportfestService) { }
 
   ngOnInit() {
+    localStorage.setItem('role', 'admin');
+    localStorage.setItem('username', 'DEBUG');
     this.role = localStorage.getItem('role'); //Rolle aus dem Speicher laden (wichtig beim neuladen der Seite)
     this.username = localStorage.getItem('username'); //Benutzernamen aus dem speicher laden (wichtig beim neuladen der Seite)
   }
@@ -79,7 +81,6 @@ export class HeaderComponent implements OnInit {
     });
   }
   
-  
   public loadDD(){ //Lädt Disziplinen bei Klick auf Sportarten
     this.disziplinenEinzel=[];
     this.disziplinenTeam=[];
@@ -96,5 +97,4 @@ export class HeaderComponent implements OnInit {
         console.error('GET-Service "disziplinen()" not reachable.');
       });
   }
-
 }
