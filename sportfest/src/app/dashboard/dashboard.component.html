@@ -43,17 +43,15 @@
 
     <tr *ngFor="let teiln of visibleTeilnehmer, let i=index">
       <!-- TODO index mit plazierung ersetzen-->
-      <div *ngIf="i<=4 || extended">
-        <td class="left">
+        <td class="left" *ngIf="i<=4 || extended">
           {{teiln.rang}}
         </td>
-        <td class="left">
+        <td class="left" *ngIf="i<=4 || extended">
           {{ teiln.name }}
         </td>
-        <td class="left">
+        <td class="left" *ngIf="i<=4 || extended">
           {{ teiln.points }}
         </td>
-      </div>
     </tr>
   </table>
   <br>
