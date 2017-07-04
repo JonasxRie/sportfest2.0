@@ -75,8 +75,8 @@
                       <td width="50%">
                         <md-input-container *ngFor="let v of variablen, let i=index">
                           <input mdInput placeholder="v.name" type="text"
-                            [disabled]="inputDisabled(ergebnis[s.sid][v.var_id])"
-                            [(ngModel)]="ergebnis[s.sid][i].ergebnis">
+                            [disabled]="inputDisabled(ergebnis[s.sid].variable[v.var_id])"
+                            [(ngModel)]="eingetragenesErgebnis[s.sid].variable[i].ergebnis">
                         </md-input-container>
                       </td>
                     </tr>

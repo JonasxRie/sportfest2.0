@@ -15,7 +15,7 @@ export class EinzelComponent implements OnInit {
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [{sid: 0, vorname: "", name: "", kid: 0, gid: 0}];
-  eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
+  eingetragenesErgebnis = [{sid: 0, variable: [{ergebnis: 0, firstEntry: true}]}];
   ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
   sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
@@ -47,9 +47,9 @@ export class EinzelComponent implements OnInit {
           for(let i = 0; i < this.klassen.length; i++){
             this.sfService.schuelerPerDisziplin(this.klassen[i].kid, this.sportartID).subscribe((schuelerData: Schueler[]) => {
               //console.log(schuelerData);
-              for (let j = 0; j < schuelerData.length; j++){
+              for (let j = 1; j <= schuelerData.length; j++){
                 for (let k = 0; k < this.variablen.length; k++){
-                  this.eingetragenesErgebnis[schuelerData[j].sid][k] = { //Hier Ergebnis
+                  this.eingetragenesErgebnis[schuelerData[j].sid].variable[k] = { //Hier Ergebnis
                     ergebnis: null,
                     firstEntry: true
                   } 
@@ -166,10 +166,12 @@ export class EinzelComponent implements OnInit {
     
   public save() {
     this.sendeErgebnis.ergebnisse = this.ergebnisse;
+    //Timestamp setzen
     console.log(this.sendeErgebnis);
+    this.sfService.leistungSchreiben(this.sendeErgebnis);
     
-    for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
-      for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){
+    for(let i = 1; i <= this.eingetragenesErgebnis.length; i++){
+      for (let j = 0; j < this.eingetragenesErgebnis[i].variable.length; j++){
         if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
           this.eingetragenesErgebnis[i][j].firstEntry = false;
         }
