@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler, Ergebnis, Leistung } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -16,6 +16,7 @@ export class EinzelComponent implements OnInit {
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [{sid: 0, vorname: "", name: "", kid: 0, gid: 0}];
   eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
+  ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
   sendeErgebnis: Leistung = {did: this.sportartID, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
   variablen = [];
@@ -158,6 +159,11 @@ export class EinzelComponent implements OnInit {
   }*/
   
   //Hinzufügen der LeistungId
+  public setVarId(varId: number, index: number){
+    this.ergebnisse[index].var.var_id = varId;
+  }
+  
+  
   public save() {
     for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
       for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){

@@ -52,8 +52,8 @@ export interface Ergebnis {
 }
 
 export interface Ergebnis2 {
-    wert?: number,
-    var?: Array<VariableValue>
+    wert?: string,
+    var?: VariableValue
 }
 
 export interface VariableValue {
