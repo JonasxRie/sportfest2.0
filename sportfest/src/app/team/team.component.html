@@ -18,26 +18,22 @@
     <md-card>
       <!--Eingabe neuer Spielergebnisse-->
       <md-card-header>
-        <h4>Begegnung</h4>
+        <h4>Ergebnis eintragen</h4>
       </md-card-header>
       <md-card-content>
         <table>
           <tr>
-            <td *ngFor="let spalte of anzahlSpalten, let si=index">
-              <!-- fehler [(ngModel)]="ergebnisse[si].tid" -->
-              <md-select placeholder="Teilnehmer" >
+            <td>
+              <!-- fehler beim Binding - [(ngModel)]="ergebnisse[si].tid" -->
+              <md-select placeholder="Klasse" >
                 <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
                   {{ klasse.name }}
                 </md-option>
               </md-select>
-            </td>   
-          </tr>
-          <tr *ngFor="let variable of sportart.variablen, let vi=index">
-            <td *ngFor="let spalte of anzahlSpalten, let si=index">
+            </td>
+            <td *ngFor="let variable of sportart.variablen, let vi=index">
               <md-input-container>
-                  <input  type="text" mdInput
-                          placeholder="Punkte"
-                          (blur)="setVarValues(sportart.vaiablen.vid, si, vi, $event)">
+                  <input type="text" mdInput [placeholder]="variable.description">
               </md-input-container>
             </td>
           </tr>
