@@ -45,10 +45,10 @@ export class EinzelComponent implements OnInit {
               //console.log(schuelerData);
               for (let j = 0; j < schuelerData.length; j++){
                 for (let k = 0; k < this.variablen.length; k++){
-                  this.eingetragenesErgebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
-                    ergebnis: null,
-                    firstEntry: true
-                  } 
+                  //this.eingetragenesErgebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
+                  //  ergebnis: null,
+                  //  firstEntry: true
+                  //} 
                 };
               }
               //  getErgebnis{
