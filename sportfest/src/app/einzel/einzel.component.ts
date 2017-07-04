@@ -17,7 +17,7 @@ export class EinzelComponent implements OnInit {
   allSchueler: Array<Schueler> = [{sid: 0, vorname: "", name: "", kid: 0, gid: 0}];
   eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
   ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
-  sendeErgebnis: Leistung = {did: this.sportartID, kid: null, sid: null, ergebnisse: null, timestamp: null};
+  sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
   variablen = [];
   aufgeklappt: Array<boolean> = [] ;
@@ -29,6 +29,7 @@ export class EinzelComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.sportartID = params['did'];
+      this.sendeErgebnis.did = this.sportartID;
       this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
@@ -160,11 +161,15 @@ export class EinzelComponent implements OnInit {
   
   //Hinzufügen der LeistungId
   public setVarId(varId: number, index: number){
-    this.ergebnisse[index].var.var_id = varId;
+    console.log("dsg");
+    this.ergebnisse[index]["var"].var_id = varId;
   }
   
   
   public save() {
+    this.sendeErgebnis.ergebnisse = this.ergebnisse;
+    console.log(this.sendeErgebnis);
+    
     for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
       for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){
         if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){

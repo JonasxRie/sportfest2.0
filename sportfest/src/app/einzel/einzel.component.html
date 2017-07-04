@@ -18,25 +18,32 @@
     <h4>Ergebnis eintragen</h4>
   </md-card-header>
   <md-card-content>
-    <md-select placeholder="Klasse" [(ngModel)]="sendeErgebnis.kid">
-      <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
-        {{ klasse.name }}
-      </md-option>
-    </md-select>
-    
-    <md-select placeholder="Schüler" [(ngModel)]="sendeErgebnis.sid">
-      <md-option *ngFor="let s of allSchueler[sendeErgebnis.kid]" [value]="s.sid">
-        <!--<div *ngIf="s.kid==sendeErgebnis.kid"> </div>-->
-          {{ s.vorname }} {{ s.name }}
-       
-      </md-option>
-    </md-select>
-    
-    <div *ngFor="let v of variablen, let i=index">
-      <input type="text" mdInput [placeholder]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
-    </div>
-  
-    <button md-raised-button (click)="save()" color="accent">Speichern</button>
+    <table>
+      <tr>
+        <td>
+          <md-select placeholder="Klasse" [(ngModel)]="sendeErgebnis.kid">
+            <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
+              {{ klasse.name }}
+            </md-option>
+          </md-select>
+        </td>
+        <td>
+          <md-select placeholder="Schüler" [(ngModel)]="sendeErgebnis.sid">
+            <md-option *ngFor="let s of allSchueler[sendeErgebnis.kid]" [value]="s.sid">
+                {{ s.vorname }} {{ s.name }}
+            </md-option>
+          </md-select>
+        </td>
+        <td>
+          <div *ngFor="let v of variablen, let i=index">
+            <input mdInput type="text" [placeholder]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><button md-raised-button (click)="save()" color="accent">Speichern</button></td>
+      </tr>
+    </table>
   </md-card-content>
 </md-card>
 
