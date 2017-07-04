@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler, Ergebnis } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Ergebnis, Leistung } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -10,11 +10,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class EinzelComponent implements OnInit {
+  sportartID: number;
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [];
-  ergebnis: Array<Ergebnis> = [];
+  eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
+  sendeErgebnis: Leistung;
   bestenSchueler = [];
   variablen = [];
   aufgeklappt: Array<boolean> = [] ;
@@ -25,8 +27,8 @@ export class EinzelComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      let sportartID = params['did'];
-      this.sfService.disziplin(sportartID).subscribe((data: Disziplin) => {
+      this.sportartID = params['did'];
+      this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
         this.variablen = data.variablen;
@@ -37,11 +39,11 @@ export class EinzelComponent implements OnInit {
         this.sfService.klassen().subscribe((data: Klasse[]) => {
           this.klassen = data;
           for(let i = 0; i < this.klassen.length; i++){
-            this.sfService.schuelerPerDisziplin(this.klassen[i].kid, sportartID).subscribe((schuelerData: Schueler[]) => {
+            this.sfService.schuelerPerDisziplin(this.klassen[i].kid, this.sportartID).subscribe((schuelerData: Schueler[]) => {
               //console.log(schuelerData);
               for (let j = 0; j < schuelerData.length; j++){
                 for (let k = 0; k < this.variablen.length; k++){
-                  this.ergebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
+                  this.eingetragenesErgebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
                     ergebnis: null,
                     firstEntry: true
                   } 
@@ -157,13 +159,15 @@ export class EinzelComponent implements OnInit {
   
   //Hinzufügen der LeistungId
   public save() {
-    for(let i = 0; i < this.ergebnis.length; i++){
-      if(this.ergebnis[i] && this.ergebnis[i].ergebnis){
-        this.ergebnis[i].firstEntry = false;
-      }
-      else if(this.ergebnis[i]){
-        this.ergebnis[i].firstEntry = true;
+    for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
+      for (let j = 0; j < this.eingetragenesErgebnis[i].length; i++){
+        if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
+          this.eingetragenesErgebnis[i][j].firstEntry = false;
+        }
+        else if(this.eingetragenesErgebnis[i][j]){
+          this.eingetragenesErgebnis[i][j].firstEntry = true;
+        }
       }
     }
   }
-}
+
