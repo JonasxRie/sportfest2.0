@@ -1,13 +1,13 @@
 <md-card>
-    <h1>Herzlich Willkommen zum ATIW Sportfest!</h1>
+  <h1>Herzlich Willkommen zum ATIW Sportfest!</h1>
 </md-card>
 <br>
 <md-card>
-    <h3>Klassenranking</h3>
-    <table>
-      <tr>
-        <th>
-          <div>
+  <h3>Klassenranking</h3>
+  <table>
+    <tr>
+      <th>
+        <div>
           <p>Rang</p>
           <md-icon (click)="sortByRangRev()">
             keyboard_arrow_up
@@ -15,10 +15,10 @@
           <md-icon (click)="sortByRang()">
             keyboard_arrow_down
           </md-icon>
-          </div>
-        </th>
-        <th>
-          <div>
+        </div>
+      </th>
+      <th>
+        <div>
           <p>Klasse</p>
           <md-icon (click)="sortByKlasseRev()">
             keyboard_arrow_up
@@ -26,9 +26,9 @@
           <md-icon (click)="sortByKlasse()">
             keyboard_arrow_down
           </md-icon>
-          </div>
-        </th>
-        <th>
+        </div>
+      </th>
+      <th>
         <div>
           <p>Punkte</p>
           <md-icon (click)="sortByRangRev()">
@@ -36,26 +36,28 @@
           </md-icon>
           <md-icon (click)="sortByRang()">
             keyboard_arrow_down
-          </md-icon >
-          </div>
-        </th>
-      </tr>
-      <div *ngFor="let teiln of visibleTeilnehmer; let i=index">
-      <tr *ngIf="i<=4 || extended"><!-- TODO index mit plazierung ersetzen-->
+          </md-icon>
+        </div>
+      </th>
+    </tr>
+
+    <tr *ngFor="let teiln of visibleTeilnehmer, let i=index">
+      <!-- TODO index mit plazierung ersetzen-->
+      <div *ngIf="i<=4 || extended">
         <td class="left">
           {{teiln.rang}}
         </td>
-        <td class="left"> 
+        <td class="left">
           {{ teiln.name }}
         </td>
         <td class="left">
           {{ teiln.points }}
         </td>
-      </tr>
-        </div>
-    </table>
-    <button style="font-size: 1.1em; margin:0 auto;"
-          md-raised-button (click)="toggleVisible()" color="primary">
+      </div>
+    </tr>
+  </table>
+  </br>
+  <button style="font-size: 1.1em; margin:0 auto;" md-raised-button (click)="toggleVisible()" color="primary">
             {{btnText}}
         </button>
 </md-card>
