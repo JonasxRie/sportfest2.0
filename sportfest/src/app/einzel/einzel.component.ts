@@ -160,7 +160,7 @@ export class EinzelComponent implements OnInit {
   //Hinzufügen der LeistungId
   public save() {
     for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
-      for (let j = 0; j < this.eingetragenesErgebnis[i].length; i++){
+      for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){
         if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
           this.eingetragenesErgebnis[i][j].firstEntry = false;
         }
