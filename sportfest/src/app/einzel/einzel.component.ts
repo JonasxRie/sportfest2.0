@@ -165,6 +165,9 @@ export class EinzelComponent implements OnInit {
   
   
   public save() {
+    this.sendeErgebnis.ergebnisse = this.ergebnisse;
+    console.log(this.sendeErgebnis);
+    
     for(let i = 0; i < this.eingetragenesErgebnis.length; i++){
       for (let j = 0; j < this.eingetragenesErgebnis[i].length; j++){
         if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
