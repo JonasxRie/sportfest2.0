@@ -4,6 +4,7 @@ import { SportfestService } from '../../../sportfest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from "@angular/material";
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { MdDialog } from "@angular/material";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    
+
   headerImage = '/assets/images/tribune2.png';
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
@@ -22,31 +23,36 @@ export class HeaderComponent implements OnInit {
   disziplinenEinzel: Array<any> = [];
 
   constructor(private router: Router,
-              private dialog: MdDialog,
-              private sfService: SportfestService) { }
+    private dialog: MdDialog,
+    private sfService: SportfestService) { }
 
   ngOnInit() {
     this.role = localStorage.getItem('role'); // Rolle aus dem Speicher laden (wichtig beim neuladen der Seite)
     this.username = localStorage.getItem('username'); // Benutzernamen aus dem speicher laden (wichtig beim neuladen der Seite)
+    if (localStorage.getItem('init') == 'true') {
+      let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
+      dlg.componentInstance.setInitPw(true);
+      dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+    }
   }
- 
-  public loadDD(){ //Lädt Disziplinen bei Klick auf Sportarten
+
+  public loadDD() { //Lädt Disziplinen bei Klick auf Sportarten
     this.disziplinenEinzel = [];
     this.disziplinenTeam = [];
     this.sfService.disziplinen().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        if(data[i].teamleistung == false || data[i].did == 3) {
+        if (data[i].teamleistung == false || data[i].did == 3) {
           this.disziplinenEinzel.push(data[i]);
         } else {
           this.disziplinenTeam.push(data[i]);
         }
       }
     },
-    (err) => {
-      console.error('GET-Service "disziplinen()" not reachable.');
-    });
+      (err) => {
+        console.error('GET-Service "disziplinen()" not reachable.');
+      });
   }
-  
+
   public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -58,7 +64,13 @@ export class HeaderComponent implements OnInit {
     let dlg = this.dialog.open(LoginComponent); //Login-Overlay öffnen
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
     dlg.componentInstance.loginSubmit.subscribe(data => {
+      if (localStorage.getItem('init') == 'true') {
+        let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
+        dlg.componentInstance.setInitPw(true);
+        dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+      }
       dlg.close();
+      console.log('Login: ' + data);
       this.username = localStorage.getItem('username'); //Benutzernamen aus dem Local Storage auslesen
       this.role = localStorage.getItem('role'); //Rolle aus dem Local Storage auslesen
     });
@@ -85,11 +97,13 @@ export class HeaderComponent implements OnInit {
   public navigateToUAC() {
     this.router.navigate(['/uac']);
   }
+
   public openChangePassword() {
     let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
     dlg.componentInstance.pwCancel.subscribe(data => dlg.close());
     dlg.componentInstance.pwSave.subscribe(data => dlg.close());
   }
+
   public navigateToCreateSportfest() {
     this.router.navigate(['/createSportfest']);
   }

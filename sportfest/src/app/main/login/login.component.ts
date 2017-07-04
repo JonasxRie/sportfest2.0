@@ -41,6 +41,9 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('role', 'gast');
               localStorage.setItem('username', null);
             }
+            if(encryptpwd == Md5.hashStr('Atiw2017')){
+              localStorage.setItem('init','true');
+            }
             this.loginSubmit.emit(); //Overlay schließen wenn alle Request fertig sind
           },
             (err) => {

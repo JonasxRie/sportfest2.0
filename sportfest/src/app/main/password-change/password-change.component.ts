@@ -15,7 +15,8 @@ export class PasswordChangeComponent implements OnInit {
   recent: string;
   new: string;
   newSubmit: string;
-  
+  initPw: boolean = false;
+
   recentInvalid = false;
   msgRecentInvalid = 'Falsches Passwort';
   newNotEqual = false;
@@ -25,20 +26,23 @@ export class PasswordChangeComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   public cancel() {
     this.pwCancel.emit();
   }
   public save() {
+    if (!this.recent)
+      this.recent = 'Atiw2017';
     let oldEncrypt = Md5.hashStr(this.recent);
     let newEncrypt = Md5.hashStr(this.new);
     if (this.inputsValid()) {
-      this.sfService.changePassword(oldEncrypt,newEncrypt).subscribe((data) => {
-          console.log(data);
-        },
+      this.sfService.changePassword(oldEncrypt, newEncrypt).subscribe((data) => {
+        console.log(data);
+      },
         (err) => {
           console.error('GET-Service "changePassword()" not reachable.');
-      });
+        });
+        localStorage.setItem('init', 'false');
       this.pwSave.emit();
     }
   }
@@ -47,14 +51,19 @@ export class PasswordChangeComponent implements OnInit {
     let recentEncrypt = Md5.hashStr(this.recent);
     let newEncrypt = Md5.hashStr(this.new);
     let newSubmitEncrypt = Md5.hashStr(this.newSubmit);
-    
+
     let valid = true;
-    if (newEncrypt && newSubmitEncrypt && (newEncrypt === newSubmitEncrypt)) {
+    if (newEncrypt && newSubmitEncrypt && (newEncrypt === newSubmitEncrypt) && newEncrypt != Md5.hashStr('Atiw2017')) {
       this.newNotEqual = false;
     } else {
       valid = false;
       this.newNotEqual = true;
     }
     return valid;
+  }
+
+  public setInitPw(init: boolean) {
+    this.initPw = init;
+    console.log(this.initPw);
   }
 }
