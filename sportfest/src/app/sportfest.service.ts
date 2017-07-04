@@ -51,7 +51,7 @@ export class SportfestService {
   /**
    * Fügt einen User hinzu
    */
-  public userHinzufuegen(username: string, userrole: string): Observable<any> {
+  public userHinzufuegen(username: string, password: string, userrole: string): Observable<any> {
     return this.techService.postFormRequest('/user', encodeURI('name=' + username + '&role=' + userrole));
   }
   /**
