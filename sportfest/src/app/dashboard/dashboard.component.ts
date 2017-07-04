@@ -10,6 +10,7 @@ import { SportfestService } from '../sportfest.service';
 export class DashboardComponent implements OnInit {
   l: any;
   visibleTeilnehmer: any;
+  test: Array<any>;
   sorieterteTeilehmer: any;
   btnText="Alle Anzeigen";
   constructor(private router: Router, private sfService: SportfestService) { }
@@ -79,7 +80,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public toggleVisible() {
-    if (this.visibleTeilnehmer.length() > 5) {
+    if (this.visibleTeilnehmer.length > 5) {
       this.visibleTeilnehmer = this.sorieterteTeilehmer;
       this.btnText = "Weniger Anzeigen";
     } else {
