@@ -19,7 +19,7 @@ export class EinzelComponent implements OnInit {
   ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
   sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
-  variablen: Array<VariableValue> = [];
+  variablen = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
