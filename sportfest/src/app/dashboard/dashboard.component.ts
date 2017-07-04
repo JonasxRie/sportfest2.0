@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   visibleTeilnehmer: any;
   sorieterteTeilehmer: any;
   btnText="Alle Anzeigen";
+  extended = false;
   constructor(private router: Router, private sfService: SportfestService) { }
 
   ngOnInit() {
@@ -30,7 +31,6 @@ export class DashboardComponent implements OnInit {
         i++;
       }
       this.sorieterteTeilehmer = this.visibleTeilnehmer;
-      this.toggleVisible();
     });
   }
 
@@ -81,16 +81,14 @@ export class DashboardComponent implements OnInit {
     }
   }
   public toggleVisible() {
-    if (this.visibleTeilnehmer) {
-      console.log(this.visibleTeilnehmer.length);
-    if (this.visibleTeilnehmer.length <= 5) {
-      this.visibleTeilnehmer = this.sorieterteTeilehmer;
+    if (!this.extended) {
+      this.extended=true;
       this.btnText = "Weniger Anzeigen";
     } else {
-      this.visibleTeilnehmer = this.sorieterteTeilehmer.slice(0, 4);
+      this.extended=false;
       this.btnText = "Alle Anzeigen";
     }
-  }
+  
   }
   
   public sortByKlasse() {
