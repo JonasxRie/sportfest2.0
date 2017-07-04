@@ -21,8 +21,13 @@ export class DashboardComponent implements OnInit {
       this.visibleTeilnehmer.forEach(element => {
         element.rang = 1;
       });
+<<<<<<< HEAD
+      console.log(this.teilnehmer);
+    this.sortByRang(); 
+=======
       console.log(this.visibleTeilnehmer);
       this.sortByRang();
+>>>>>>> 8c4dfedb64daf7c6d711ccd5c0790ae8ce54ca93
 
       this.l = this.visibleTeilnehmer.length;
       while (i < this.l) {

@@ -17,8 +17,11 @@ export class ActivateDisciplineComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-      this.sfService.disziplinen().subscribe((data: Disziplin[]) => {
+    this.disziplinLaden();
+  }
+  
+  public disziplinLaden(){
+    this.sfService.disziplinen().subscribe((data: Disziplin[]) => {
         this.disziplinen=data;
         if (!this.disziplinen) {
           this.disziplinen = [];
@@ -51,6 +54,7 @@ export class ActivateDisciplineComponent implements OnInit {
     this.sfService.deleteDisziplin(dis.did).subscribe(
       (data) => {
         console.log(data);
+        this.disziplinLaden();
       },
       (err) => {
         console.log(err);
