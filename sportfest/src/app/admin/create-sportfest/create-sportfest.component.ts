@@ -1,6 +1,6 @@
-import { AreYouSureComponent } from './../are-you-sure/are-you-sure.component';
+import { AreYouSureComponent } from '../../main/are-you-sure/are-you-sure.component';
 import { MdDialog } from '@angular/material';
-import { SportfestService } from './../sportfest.service';
+import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

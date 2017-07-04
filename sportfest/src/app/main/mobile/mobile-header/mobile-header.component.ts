@@ -1,7 +1,7 @@
-import { PasswordChangeComponent } from './../password-change/password-change.component';
+import { PasswordChangeComponent } from '../../password-change/password-change.component';
 import { MdDialog } from '@angular/material';
-import { SportfestService } from 'app/sportfest.service';
-import { LoginComponent } from '../login/login.component';
+import { SportfestService } from '../../../sportfest.service';
+import { LoginComponent } from '../../login/login.component';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 

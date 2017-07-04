@@ -23,8 +23,9 @@
       <md-card-content>
         <table>
           <tr>
-            <td *ngFor="let spalte of anzahlSpalten, let si=index"><!-- fehler -->
-              <md-select placeholder="Teilnehmer" [(ngModel)]="ergebnisse[si].tid">
+            <td *ngFor="let spalte of anzahlSpalten, let si=index">
+              <!-- fehler [(ngModel)]="ergebnisse[si].tid" -->
+              <md-select placeholder="Teilnehmer" >
                 <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
                   {{ klasse.name }}
                 </md-option>

@@ -1,7 +1,7 @@
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../login/login.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { SportfestService } from '../sportfest.service';
+import { SportfestService } from '../../../sportfest.service';
 
 @Component({
   selector: 'app-mobile-menu-list',

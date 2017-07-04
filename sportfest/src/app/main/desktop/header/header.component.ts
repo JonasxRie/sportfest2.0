@@ -1,6 +1,6 @@
-import { PasswordChangeComponent } from '../password-change/password-change.component';
-import { LoginComponent } from '../login/login.component';
-import { SportfestService } from '../sportfest.service';
+import { PasswordChangeComponent } from '../../password-change/password-change.component';
+import { LoginComponent } from '../../login/login.component';
+import { SportfestService } from '../../../sportfest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from "@angular/material";

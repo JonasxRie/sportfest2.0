@@ -126,7 +126,15 @@ export class SportfestService {
    * Ergebnis Resource
    * ***********************************************
    */
+  
+  /**
+   * Schreibt ein Ergebnis
+   */
+  public leistungSchreiben(ergebnis: any): Observable<any> {
+    return this.techService.putRequest('/leistung', ergebnis);
+  }
 
+//Veraltet
   /**
    * Gibt die Ergebnisse zur Disziplin mit der übergebenen ID zuück
    */
@@ -139,12 +147,7 @@ export class SportfestService {
   public ergebnisseAendern(did: number, eid: number): Observable<any> {
     return this.techService.getRequest('/ergebnis' + did + '/' + eid);
   }
-  /**
-   * Schreibt ein Ergebnis
-   */
-  public ergebnisSchreiben(did: number, ergebnis: any): Observable<any> {
-    return this.techService.putRequest('/ergebnis' + did, ergebnis);
-  }
+  
   /**
    * Löscht ein Ergebnis
    */

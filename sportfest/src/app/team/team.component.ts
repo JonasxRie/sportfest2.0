@@ -30,7 +30,7 @@ export class TeamComponent implements OnInit {
   
   ergebnisse = [
     {
-      tid:'',
+      tid: '',
       variablen: [
         {
           id: '',

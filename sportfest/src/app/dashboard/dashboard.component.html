@@ -40,7 +40,7 @@
           </div>
         </th>
       </tr>
-      <tr *ngFor="let teiln of teilnehmer"><!-- TODO index mit plazierung ersetzen-->
+      <tr *ngFor="let teiln of visibleTeilnehmer"><!-- TODO index mit plazierung ersetzen-->
         <td class="left">
           {{teiln.rang}}
         </td>
@@ -52,11 +52,8 @@
         </td>
       </tr>
     </table>
-    <!--<md-list>
-      <md-list-item *ngFor="let teiln of teilnehmer">
-        <md-icon md-list-icon>car</md-icon>
-        <h4 md-line>{{teiln.name}}</h4>
-        <p md-line> {{teiln.value}} </p>
-      </md-list-item>
-    </md-list>-->
+    <button style="font-size: 1.1em"
+          md-raised-button (click)="toggleVisible()" color="primary">
+            {{btnText}}
+        </button>
 </md-card>
