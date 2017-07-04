@@ -83,15 +83,16 @@ export class DashboardComponent implements OnInit {
   public toggleVisible() {
     if (this.visibleTeilnehmer) {
       console.log(this.visibleTeilnehmer.length);
-      if (this.visibleTeilnehmer.length > 5) {
-        this.visibleTeilnehmer = this.sorieterteTeilehmer;
-        this.btnText = "Weniger Anzeigen";
-      } else {
-        this.visibleTeilnehmer = this.sorieterteTeilehmer.slice(0, 4);
-        this.btnText = "Alle Anzeigen";
-      }
+    if (this.visibleTeilnehmer.length <= 5) {
+      this.visibleTeilnehmer = this.sorieterteTeilehmer;
+      this.btnText = "Weniger Anzeigen";
+    } else {
+      this.visibleTeilnehmer = this.sorieterteTeilehmer.slice(0, 4);
+      this.btnText = "Alle Anzeigen";
     }
   }
+  }
+  
   public sortByKlasse() {
     if (this.visibleTeilnehmer) {
       this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
