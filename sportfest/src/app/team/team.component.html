@@ -13,7 +13,6 @@
   </md-card-content>
 </md-card>
 
-
 <md-card>
   <md-card-content>
     <md-card>
@@ -24,18 +23,20 @@
       <md-card-content>
         <table>
           <tr>
-            <td *ngFor="let s of anzahlSpalten, let i=index"><!-- fehler -->
-              <md-select placeholder="Teilnehmer" [(ngModel)]="ergebnisse[i].tid">
+            <td *ngFor="let spalte of anzahlSpalten, let si=index"><!-- fehler -->
+              <md-select placeholder="Teilnehmer" [(ngModel)]="ergebnisse[si].tid">
                 <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
                   {{ klasse.name }}
                 </md-option>
               </md-select>
             </td>   
           </tr>
-          <tr *ngFor="let v of sportart.variablen, let vi=index">
-            <td *ngFor="let s of anzahlSpalten, let ki=index"> <!-- fehler -->
+          <tr *ngFor="let variable of sportart.variablen, let vi=index">
+            <td *ngFor="let spalte of anzahlSpalten, let si=index"> <!-- fehler -->
               <md-input-container>
-                  <input type="text" mdInput placeholder="Punkte"(blur)="setVarValues(sportart.vaiablen.vid, ki, vi, $event)"
+                  <input  type="text" mdInput
+                          placeholder="Punkte"
+                          (blur)="setVarValues(sportart.vaiablen.vid, si, vi, $event)">
               </md-input-container>
             </td>
           </tr>
