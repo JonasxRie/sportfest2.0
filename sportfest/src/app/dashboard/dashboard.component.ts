@@ -49,14 +49,13 @@ teilnehmer : any;
   constructor(private router: Router, private sfService: SportfestService) { }
 
   ngOnInit() {
+    let i = 0;
     this.sfService.klassen().subscribe(data=>{
       this.teilnehmer = data;
       this.teilnehmer.forEach(element => {
         element.rang=1;
       });
-    });
     this.sortByRang(); 
-    let i = 0;
 
     this.l = this.teilnehmer.length;
     while(i < this.l){
@@ -64,6 +63,7 @@ teilnehmer : any;
       i++;
     }
     this.sorieterteTeilehmer=this.teilnehmer;
+    });
   }
 
   public sortByRang(){
