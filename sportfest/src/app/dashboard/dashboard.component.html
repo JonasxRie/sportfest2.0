@@ -40,7 +40,8 @@
           </div>
         </th>
       </tr>
-      <tr *ngFor="let teiln of visibleTeilnehmer"><!-- TODO index mit plazierung ersetzen-->
+      <div *ngFor="let teiln of visibleTeilnehmer; let i=index">
+      <tr *ngIf="i<=4 || extended"><!-- TODO index mit plazierung ersetzen-->
         <td class="left">
           {{teiln.rang}}
         </td>
@@ -51,8 +52,9 @@
           {{ teiln.points }}
         </td>
       </tr>
+        </div>
     </table>
-    <button style="font-size: 1.1em"
+    <button style="font-size: 1.1em; margin:0 auto;"
           md-raised-button (click)="toggleVisible()" color="primary">
             {{btnText}}
         </button>
