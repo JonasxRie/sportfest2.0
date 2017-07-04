@@ -41,7 +41,7 @@
       </th>
     </tr>
 
-    <tr *ngFor="let teiln of visibleTeilnehmer, let i=index" *ngIf="i<=4 || extended">
+    <tr *ngFor="let teiln of visibleTeilnehmer, let i=index">
       <!-- TODO index mit plazierung ersetzen-->
         <td class="left">
           {{teiln.rang}}
