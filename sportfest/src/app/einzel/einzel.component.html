@@ -27,7 +27,7 @@
     <md-select placeholder="Schüler" [(ngModel)]="sendeErgebnis.sid"><!--Schüler-->
       <md-option *ngFor="let s of allSchueler" [value]="s.sid">
         <div *ngIf="s.kid==sendeErgebnis.kid">
-          {{ s.vorname }} {{ s.nachname }}
+          {{ s.vorname }} {{ s.name }}
         </div>
       </md-option>
     </md-select>
