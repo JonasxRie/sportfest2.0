@@ -22,12 +22,9 @@ export class TeamComponent implements OnInit {
   selectedClassB: number;
   pointsA: number;
   pointsB: number;
-
   sortRevA = true;
   sortRevB = true;
-  
-  anzahlSpalten;
-  
+    
   ergebnisse = [
     {
       tid: '',
@@ -49,8 +46,6 @@ export class TeamComponent implements OnInit {
       this.sfService.disziplin(this.did).subscribe((data: Disziplin) => {
         this.sportart = data;
         console.log(this.sportart);
-        this.anzahlSpalten = new Array<number>(this.sportart.kontrahentenAnzahl);
-        console.log(this.anzahlSpalten);
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -65,21 +60,6 @@ export class TeamComponent implements OnInit {
     });
   }
   
-  sendTeamErgebnis(classA: number, classB: number, pointsA: number, pointsB: number){
-    //Clear Inputs
-    this.selectedClassA = null;
-    this.selectedClassB = null;
-    this.pointsA = null;
-    this.pointsB = null;
-    //Hier senden
-    //TODO richtiges JSON
-    // this.sfService.leistungSchreiben(this.did, [{classA, pointsA}, {classB, pointsB}]);
-  }
-  
-  public setVarValues(vid: number, ki: number, vi: number, event: any) {
-    console.log(event);
-  }
-
   // Sortieren
   switchSortA(){
     this.sortRevA = !this.sortRevA;
