@@ -1,5 +1,6 @@
 import { RouterModule, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { SportfestService } from '../sportfest.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,48 +9,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 l: any;
-
-  teilnehmer = [
-    {
-      name: 'FS161',
-      value: 12,
-      rang:1
-    },
-    {
-      name: 'FV151',
-      value: 12.5,
-      rang:1
-    },
-    {
-      name: 'FS152',
-      value: 1,
-      rang:1
-    },
-    {
-      name: 'FS151',
-      value: 123,
-      rang:1
-    },
-    {
-      name: 'FI152',
-      value: 111,
-      rang:1
-    },
-    {
-      name: 'FI151',
-      value: 12.5,
-      rang:1
-    }
-  ];
+teilnehmer : any;
+  // teilnehmer = [
+  //   {
+  //     name: 'FS161',
+  //     points: 12,
+  //     rang:1
+  //   },
+  //   {
+  //     name: 'FV151',
+  //     points: 12.5,
+  //     rang:1
+  //   },
+  //   {
+  //     name: 'FS152',
+  //     points: 1,
+  //     rang:1
+  //   },
+  //   {
+  //     name: 'FS151',
+  //     points: 123,
+  //     rang:1
+  //   },
+  //   {
+  //     name: 'FI152',
+  //     points: 111,
+  //     rang:1
+  //   },
+  //   {
+  //     name: 'FI151',
+  //     points: 12.5,
+  //     rang:1
+  //   }
+  // ];
 
   sorieterteTeilehmer: any;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sfService: SportfestService) { }
 
   ngOnInit() {
-    this.sortByRang(); 
     let i = 0;
+    this.sfService.klassen().subscribe(data=>{
+      this.teilnehmer = data;
+      this.teilnehmer.forEach(element => {
+        element.rang=1;
+      });
+    this.sortByRang(); 
 
     this.l = this.teilnehmer.length;
     while(i < this.l){
@@ -57,18 +63,19 @@ l: any;
       i++;
     }
     this.sorieterteTeilehmer=this.teilnehmer;
+    });
   }
 
   public sortByRang(){
     this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
-      if(n1.value>n2.value){
+      if(n1.points>n2.points){
         return -1;
       }
-      if(n1.value<n2.value){
+      if(n1.points<n2.points){
         return 1;
       }
 
-      if(n1.value==n2.value){
+      if(n1.points==n2.points){
         if(n1.name>n2.name){
           return 1;
         }
@@ -83,14 +90,14 @@ l: any;
 
 public sortByRangRev(){
     this.teilnehmer = this.teilnehmer.sort((n1,n2)=>{
-      if(n1.value>n2.value){
+      if(n1.points>n2.points){
         return 1;
       }
-      if(n1.value<n2.value){
+      if(n1.points<n2.points){
         return -1;
       }
 
-      if(n1.value==n2.value){
+      if(n1.points==n2.points){
         if(n1.name>n2.name){
           return -1;
         }
