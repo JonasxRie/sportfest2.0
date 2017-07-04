@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
 
   public toggleVisible() {
       console.log(this.visibleTeilnehmer.length);
-    if (this.visibleTeilnehmer.length > 5) {
+    if (this.visibleTeilnehmer.length <= 5) {
       this.visibleTeilnehmer = this.sorieterteTeilehmer;
       this.btnText = "Weniger Anzeigen";
     } else {
