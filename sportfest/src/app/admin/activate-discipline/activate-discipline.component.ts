@@ -46,5 +46,16 @@ export class ActivateDisciplineComponent implements OnInit {
   public editDiscipline(dis: Disziplin) {
     this.router.navigate(['/createDiscipline/' + dis.did]);
   }
+  
+  public deleteDiscipline(dis: Disziplin) {
+    this.sfService.deleteDisziplin(dis.did).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
 }

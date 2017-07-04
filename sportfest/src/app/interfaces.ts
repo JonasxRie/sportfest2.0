@@ -64,6 +64,6 @@ export interface Leistung {
     did?: number,
     kid?: number,
     sid?: number,
-    ergebnisse: Array<Ergebnis>,
+    ergebnisse: Array<Ergebnis2>,
     timestamp: string
 }
