@@ -55,6 +55,7 @@ teilnehmer : any;
       this.teilnehmer.forEach(element => {
         element.rang=1;
       });
+      console.log(this.teilnehmer);
     this.sortByRang(); 
 
     this.l = this.teilnehmer.length;
