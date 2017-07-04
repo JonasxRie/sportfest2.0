@@ -14,7 +14,7 @@ export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
   klassen: Array<Klasse> = [];
-  allSchueler: Array<Schueler> = [];
+  allSchueler: Array<Schueler> = [{sid: null, vorname: null, name: null, kid: null, gid: null}];
   eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
   sendeErgebnis: Leistung = {did: this.sportartID, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
