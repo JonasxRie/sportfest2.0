@@ -1,5 +1,6 @@
 import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-user-account-control',
@@ -49,7 +50,8 @@ export class UserAccountControlComponent implements OnInit {
 
   public addUser() {
     if (this.selectedRole && this.username && this.password) {//Benutzername und Rolle wurde gesetzt
-      this.sfService.userHinzufuegen(this.username, this.password, this.selectedRole).subscribe(//Benutz in Datenbank einfügen
+      let encryptpwd = Md5.hashStr(this.password);
+      this.sfService.userHinzufuegen(this.username, encryptpwd.toString(), this.selectedRole).subscribe(//Benutz in Datenbank einfügen
         (data) => {
           console.log(data);
           this.rollenLaden();//Existierende Benutzer neu laden
