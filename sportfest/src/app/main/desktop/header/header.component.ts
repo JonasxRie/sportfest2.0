@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   headerImage = '/assets/images/tribune2.png';
   atiwImage = '/assets/images/atiwlogo.png';
   title = 'Sportfest';
-  year = '2017';
+  year = new Date().getFullYear();
   username: string;
   role: string;
   disziplinenTeam: Array<any> = [];
