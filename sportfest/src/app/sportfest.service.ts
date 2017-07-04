@@ -82,7 +82,7 @@ export class SportfestService {
   }
   
   public schuelerPerDisziplin(classId: number, disziplinId: number){
-    return this.techService.getRequest('/schueler/klasse/' + classId + '/disziplin/' + disziplinId);
+    return this.techService.getRequest('/schueler/' + classId + '/' + disziplinId);
   }
   /**
    * ***********************************************
