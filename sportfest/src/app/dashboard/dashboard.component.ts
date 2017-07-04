@@ -91,6 +91,7 @@ export class DashboardComponent implements OnInit {
       this.btnText = "Alle Anzeigen";
     }
   }
+  }
   
   public sortByKlasse() {
     if (this.visibleTeilnehmer) {
