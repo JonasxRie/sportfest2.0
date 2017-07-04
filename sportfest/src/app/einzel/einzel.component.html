@@ -32,7 +32,9 @@
       </md-option>
     </md-select>
     
-    <div><!--Variablen--></div>
+    <div *ngFor="let v of variablen, let i=index">
+      <input type="text" [placeholer]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
+    </div>
   
     <button md-raised-button (click)="save()" color="accent">Speichern</button>
   </md-card-content>
