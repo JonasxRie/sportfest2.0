@@ -73,10 +73,10 @@
                         <span>{{ s.vorname }} {{ s.name }}:</span>
                       </td>
                       <td width="50%">
-                        <md-input-container *ngFor="let v of variablen">
+                        <md-input-container *ngFor="let v of variablen, let i=index">
                           <input mdInput placeholder="v.name" type="text"
                             [disabled]="inputDisabled(ergebnis[s.sid][v.var_id])"
-                            [(ngModel)]="ergebnis[s.sid][v.var_id].ergebnis">
+                            [(ngModel)]="ergebnis[s.sid][i].ergebnis">
                         </md-input-container>
                       </td>
                     </tr>
