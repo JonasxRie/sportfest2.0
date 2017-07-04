@@ -16,7 +16,7 @@ export class EinzelComponent implements OnInit {
   klassen: Array<Klasse> = [];
   allSchueler: Array<Schueler> = [];
   eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
-  sendeErgebnis: Leistung;
+  sendeErgebnis: Leistung = {did: this.sportartID, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
   variablen = [];
   aufgeklappt: Array<boolean> = [] ;
