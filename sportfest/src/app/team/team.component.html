@@ -33,8 +33,12 @@
             </td>
             <td *ngFor="let variable of sportart.variablen, let vi=index">
               <md-input-container>
-                  <input type="text" mdInput [placeholder]="variable.description">
+                  <input type="text" mdInput [placeholder]="variable.desc" [(ngModel)]="ergebnisse[vi].wert" >
               </md-input-container>
+            </td>
+            
+            <td>
+              <md-icon (click)="sendeLeistung()" >save</md-icon>
             </td>
           </tr>
         </table>

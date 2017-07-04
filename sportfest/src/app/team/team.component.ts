@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler } from './../interfaces';
+import { Disziplin, Klasse, Schueler, Leistung, Ergebnis2 } from './../interfaces';
 import { SportfestService } from './../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -12,6 +12,8 @@ export class TeamComponent implements OnInit {
   sportart: Disziplin = {};
   beschreibung: string = '';
   klassen: Array<Klasse> = [];
+  sendeErgebnis: Leistung;
+  ergebnisse: Array<Ergebnis2>;
   
   did: number;  
 
@@ -25,17 +27,7 @@ export class TeamComponent implements OnInit {
   sortRevA = true;
   sortRevB = true;
     
-  ergebnisse = [
-    {
-      tid: '',
-      variablen: [
-        {
-          id: '',
-          value: ''
-        }
-      ]
-    }
-  ];
+  
 
   constructor(private route: ActivatedRoute, 
               private sfService: SportfestService) { }
@@ -46,6 +38,8 @@ export class TeamComponent implements OnInit {
       this.sfService.disziplin(this.did).subscribe((data: Disziplin) => {
         this.sportart = data;
         console.log(this.sportart);
+        this.sendeErgebnis = {did: this.did, kid: null, ergebnisse: null, timestamp: null};
+        this.ergebnisse = new Array(this.sportart.variablen.length);
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -58,6 +52,11 @@ export class TeamComponent implements OnInit {
         console.error('GET-Service "klassen()" not reachable.');
       })
     });
+  }
+  
+  public sendeLeistung() {
+    this.sendeErgebnis.ergebnisse = this.ergebnisse;
+    console.log(this.sendeErgebnis);
   }
   
   // Sortieren

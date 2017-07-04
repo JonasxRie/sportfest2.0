@@ -125,8 +125,6 @@ export class CreateDisciplineComponent implements OnInit {
       ],
       "kontrahentenAnzahl": 0
     }*/
-    console.log("DisAnl - this.rulesVar", this.rulesVar);
-    console.log("DisAnl - this.rules", this.rules);
     // Idizees der Regeln setzen
     for (let i = 0; i < this.rules.length; i++) {
       this.rules[i].index = (i + 1) + '';
@@ -139,24 +137,23 @@ export class CreateDisciplineComponent implements OnInit {
       aktiviert: true,
       teamleistung: this.teamleistung,
       variablen: this.rulesVar,
-      // [
-      //   {
-      //     var_id: 2000,
-      //     name: "Weite",
-      //     desc: "Weite in cm",
-      //     expressionParameter: "w",
-      //     typ: {
-      //       tid: 100,
-      //       name: "Ganzzahl",
-      //       desc: "Einfacher Zahlenwert",
-      //       zustaende: [],
-      //       typ: "int"
-      //     }
-      //   }
-      // ],   
+      /* [
+          {
+            var_id: 2000,
+            name: "Weite",
+            desc: "Weite in cm",
+            expressionParameter: "w",
+            typ: {
+              tid: 100,
+              name: "Ganzzahl",
+              desc: "Einfacher Zahlenwert",
+              zustaende: [],
+              typ: "int"
+            }
+          }
+      ], */   
       regeln: this.rules,  
     }
-    console.log("disziplinDTO", disziplinDTO);
     this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
       (data) => {
         console.log(data);
@@ -177,7 +174,6 @@ export class CreateDisciplineComponent implements OnInit {
           tid: ''
         }
     }
-    console.log("NEUE REGELVARIABLE", line);
     this.rulesVar.push(line);
   }
   
