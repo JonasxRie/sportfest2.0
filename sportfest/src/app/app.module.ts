@@ -9,11 +9,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
-<<<<<<< HEAD
 import { Location } from '@angular/common';
-=======
-import {Location } from '@angular/common';
->>>>>>> e0dc299c0b5dc877a1b2b8a58768c99f4c17c0a6
 
 import { AppComponent } from './app.component';
 import { EinzelComponent } from './einzel/einzel.component';
