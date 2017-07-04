@@ -25,7 +25,7 @@
     </md-select>
     
     <md-select placeholder="Schüler" [(ngModel)]="sendeErgebnis.sid">
-      <md-option mdInput *ngFor="let s of allSchueler[sendeErgebnis.kid]" [value]="s.sid">
+      <md-option *ngFor="let s of allSchueler[sendeErgebnis.kid]" [value]="s.sid">
         <!--<div *ngIf="s.kid==sendeErgebnis.kid"> </div>-->
           {{ s.vorname }} {{ s.name }}
        
@@ -33,7 +33,7 @@
     </md-select>
     
     <div *ngFor="let v of variablen, let i=index">
-      <input type="text" [placeholer]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
+      <input type="text" mdInput [placeholder]="v.desc" [(ngModel)]="ergebnisse[i].wert" (on-init)="setVarId(v.varId, i)"/>
     </div>
   
     <button md-raised-button (click)="save()" color="accent">Speichern</button>
