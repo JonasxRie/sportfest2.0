@@ -162,7 +162,7 @@ export class EinzelComponent implements OnInit {
   //Hinzufügen der LeistungId
   public setVarId(varId: number, index: number){
     console.log("dsg");
-    this.ergebnisse[index]["var"].var_id = varId;
+    //this.ergebnisse[index]["var"].var_id = varId;
   }
   
   
