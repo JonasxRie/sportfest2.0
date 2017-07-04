@@ -1,4 +1,4 @@
-import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung, VariableValue } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -19,7 +19,7 @@ export class EinzelComponent implements OnInit {
   ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
   sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
   bestenSchueler = [];
-  variablen = [];
+  variablen: Array<VariableValue> = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
