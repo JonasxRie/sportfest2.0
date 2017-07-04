@@ -35,50 +35,53 @@ export class DashboardComponent implements OnInit {
   }
 
   public sortByRang() {
-    this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
-      if (n1.points > n2.points) {
-        return -1;
-      }
-      if (n1.points < n2.points) {
-        return 1;
-      }
-
-      if (n1.points == n2.points) {
-        if (n1.name > n2.name) {
+    if (this.visibleTeilnehmer) {
+      this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
+        if (n1.points > n2.points) {
+          return -1;
+        }
+        if (n1.points < n2.points) {
           return 1;
         }
 
-        if (n1.name < n2.name) {
-          return -1;
-        }
-      }
-      return 0;
-    });
-  }
+        if (n1.points == n2.points) {
+          if (n1.name > n2.name) {
+            return 1;
+          }
 
+          if (n1.name < n2.name) {
+            return -1;
+          }
+        }
+        return 0;
+      });
+    }
+  }
   public sortByRangRev() {
-    this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
-      if (n1.points > n2.points) {
-        return 1;
-      }
-      if (n1.points < n2.points) {
-        return -1;
-      }
-
-      if (n1.points == n2.points) {
-        if (n1.name > n2.name) {
+    if (this.visibleTeilnehmer) {
+      this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
+        if (n1.points > n2.points) {
+          return 1;
+        }
+        if (n1.points < n2.points) {
           return -1;
         }
 
-        if (n1.name < n2.name) {
-          return 1;
-        }
-      }
-      return 0;
-    });
-  }
+        if (n1.points == n2.points) {
+          if (n1.name > n2.name) {
+            return -1;
+          }
 
+          if (n1.name < n2.name) {
+            return 1;
+          }
+        }
+        return 0;
+      });
+    }
+  }
   public toggleVisible() {
+    if (this.visibleTeilnehmer) {
       console.log(this.visibleTeilnehmer.length);
     if (this.visibleTeilnehmer.length <= 5) {
       this.visibleTeilnehmer = this.sorieterteTeilehmer;
@@ -88,29 +91,31 @@ export class DashboardComponent implements OnInit {
       this.btnText = "Alle Anzeigen";
     }
   }
-
+  
   public sortByKlasse() {
-    this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
-      if (n1.name > n2.name) {
-        return -1;
-      }
-      if (n1.name < n2.name) {
-        return 1;
-      }
-      return 0;
-    });
+    if (this.visibleTeilnehmer) {
+      this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
+        if (n1.name > n2.name) {
+          return -1;
+        }
+        if (n1.name < n2.name) {
+          return 1;
+        }
+        return 0;
+      });
+    }
   }
-
   public sortByKlasseRev() {
-    this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
-      if (n1.name > n2.name) {
-        return 1;
-      }
-      if (n1.name < n2.name) {
-        return -1;
-      }
-      return 0;
-    });
+    if (this.visibleTeilnehmer) {
+      this.visibleTeilnehmer = this.visibleTeilnehmer.sort((n1, n2) => {
+        if (n1.name > n2.name) {
+          return 1;
+        }
+        if (n1.name < n2.name) {
+          return -1;
+        }
+        return 0;
+      });
+    }
   }
-
 }
