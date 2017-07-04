@@ -47,11 +47,10 @@ export class TeamComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.did = params['did'];
       this.sfService.disziplin(this.did).subscribe((data: Disziplin) => {
-        console.log('team-data');
-        console.log(data);
-        this.sportart = data.name;
+        this.sportart = data;
+        console.log(this.sportart);
         this.anzahlSpalten = new Array<number>(this.sportart.kontrahentenAnzahl);
-        this.beschreibung = data.beschreibung;
+        console.log(this.anzahlSpalten);
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
