@@ -1,7 +1,7 @@
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Md5 } from 'ts-md5/dist/md5';
 import { RouteGuard } from './route-guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './main/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,19 +16,19 @@ import { EinzelComponent } from './einzel/einzel.component';
 import { TeamComponent } from './team/team.component';
 import { SportfestService } from './sportfest.service';
 import { TechnischerService } from './technischer.service';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './main/desktop/header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateDisciplineComponent } from './create-discipline/create-discipline.component';
-import { KlassenImportComponent } from './klassen-import/klassen-import.component';
-import { ActivateDisciplineComponent } from './activate-discipline/activate-discipline.component';
-import { UserAccountControlComponent } from './user-account-control/user-account-control.component';
-import { PasswordChangeComponent } from './password-change/password-change.component';
-import { FooterComponent } from './footer/footer.component';
-import { CreateSportfestComponent } from './create-sportfest/create-sportfest.component';
-import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
-import { MobileHeaderComponent } from './mobile-header/mobile-header.component';
-import { MobileMenuListComponent } from './mobile-menu-list/mobile-menu-list.component';
-import { MobileHeaderImageComponent } from './mobile-header-image/mobile-header-image.component';
+import { CreateDisciplineComponent } from './admin/create-discipline/create-discipline.component';
+import { KlassenImportComponent } from './admin/klassen-import/klassen-import.component';
+import { ActivateDisciplineComponent } from './admin/activate-discipline/activate-discipline.component';
+import { UserAccountControlComponent } from './admin/user-account-control/user-account-control.component';
+import { PasswordChangeComponent } from './main/password-change/password-change.component';
+import { FooterComponent } from './main/desktop/footer/footer.component';
+import { CreateSportfestComponent } from './admin/create-sportfest/create-sportfest.component';
+import { AreYouSureComponent } from './main/are-you-sure/are-you-sure.component';
+import { MobileHeaderComponent } from './main/mobile/mobile-header/mobile-header.component';
+import { MobileMenuListComponent } from './main/mobile/mobile-menu-list/mobile-menu-list.component';
+import { MobileHeaderImageComponent } from './main/mobile/mobile-header-image/mobile-header-image.component';
 
 const routConfig: Routes = [
     {

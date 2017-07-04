@@ -1,4 +1,4 @@
-import { SportfestService } from 'app/sportfest.service';
+import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

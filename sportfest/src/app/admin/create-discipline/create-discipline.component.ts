@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { Variable, Regel, Disziplin } from '../interfaces';
-import { SportfestService } from '../sportfest.service';
+import { Variable, Regel, Disziplin } from '../../interfaces';
+import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

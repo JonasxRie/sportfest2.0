@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Disziplin } from '../interfaces';
-import { SportfestService } from "app/sportfest.service";
+import { Disziplin } from '../../interfaces';
+import { SportfestService } from '../../sportfest.service';
 
 @Component({
   selector: 'app-activate-discipline',

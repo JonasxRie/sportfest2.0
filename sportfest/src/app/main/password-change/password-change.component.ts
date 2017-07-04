@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SportfestService } from '../sportfest.service';
+import { SportfestService } from '../../sportfest.service';
 import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({

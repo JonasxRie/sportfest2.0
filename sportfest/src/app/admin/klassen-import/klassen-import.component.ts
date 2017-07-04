@@ -1,9 +1,9 @@
-import { Klasse } from '../interfaces';
-import { SportfestService } from './../sportfest.service';
+import { Klasse } from '../../interfaces';
+import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Http } from '@angular/http';
-import {MdSnackBar} from '@angular/material';
-import { BASEPATH } from '../app.module';
+import { MdSnackBar } from '@angular/material';
+import { BASEPATH } from '../../app.module';
 
 @Component({
   selector: 'app-klassen-import',
