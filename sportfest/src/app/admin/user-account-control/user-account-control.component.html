@@ -4,7 +4,8 @@
   </md-card-header>
   <br>
   <md-card-content>
-    <table><!--Tabelle mit im System existierenden Benutzern-->
+    <table>
+      <!--Tabelle mit im System existierenden Benutzern-->
       <tr>
         <th>Benutzer</th>
         <th>Rolle</th>
@@ -12,20 +13,26 @@
         <th>Löschen</th>
       </tr>
 
-      <tr *ngFor="let user of users" >
+      <tr *ngFor="let user of users">
         <td>{{ user.name }}</td>
         <td>{{ user.role }}</td>
         <td>
           <md-icon (click)="resetPassword(user)">restore</md-icon>
         </td>
         <td>
-          <md-icon (click)="deleteUser(user)" >delete forever</md-icon>
+          <md-icon (click)="deleteUser(user)">delete forever</md-icon>
         </td>
       </tr>
       <tr>
-        <td><!--neuen Benutzer einfügen-->
+        <td>
+          <!--neuen Benutzer einfügen-->
           <md-input-container>
-            <input mdInput placeholder="Benutzername" [(ngModel)]="username" >
+            <input mdInput placeholder="Benutzername" [(ngModel)]="username">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Password" [(ngModel)]="password">
           </md-input-container>
         </td>
         <td>
@@ -45,6 +52,6 @@
     </table>
   </md-card-content>
   <md-card-actions>
-    
+
   </md-card-actions>
 </md-card>
