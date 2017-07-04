@@ -31,11 +31,6 @@
           </md-input-container>
         </td>
         <td>
-          <md-input-container>
-            <input mdInput placeholder="Password" [(ngModel)]="password">
-          </md-input-container>
-        </td>
-        <td>
           <md-select placeholder="Rolle" [(ngModel)]="selectedRole">
             <md-option value="admin">
               Admin
@@ -44,6 +39,11 @@
               Schiedsrichter
             </md-option>
           </md-select>
+        </td>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Password" [(ngModel)]="password">
+          </md-input-container>
         </td>
         <td style="padding-top: 10px;">
           <md-icon (click)="addUser()">add_box</md-icon>
