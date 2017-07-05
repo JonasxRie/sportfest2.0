@@ -1,1 +1,2 @@
-./node_modules/.bin/ng build --output-path D:/xampp/apache-tomcat-8.5.15/webapps/ROOT/ -w -dev
+-#!/usr/bin/env bash		 +./node_modules/.bin/ng build --output-path D:/xampp/apache-tomcat-8.5.15/webapps/ROOT/ -w -dev 
+-./node_modules/.bin/ng build --output-path /c/tomcat/webapps/ROOT/ -w -dev 
