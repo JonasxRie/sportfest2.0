@@ -183,6 +183,18 @@ export class SportfestService {
     return this.techService.putRequest('/klasse', klasse);
   }
   /**
+   * Gib Klasse mit Anmeldung an Disziplin
+   */
+  public klasseMitAnmeldung(did: number): Observable<any> {
+    return this.techService.getRequest('/klasse/anmeldung/'+did);
+  }
+  /**
+   * Gib Klasse mit Leistung an Disziplin
+   */
+  public klassenMitLeistung(did: number): Observable<any> {
+    return this.techService.getRequest('/klasse/leistungen/'+did);
+  }
+  /**
    * Ändert das Passwort
    */
   public changePassword(oldPassword:any, newPassword: any): Observable<any> {

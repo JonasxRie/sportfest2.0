@@ -13,17 +13,20 @@ export class EinzelComponent implements OnInit {
   sportartID: number;
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
+
   angemeldeteKlassen: Array<Klasse> = [];
-  angemeldeteKlassenCount: number = 0;
+
   klassenMitLeistungen: Array<Klasse> = [];
-  klassenMitLeistungenCount: number = 0;
-  klassen: Array<Klasse> = [];
-  allSchueler: Array<Array<Schueler>> = [[{sid: 0, vorname: "", name: "", kid: 0, gid: 0}]];
-  eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
+  schuelerEinerKlasseMitLeistungen: Array<Array<Schueler>> = [[]];
+  leistungEinesSchuelersEinerKlasse: Array<Array<Leistung>> = [[]];
+
   anzahlAnmeldungen: Array<number> = [];
-  neueLeistung: Leistung = {did: 0, kid: 0, sid:0 , timestamp: null, ergebnisse: [], versus: -1};
+  neueLeistung: Leistung = {did: 0, kid: 0, sid:0 , timestamp: null, ergebnisse: [], versus: 0};
+
   bestenSchueler = [];
+
   variablen: Array<Variable> = [];
+
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
@@ -35,79 +38,54 @@ export class EinzelComponent implements OnInit {
       this.sportartID = params['did'];
       this.neueLeistung.did = this.sportartID;
       this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
+        //Disziplin Daten
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
         this.variablen = data.variablen;
-        this.neueLeistung.ergebnisse = [];
 
+        //Disziplin Variablen
+        this.neueLeistung.ergebnisse = [];
         for(let i = 0; i < this.variablen.length; i++){
           this.neueLeistung.ergebnisse[i] = {
             wert: "",
             "var": {var_id: this.variablen[i].var_id}
           };
         }
-        // Daten in die entsprechenden Felder füllen
-        console.log(data);
-                
+
+        //Leistung eintragen
         this.sfService.klassen().subscribe((data: Klasse[]) => {
-          this.klassen = data;
-          for(let i = 0; i < this.klassen.length; i++){
-            this.sfService.schuelerPerDisziplin(this.klassen[i].kid, this.sportartID).subscribe((schuelerData: Schueler[]) => {
-              for (let j = 0; j < schuelerData.length; j++){
-                
-                let add = true;
-                this.angemeldeteKlassen.forEach(klasse => {
-                  if(klasse.kid == this.klassen[i].kid){
-                    add = false;
-                  }
-                });                
-                if(add){
-                  this.angemeldeteKlassen[this.angemeldeteKlassenCount++] = this.klassen[i];
-                }
-                
-                this.eingetragenesErgebnis[schuelerData[j].sid] = [];
-                for (let k = 0; k < this.variablen.length; k++){
-                  this.eingetragenesErgebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
-                    ergebnis: "",
-                    firstEntry: true
-                  } 
-                }
-              }
-              //  getErgebnis{
-              //    Ergebnis.setErgebnis}}
-              this.allSchueler[this.klassen[i].kid] = schuelerData;
-            });
-          }
-          this.sfService.leistungenEinerDisziplin(this.sportartID).subscribe((leistungsData: Leistung[]) => {
-            leistungsData.forEach(leistung => {
-              let add = true;
-              this.klassenMitLeistungen.forEach(klasse => {
-                if(klasse.kid == leistung.kid){
-                  add = false;
-                }
-              });                
-              if(add){
-                this.klassen.forEach(klasse => {
-                  if(klasse.kid == leistung.kid){
-                    this.klassenMitLeistungen[this.klassenMitLeistungenCount++] = klasse;
-                  }
-                });                
-              }
+          this.sfService.klasseMitAnmeldung(this.sportartID).subscribe((klassen: Klasse[]) => {
+            this.angemeldeteKlassen = klassen;
+            this.angemeldeteKlassen.forEach(klasse => {
+              this.sfService.schuelerPerDisziplin(klasse.kid, this.sportartID).subscribe((schueler: Schueler[])=>{
+                this.schuelerEinerKlasseMitLeistungen[klasse.kid] = schueler;
+              });
             });
           });
+          
         },
         (err) => {
           console.error('GET-Service "klassen()" not reachable.');
         });
+
+        //Leistung anzeigen
+
+        this.sfService.klassenMitLeistung(this.sportartID).subscribe((klassen: Klasse[]) => {
+          this.klassenMitLeistungen = klassen;
+        });
+
+        /*this.sfService.leistungenEinerDisziplin(this.sportartID).subscribe((leistungsData: Leistung[]) => {
+            leistungsData.forEach(leistung => {
+              //this.leistungEinesSchuelersEinerKlasse[leistung.kid][leistung.sid] = leistung;
+              this.klassenMitLeistungen
+            });
+          });*/
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
     });
-    
-    
-    console.log("klassenMitLeistungen", this.klassenMitLeistungen);
-    
+        
     // Funktion getBesteSchueler()
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
@@ -126,7 +104,6 @@ export class EinzelComponent implements OnInit {
     this.sortRev = !this.sortRev;
   }
   sichern(){
-    console.log("neueLeistung", this.neueLeistung);
     this.sfService.leistungSchreiben(this.neueLeistung).subscribe(
         (data) => {
           console.log(data);
@@ -205,29 +182,4 @@ export class EinzelComponent implements OnInit {
       return false;
     }
   }
- /* public getBesteSchueler() {
-    let maxCount = 5;
-    this.ergebnis.forEach((erg: Ergebnis) => {
-      
-    });
-  }*/
-  
-    
-  /*public save() {
-    this.sendeErgebnis.ergebnisse = this.ergebnisse;
-    //Timestamp setzen
-    console.log(this.sendeErgebnis);
-    this.sfService.leistungSchreiben(this.sendeErgebnis);
-    
-    for(let i = 1; i <= this.eingetragenesErgebnis.length; i++){
-      for (let j = 0; j < this.eingetragenesErgebnis[i].variable.length; j++){
-        if(this.eingetragenesErgebnis[i][j] && this.eingetragenesErgebnis[i][j].ergebnis){
-          this.eingetragenesErgebnis[i][j].firstEntry = false;
-        }
-        else if(this.eingetragenesErgebnis[i][j]){
-          this.eingetragenesErgebnis[i][j].firstEntry = true;
-        }
-      }
-    }
-  }*/
 }

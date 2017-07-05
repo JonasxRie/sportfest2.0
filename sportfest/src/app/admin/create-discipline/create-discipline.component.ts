@@ -39,7 +39,10 @@ export class CreateDisciplineComponent implements OnInit {
         this.maxTeilnehmeranzahl = data.maxTeilnehmer;
         this.teamleistung = data.teamleistung;
         this.kontrahentenAnzahl = data.kontrahentenAnzahl;
-        this.rules = data.regeln;
+        this.rules = [];
+        for(let i = data.regeln.length - 1; i>=0;i--){
+          this.rules[(data.regeln.length - 1)-i] = data.regeln[i];
+        }
         this.rulesVar = data.variablen;
         if (!this.rules) {
           this.rules = [];
@@ -72,7 +75,7 @@ export class CreateDisciplineComponent implements OnInit {
   public sendToBackend() {
     // Idizees der Regeln setzen
     for (let i = 0; i < this.rules.length; i++) {
-      this.rules[i].index = (i + 1) + '';
+        this.rules[i].index = (i + 1) + '';
     }
     let disziplinDTO = {
       name: this.sportart,
@@ -109,7 +112,7 @@ export class CreateDisciplineComponent implements OnInit {
   
   addNewRuleVarLine() {
     let line: Variable = { 
-      var_id:-1,
+      var_id:0,
       name:'',
       expressionParameter:'',
       desc:'',
