@@ -1,20 +1,21 @@
 export interface Variable {
+    var_id?: number,
     name?: string,
     desc?:string,
-    expId?:string,
+    expressionParameter?:string,
     typ?:Datentyp
 }
 
 export interface Datentyp {
-    tid?: string,
+    tid?: string
 }
-//     typ: {
-//       tid: 100,
-//       name: "Ganzzahl",
-//       desc: "Einfacher Zahlenwert",
-//       zustaende: [],
-//       typ: "int"
-//     }
+
+export interface Zustand {
+    zid?: number,
+    name?: string,
+    desc?: string,
+    value?: string
+}
 
 export interface Regel{
     index?: string;
@@ -47,13 +48,13 @@ export interface Schueler {
     gid?: number
 }
 export interface Ergebnis {
-    ergebnis?: number,
+    ergebnis?: string,
     firstEntry?: boolean
 }
 
 export interface Ergebnis2 {
     wert?: string,
-    var?: VariableValue
+    "var"?: VariableValue
 }
 
 export interface VariableValue {
@@ -65,5 +66,6 @@ export interface Leistung {
     kid?: number,
     sid?: number,
     ergebnisse: Array<Ergebnis2>,
-    timestamp: string
+    timestamp: string,
+    versus: number
 }

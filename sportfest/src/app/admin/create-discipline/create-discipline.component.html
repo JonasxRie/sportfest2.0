@@ -37,6 +37,13 @@
           </md-input-container>
         </td>
       <tr>
+      <tr>
+        <td>
+          <md-input-container> 
+            <input mdInput type="number" placeholder="Anzahl der Kontrahenten" [(ngModel)]="kontrahentenAnzahl">
+          </md-input-container>
+        </td>
+      <tr>
     </table>
   </md-card-content>
   <md-card-actions>
@@ -59,7 +66,7 @@
         </td>  
         <td> 
           <md-input-container> 
-              <input mdInput type="text" placeholder="ExpressionID" [(ngModel)]="rulesVar[i].expId">
+              <input mdInput type="text" placeholder="ExpressionID" [(ngModel)]="rulesVar[i].expressionParameter">
           </md-input-container>
         </td>  
         <td> 

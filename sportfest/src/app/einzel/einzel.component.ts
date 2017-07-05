@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung, VariableValue } from '../interfaces';
+=======
+import { Disziplin, Klasse, Schueler, Variable, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
+>>>>>>> Stashed changes
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,13 +17,17 @@ export class EinzelComponent implements OnInit {
   sportartID: number;
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
+  angemeldeteKlassen: Array<Klasse> = [];
+  angemeldeteKlassenCount: number = 0;
+  klassenMitLeistungen: Array<Klasse> = [];
+  klassenMitLeistungenCount: number = 0;
   klassen: Array<Klasse> = [];
-  allSchueler: Array<Schueler> = [{sid: 0, vorname: "", name: "", kid: 0, gid: 0}];
-  eingetragenesErgebnis = [{sid: 0, variable: [{ergebnis: 0, firstEntry: true}]}];
-  ergebnisse: Array<Ergebnis2> = [{wert: "", var: {var_id: 0}}];
-  sendeErgebnis: Leistung = {did: null, kid: null, sid: null, ergebnisse: null, timestamp: null};
+  allSchueler: Array<Array<Schueler>> = [[{sid: 0, vorname: "", name: "", kid: 0, gid: 0}]];
+  eingetragenesErgebnis: Array<Array<Ergebnis>> = [[]];
+  anzahlAnmeldungen: Array<number> = [];
+  neueLeistung: Leistung = {did: 0, kid: 0, sid:0 , timestamp: null, ergebnisse: [], versus: -1};
   bestenSchueler = [];
-  variablen = [];
+  variablen: Array<Variable> = [];
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
@@ -29,48 +37,81 @@ export class EinzelComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.sportartID = params['did'];
-      this.sendeErgebnis.did = this.sportartID;
+      this.neueLeistung.did = this.sportartID;
       this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
         this.variablen = data.variablen;
-        for (let i = 0; i < this.variablen.length; i++){
-          this.ergebnisse[i]["var"].var_id = this.variablen[i].var_id;
+        this.neueLeistung.ergebnisse = [];
+
+        for(let i = 0; i < this.variablen.length; i++){
+          this.neueLeistung.ergebnisse[i] = {
+            wert: "",
+            "var": {var_id: this.variablen[i].var_id}
+          };
         }
-        
         // Daten in die entsprechenden Felder füllen
         console.log(data);
-        
-        
+                
         this.sfService.klassen().subscribe((data: Klasse[]) => {
           this.klassen = data;
           for(let i = 0; i < this.klassen.length; i++){
             this.sfService.schuelerPerDisziplin(this.klassen[i].kid, this.sportartID).subscribe((schuelerData: Schueler[]) => {
-              //console.log(schuelerData);
-              for (let j = 1; j <= schuelerData.length; j++){
+              for (let j = 0; j < schuelerData.length; j++){
+                
+                let add = true;
+                this.angemeldeteKlassen.forEach(klasse => {
+                  if(klasse.kid == this.klassen[i].kid){
+                    add = false;
+                  }
+                });                
+                if(add){
+                  this.angemeldeteKlassen[this.angemeldeteKlassenCount++] = this.klassen[i];
+                }
+                
+                this.eingetragenesErgebnis[schuelerData[j].sid] = [];
                 for (let k = 0; k < this.variablen.length; k++){
-                  this.eingetragenesErgebnis[schuelerData[j].sid].variable[k] = { //Hier Ergebnis
-                    ergebnis: null,
+                  this.eingetragenesErgebnis[schuelerData[j].sid][this.variablen[k].var_id] = { //Hier Ergebnis
+                    ergebnis: "",
                     firstEntry: true
                   } 
-                };
+                }
               }
               //  getErgebnis{
               //    Ergebnis.setErgebnis}}
               this.allSchueler[this.klassen[i].kid] = schuelerData;
             });
           }
+          this.sfService.leistungenEinerDisziplin(this.sportartID).subscribe((leistungsData: Leistung[]) => {
+            leistungsData.forEach(leistung => {
+              let add = true;
+              this.klassenMitLeistungen.forEach(klasse => {
+                if(klasse.kid == leistung.kid){
+                  add = false;
+                }
+              });                
+              if(add){
+                this.klassen.forEach(klasse => {
+                  if(klasse.kid == leistung.kid){
+                    this.klassenMitLeistungen[this.klassenMitLeistungenCount++] = klasse;
+                  }
+                });                
+              }
+            });
+          });
         },
         (err) => {
           console.error('GET-Service "klassen()" not reachable.');
-        })
-        
-        
+        });
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
       });
     });
+    
+    
+    console.log("klassenMitLeistungen", this.klassenMitLeistungen);
+    
     // Funktion getBesteSchueler()
     this.bestenSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
@@ -81,12 +122,23 @@ export class EinzelComponent implements OnInit {
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
   }
-  
+
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
   }
   switchSort(){
     this.sortRev = !this.sortRev;
+  }
+  sichern(){
+    console.log("neueLeistung", this.neueLeistung);
+    this.sfService.leistungSchreiben(this.neueLeistung).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
   public sortByRang(){
     this.switchSort()
@@ -110,6 +162,7 @@ export class EinzelComponent implements OnInit {
       return 0;
     });
   }
+  
   public sortByRangRev(){
     this.switchSort()
     this.bestenSchueler = this.bestenSchueler.sort((n1,n2)=>{
@@ -164,7 +217,7 @@ export class EinzelComponent implements OnInit {
   }*/
   
     
-  public save() {
+  /*public save() {
     this.sendeErgebnis.ergebnisse = this.ergebnisse;
     //Timestamp setzen
     console.log(this.sendeErgebnis);
@@ -180,5 +233,5 @@ export class EinzelComponent implements OnInit {
         }
       }
     }
-  }
+  }*/
 }

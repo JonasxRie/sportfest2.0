@@ -14,7 +14,8 @@ export class CreateDisciplineComponent implements OnInit {
     beschreibung: string;
     minTeilnehmeranzahl: number;
     maxTeilnehmeranzahl: number;
-    teamleistung: boolean;
+    teamleistung: boolean = false;
+    kontrahentenAnzahl: number;
     
     datentypen: any[];
     
@@ -23,69 +24,44 @@ export class CreateDisciplineComponent implements OnInit {
     rules: Array<Regel>;
     dummynumber: number;
 
-  constructor(private sfService: SportfestService, private route: ActivatedRoute) { 
-    this.rulesVar = [
-      {
-        name:'',
-        expId:'',
-        desc:'',
-        typ: {
-          tid: ''
-        }
-      }
-    ];
-    this.rules = [
-      { 
-        expression: '', 
-        points: this.dummynumber 
-      }
-    ];
-  }
+  constructor(private sfService: SportfestService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.sportartID = +params['did'];
     });
-    // Disziplin holen (beim Ändern)
-    this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
-      this.sportart = data.name;
-      this.beschreibung = data.beschreibung;
-      this.minTeilnehmeranzahl = data.minTeilnehmer;
-      this.maxTeilnehmeranzahl = data.maxTeilnehmer;
-      this.teamleistung = data.teamleistung;
-      this.rules = data.regeln;
-      this.rulesVar = data.variablen;
-      if (!this.rules) {
-        this.rules = [];
-      }
-      if (!this.rulesVar) {
-        this.rulesVar = [
-          {
-            name:'',
-            expId:'',
-            desc:'',
-            typ: 
-              { 
-                tid: ''
-              }
-          }
-        ]
-      }
-    },
-    (err) => {
-      console.error('GET-Service "disziplin(sportartID)" not reachable.');
-    });
+    if(this.sportartID){
+      // Disziplin holen (beim Ändern)
+      this.sfService.disziplin(this.sportartID).subscribe((data: Disziplin) => {
+        this.sportart = data.name;
+        this.beschreibung = data.beschreibung;
+        this.minTeilnehmeranzahl = data.minTeilnehmer;
+        this.maxTeilnehmeranzahl = data.maxTeilnehmer;
+        this.teamleistung = data.teamleistung;
+        this.kontrahentenAnzahl = data.kontrahentenAnzahl;
+        this.rules = data.regeln;
+        this.rulesVar = data.variablen;
+        if (!this.rules) {
+          this.rules = [];
+        }
+        if (!this.rulesVar) {
+          this.rulesVar = []
+        }
+      },
+      (err) => {
+        console.error('GET-Service "disziplin(sportartID)" not reachable.');
+      });
+    }else{
+      this.rules = [];
+      this.rulesVar = []
+      this.addNewRuleVarLine();
+      this.addNewRuleLine();
+    }
     // Datentypen holen
     this.sfService.datentypenHolen().subscribe(
       (data) => {
         console.log("Datentypen DATA", data);
         this.datentypen = data;
-        this.datentypen.push({
-          desc: '',
-          name: '',
-          tid: '',
-          typ: ''
-        })
       },
       (err) => {
         console.error('GET-Service "datentypenHolen()" not reachable.');
@@ -94,37 +70,6 @@ export class CreateDisciplineComponent implements OnInit {
   }
   
   public sendToBackend() {
-    /*{
-      "name": "Weitsprung",
-      "beschreibung": "Weit springen",
-      "minTeilnehmer": 2,
-      "maxTeilnehmer": 2,
-      "aktiviert": true,
-      "teamleistung": false,
-      "variablen": [
-        {
-          "var_id": 2000,
-          "name": "Weite",
-          "desc": "Weite in cm",
-          "expressionParameter": "w",
-          "typ": {
-            "tid": 100,
-            "name": "Ganzzahl",
-            "desc": "Einfacher Zahlewert",
-            "zustaende": [],
-            "typ": "int"
-          }
-        }
-      ],
-      "regeln": [
-        {
-          "index": 0,
-          "expression": "geschlecht == \"m\" && weite >= 2.4",
-          "points": 10
-        },
-      ],
-      "kontrahentenAnzahl": 0
-    }*/
     // Idizees der Regeln setzen
     for (let i = 0; i < this.rules.length; i++) {
       this.rules[i].index = (i + 1) + '';
@@ -136,38 +81,37 @@ export class CreateDisciplineComponent implements OnInit {
       maxTeilnehmer: this.maxTeilnehmeranzahl,
       aktiviert: true,
       teamleistung: this.teamleistung,
+      kontrahentenAnzahl: this.kontrahentenAnzahl,
       variablen: this.rulesVar,
-      /* [
-          {
-            var_id: 2000,
-            name: "Weite",
-            desc: "Weite in cm",
-            expressionParameter: "w",
-            typ: {
-              tid: 100,
-              name: "Ganzzahl",
-              desc: "Einfacher Zahlenwert",
-              zustaende: [],
-              typ: "int"
-            }
-          }
-      ], */   
       regeln: this.rules,  
     }
-    this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    console.log("disziplinDTO", disziplinDTO);
+    if(this.sportartID){
+      this.sfService.disziplinAendern(this.sportartID, disziplinDTO).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }else{
+      this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
   
   addNewRuleVarLine() {
     let line: Variable = { 
+      var_id:-1,
       name:'',
-      expId:'',
+      expressionParameter:'',
       desc:'',
       typ: 
         { 

@@ -133,6 +133,9 @@ export class SportfestService {
   public leistungSchreiben(ergebnis: any): Observable<any> {
     return this.techService.putRequest('/leistung', ergebnis);
   }
+  public leistungenEinerDisziplin(did: number): Observable<any> {
+    return this.techService.getRequest('/leistung/disziplin/'+did);
+  }
 
 //Veraltet
   /**
