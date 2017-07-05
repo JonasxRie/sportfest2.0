@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import { Disziplin, Klasse, Schueler, Ergebnis, Ergebnis2, Leistung, VariableValue } from '../interfaces';
-=======
 import { Disziplin, Klasse, Schueler, Variable, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
->>>>>>> Stashed changes
 import { SportfestService } from '../sportfest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';

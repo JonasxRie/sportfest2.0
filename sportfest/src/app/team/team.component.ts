@@ -38,7 +38,7 @@ export class TeamComponent implements OnInit {
       this.sfService.disziplin(this.did).subscribe((data: Disziplin) => {
         this.sportart = data;
         console.log(this.sportart);
-        this.sendeErgebnis = {did: this.did, kid: null, ergebnisse: null, timestamp: null};
+        this.sendeErgebnis = {did: this.did, kid: null, ergebnisse: null, timestamp: null, versus: -1};
         this.ergebnisse = new Array(this.sportart.variablen.length);
       },
       (err) => {

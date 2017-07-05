@@ -64,25 +64,6 @@
         <tr>
           <td>
             <md-card>
-<<<<<<< Updated upstream
-              <md-list *ngFor="let klasse of klassen">
-                <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
-                <div *ngIf="aufgeklappt[klasse.kid]">
-                  <table width="100%">
-                    <tr *ngFor="let s of allSchueler[klasse.kid]">
-                      <td width="50%">
-                        <span>{{ s.vorname }} {{ s.name }}:</span>
-                      </td>
-                      <td width="50%">
-                        <md-input-container *ngFor="let v of variablen, let i=index">
-                          <input mdInput placeholder="v.name" type="text"
-                            [disabled]="inputDisabled(ergebnis[s.sid].variable[v.var_id])"
-                            [(ngModel)]="eingetragenesErgebnis[s.sid].variable[i].ergebnis">
-                        </md-input-container>
-                      </td>
-                    </tr>
-                  </table>
-=======
               <md-list *ngFor="let klasse of klassenMitLeistungen">
                 <div *ngIf="klasse">
                   <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
@@ -102,7 +83,6 @@
                       </tr>
                     </table>
                   </div>
->>>>>>> Stashed changes
                 </div>
               </md-list>
             </md-card>
