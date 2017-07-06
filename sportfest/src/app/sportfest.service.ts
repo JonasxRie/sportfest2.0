@@ -84,6 +84,10 @@ export class SportfestService {
   public schuelerPerDisziplin(classId: number, disziplinId: number){
     return this.techService.getRequest('/schueler/' + classId + '/' + disziplinId);
   }
+
+  public schuelerMitLeistungEinerDisziplin(did: number){
+    return this.techService.getRequest('/schueler/leistung/disziplin/' + did);
+  }
   /**
    * ***********************************************
    * Disziplin Resource

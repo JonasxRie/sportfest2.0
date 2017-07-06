@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Variable, Regel, Disziplin } from '../../interfaces';
 import { SportfestService } from '../../sportfest.service';
 import { Component, OnInit } from '@angular/core';
@@ -24,7 +24,7 @@ export class CreateDisciplineComponent implements OnInit {
     rules: Array<Regel>;
     dummynumber: number;
 
-  constructor(private sfService: SportfestService, private route: ActivatedRoute) { }
+  constructor(private sfService: SportfestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
@@ -102,6 +102,7 @@ export class CreateDisciplineComponent implements OnInit {
       this.sfService.disziplinSchreiben(disziplinDTO).subscribe(
         (data) => {
           console.log(data);
+          // this.router.navigate(['/home'])
         },
         (err) => {
           console.log(err);
