@@ -58,6 +58,11 @@ export class PasswordChangeComponent implements OnInit {
     } else {
       valid = false;
       this.newNotEqual = true;
+      if(newEncrypt == Md5.hashStr('Atiw2017')){
+        this.msgNewNotEqual='Passwort ist initial Passwort!';
+      }else{
+        this.msgNewNotEqual='Passwörter sind nicht identisch!';
+      }
     }
     return valid;
   }
@@ -65,5 +70,10 @@ export class PasswordChangeComponent implements OnInit {
   public setInitPw(init: boolean) {
     this.initPw = init;
     console.log(this.initPw);
+  }
+  public keypress(event: any) {
+    if (event.keyCode == 13) { // Enter gedrückt
+      this.save();
+    }
   }
 }
