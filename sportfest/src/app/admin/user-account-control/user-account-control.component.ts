@@ -69,12 +69,23 @@ export class UserAccountControlComponent implements OnInit {
 
   }
 
+
   public resetPassword(user: any) {//Ausgewählten Benutzer löschen und mit initialpassword erstellen
-    this.deleteUser(user);
-    this.username = user.name;
-    this.selectedRole = user.role;
-    this.addUser();
-    this.username = '';
-    this.selectedRole = null;
+    this.sfService.userLoeschen(user.name).subscribe(//Löscht Benutzer aus der Datenbank
+      (data) => {
+        let encryptpwd = Md5.hashStr('Atiw2017');
+        this.sfService.userHinzufuegen(user.name, encryptpwd.toString(), user.role).subscribe(//Benutz in Datenbank einfügen
+          (data) => {
+            this.rollenLaden();//Existierende Benutzer neu laden
+          },
+          (err) => {
+            console.error(err);
+          }
+        )
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 }
