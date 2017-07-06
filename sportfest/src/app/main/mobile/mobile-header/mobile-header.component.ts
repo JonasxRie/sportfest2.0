@@ -11,22 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./mobile-header.component.css']
 })
 export class MobileHeaderComponent implements OnInit {
-  
+
   username: string;
   role: string;
 
   @Output() sidenavChange = new EventEmitter<any>();
   @Output() roleChanged = new EventEmitter<string>();
-  
+
   constructor(private router: Router,
-              public dialog: MdDialog,
-              private sfService: SportfestService) { }
+    public dialog: MdDialog,
+    private sfService: SportfestService) { }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.username = localStorage.getItem('username');
+    if (localStorage.getItem('init') == 'true') {
+      let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
+      dlg.componentInstance.setInitPw(true);
+      dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+    }
   }
-  
+
   public changeSidenav() {
     this.sidenavChange.emit();
   }
@@ -47,7 +52,7 @@ export class MobileHeaderComponent implements OnInit {
     this.roleChanged.emit(this.role);
     this.navigateToDashboard();
   }
-  
+
   public login() {
     let dlg = this.dialog.open(LoginComponent);
     dlg.componentInstance.loginClose.subscribe(data => dlg.close());
@@ -56,6 +61,11 @@ export class MobileHeaderComponent implements OnInit {
       this.role = localStorage.getItem('role'); //Rolle aus dem Local Storage auslesen
       this.roleChanged.emit(this.role);
       dlg.close();
+      if (localStorage.getItem('init') == 'true') {
+        let dlg = this.dialog.open(PasswordChangeComponent, { disableClose: true });
+        dlg.componentInstance.setInitPw(true);
+        dlg.componentInstance.pwSave.subscribe(data => dlg.close());
+      }
     });
   }
 }
