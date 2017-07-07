@@ -106,7 +106,6 @@ export class CreateDisciplineComponent implements OnInit {
             this.router.navigate(["team/"+data.did+"/"+data.name]);
           else
             this.router.navigate(["einzel/"+data.did+"/"+data.name]);
-
         },
         (err) => {
           console.log(err);

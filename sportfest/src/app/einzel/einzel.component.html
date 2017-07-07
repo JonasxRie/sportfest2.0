@@ -25,7 +25,7 @@
     </md-select>
     
     <md-select placeholder="Schüler" [(ngModel)]="neueLeistung.sid">
-      <md-option *ngFor="let s of schuelerEinerKlasseMitLeistungen[neueLeistung.kid]" [value]="s.sid">
+      <md-option *ngFor="let s of angemeldeteSchuelerEinerKlasse[neueLeistung.kid]" [value]="s.sid">
         <div *ngIf="s.kid==neueLeistung.kid"> 
           {{ s.vorname }} {{ s.name }}
         </div>
@@ -37,7 +37,8 @@
       <tr *ngFor="let row of variablen, let i = index">
         <td> 
           <md-input-container> 
-            <input mdInput type="text" placeholder={{variablen[i].name}} [(ngModel)]="this.neueLeistung.ergebnisse[i].wert">
+            <input mdInput type="text" required placeholder={{variablen[i].name}} [(ngModel)]="this.neueLeistung.ergebnisse[i].wert">
+            <md-hint *ngIf="touched" >Bitte ausfüllen.</md-hint>
           </md-input-container>
         </td>
       </tr>  
@@ -65,33 +66,32 @@
           <td>
             <md-card>
               <md-list *ngFor="let klasse of klassenMitLeistungen">
-                <div *ngIf="klasse">
-                  <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
-                  <div *ngIf="aufgeklappt[klasse.kid]">
-                    <table width="100%">
-                      <tr *ngFor="let s of schuelerMitLeistungen[klasse.kid]">
-                        <td width="50%">
-                          <span>{{ s.vorname }} {{ s.name }}:</span>
-                        </td>
-                        <!--<td width="50%">
-                          <md-input-container *ngFor="let v of variablen">
-                            <input mdInput placeholder={{v.name}} type="text"
-                              [disabled]="true"
-                              [(ngModel)]="leistungEinesSchuelers[s.sid].ergebnis">
-                          </md-input-container>
-                        </td>-->
-                      </tr>
-                    </table>
-                  </div>
+                <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
+                <div *ngIf="aufgeklappt[klasse.kid]">
+                  <table width="100%">
+                    <ng-container *ngFor="let s of schuelerEinerKlasseMitLeistung[klasse.kid]">
+                      <ng-container *ngIf="s">
+                        <tr>
+                          <td>
+                            <h4>{{ s.vorname }} {{ s.name }}: </h4>
+                          </td>
+                          <td *ngFor="let v of variablen">
+                            <h5>
+                              {{v.name}}: {{ ergebnisseEinesSchuelersEinerKlasse[klasse.kid][s.sid][v.var_id].wert }}
+                            </h5>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </table>
                 </div>
               </md-list>
             </md-card>
           </td>
         </tr>
       </div>
-      <tr>
+      <!--<tr>
         <td align="center" valign="top">
-          <!--Bestenliste der Sportart-->
           <md-card>
             <md-card-header>
               <h4>Bestenliste "{{sportart}}"</h4>
@@ -114,7 +114,7 @@
             </md-card-content>
           </md-card>
         </td>
-      </tr>
+      </tr>-->
     </table>    
   </md-card-content>
 </md-card>

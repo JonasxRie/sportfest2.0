@@ -1,6 +1,6 @@
 import { Disziplin, Klasse, Schueler, Variable, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -14,24 +14,24 @@ export class EinzelComponent implements OnInit {
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
 
+  variablen: Array<Variable> = [];
+
   angemeldeteKlassen: Array<Klasse> = [];
+  angemeldeteSchuelerEinerKlasse: Array<Array<Schueler>> = [[]];
 
-  klassenMitLeistungen: Array<Klasse> = [];
-  schuelerEinerKlasseMitLeistungen: Array<Array<Schueler>> = [[]];
-  leistungEinesSchuelersEinerKlasse: Array<Array<Leistung>> = [[]];
-
-  anzahlAnmeldungen: Array<number> = [];
   neueLeistung: Leistung = {did: 0, kid: 0, sid:0 , timestamp: null, ergebnisse: [], versus: 0};
 
-  bestenSchueler = [];
+  klassenMitLeistungen: Array<Klasse> = [];
+  schuelerEinerKlasseMitLeistung: Array<Array<Schueler>> = [[]];
+  ergebnisseEinesSchuelersEinerKlasse: Array<Array<Array<Ergebnis2>>> = [[[]]];
 
-  variablen: Array<Variable> = [];
+  bestenSchueler = [];
 
   aufgeklappt: Array<boolean> = [] ;
   klasseAufklappen: boolean = false;
   sortRev = false;
 
-  constructor(private route: ActivatedRoute, private sfService: SportfestService) { }
+  constructor(private route: ActivatedRoute, private sfService: SportfestService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
@@ -52,13 +52,13 @@ export class EinzelComponent implements OnInit {
           };
         }
 
-        //Leistung eintragen
+        //Leistung/Ergebnis eintragen
         this.sfService.klassen().subscribe((data: Klasse[]) => {
           this.sfService.klasseMitAnmeldung(this.sportartID).subscribe((klassen: Klasse[]) => {
             this.angemeldeteKlassen = klassen;
             this.angemeldeteKlassen.forEach(klasse => {
               this.sfService.schuelerPerDisziplin(klasse.kid, this.sportartID).subscribe((schueler: Schueler[])=>{
-                this.schuelerEinerKlasseMitLeistungen[klasse.kid] = schueler;
+                this.angemeldeteSchuelerEinerKlasse[klasse.kid] = schueler;
               });
             });
           });
@@ -69,17 +69,34 @@ export class EinzelComponent implements OnInit {
         });
 
         //Leistung anzeigen
-
         this.sfService.klassenMitLeistung(this.sportartID).subscribe((klassen: Klasse[]) => {
+          //Lister der Klassen mit Leistungen
           this.klassenMitLeistungen = klassen;
         });
+        
+        //Liste der Schüler mit Leistung
+        this.sfService.schuelerMitLeistungEinerDisziplin(this.sportartID).subscribe((schueler: Schueler[]) => {
+          schueler.forEach((einSchueler: Schueler) => {
+            if(!this.schuelerEinerKlasseMitLeistung[einSchueler.kid]){
+              this.schuelerEinerKlasseMitLeistung[einSchueler.kid] = [];
+            }
+            this.schuelerEinerKlasseMitLeistung[einSchueler.kid][einSchueler.sid] = einSchueler;
+          });
+        });
+        console.log("schuelerEinerKlasseMitLeistung", this.schuelerEinerKlasseMitLeistung);
 
-        /*this.sfService.leistungenEinerDisziplin(this.sportartID).subscribe((leistungsData: Leistung[]) => {
-            leistungsData.forEach(leistung => {
-              //this.leistungEinesSchuelersEinerKlasse[leistung.kid][leistung.sid] = leistung;
-              this.klassenMitLeistungen
+        //Liste der Leistungen
+        this.sfService.leistungenEinerDisziplin(this.sportartID).subscribe((leistungen: Leistung[]) => {
+          leistungen.forEach(leistung => {
+            if(!this.ergebnisseEinesSchuelersEinerKlasse[leistung.kid]){
+              this.ergebnisseEinesSchuelersEinerKlasse[leistung.kid] = [];
+            }
+            this.ergebnisseEinesSchuelersEinerKlasse[leistung.kid][leistung.sid] = [];
+            leistung.ergebnisse.forEach((ergebnis: Ergebnis2) => {
+              this.ergebnisseEinesSchuelersEinerKlasse[leistung.kid][leistung.sid][ergebnis.var.var_id] = ergebnis;
             });
-          });*/
+          });
+        });
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -107,9 +124,17 @@ export class EinzelComponent implements OnInit {
     this.sfService.leistungSchreiben(this.neueLeistung).subscribe(
         (data) => {
           console.log(data);
+          this.neueLeistung.sid = null;
+          this.neueLeistung.ergebnisse.forEach((ergebnis: Ergebnis2) => {
+            ergebnis.wert = null;
+          });          
         },
         (err) => {
           console.log(err);
+          this.neueLeistung.sid = null;
+          this.neueLeistung.ergebnisse.forEach((ergebnis: Ergebnis2) => {
+            ergebnis.wert = null;
+          });          
         }
       );
   }
