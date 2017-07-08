@@ -75,7 +75,7 @@ export class CreateDisciplineComponent implements OnInit {
   public sendToBackend() {
     // Idizees der Regeln setzen
     for (let i = 0; i < this.rules.length; i++) {
-      this.rules[i].index = (i + 1) + '';
+      this.rules[i].index = i + '';
     }
     let disziplinDTO = {
       name: this.sportart,
