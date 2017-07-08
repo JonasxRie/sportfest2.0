@@ -8,6 +8,7 @@ export interface Variable {
 
 export interface Datentyp {
     tid?: string
+    zustaende?: Zustand[];
 }
 
 export interface Zustand {

@@ -208,6 +208,6 @@ export class SportfestService {
    * Gibt Informationen zu allen Datentypen (für Regelvariablen)
    */
   public datentypenHolen(): Observable<any> {
-    return this.techService.getRequest('/variable/typ');
+    return this.techService.getRequest('/typ');
   }
 }

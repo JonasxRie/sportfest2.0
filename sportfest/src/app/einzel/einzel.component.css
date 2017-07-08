@@ -1,3 +1,6 @@
+#beschreibung {
+    white-space: pre-line;
+}
 md-list {
     cursor: pointer;
 }

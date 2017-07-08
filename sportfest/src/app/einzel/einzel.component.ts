@@ -10,6 +10,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class EinzelComponent implements OnInit {
+  role: string;
+
   sportartID: number;
   sportart: string = '';   // TODO: richtige Sportart
   beschreibung: string = '';  // TODO: richtige Regeln
@@ -19,7 +21,7 @@ export class EinzelComponent implements OnInit {
   angemeldeteKlassen: Array<Klasse> = [];
   angemeldeteSchuelerEinerKlasse: Array<Array<Schueler>> = [[]];
 
-  neueLeistung: Leistung = {did: 0, kid: 0, sid:0 , timestamp: null, ergebnisse: [], versus: 0};
+  neueLeistung: Leistung = {did: 0, timestamp: null, ergebnisse: [], versus: 0};
 
   klassenMitLeistungen: Array<Klasse> = [];
   schuelerEinerKlasseMitLeistung: Array<Array<Schueler>> = [[]];
@@ -34,6 +36,7 @@ export class EinzelComponent implements OnInit {
   constructor(private route: ActivatedRoute, private sfService: SportfestService, private router: Router) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
     this.route.params.forEach((params: Params) => {
       this.sportartID = params['did'];
       this.neueLeistung.did = this.sportartID;
@@ -42,12 +45,16 @@ export class EinzelComponent implements OnInit {
         this.sportart = data.name;
         this.beschreibung=data.beschreibung;
         this.variablen = data.variablen;
+        this.variablen.forEach((variable: Variable) => {
+          if(variable.typ.zustaende && variable.typ.zustaende.length == 0){
+            variable.typ.zustaende = null;
+          }
+        });
 
         //Disziplin Variablen
         this.neueLeistung.ergebnisse = [];
         for(let i = 0; i < this.variablen.length; i++){
           this.neueLeistung.ergebnisse[i] = {
-            wert: "",
             "var": {var_id: this.variablen[i].var_id}
           };
         }
@@ -97,6 +104,7 @@ export class EinzelComponent implements OnInit {
             });
           });
         });
+        console.log("avars", this.variablen);
       },
       (err) => {
         console.error('GET-Service "disziplin(sportartID)" not reachable.');
@@ -114,6 +122,16 @@ export class EinzelComponent implements OnInit {
     ];
   }
 
+  sicherbar(){
+    let sicherbar = true;
+    this.neueLeistung.ergebnisse.forEach(ergebnis => {
+      if(!ergebnis.wert){
+        sicherbar = false;
+      }
+    });
+
+    return !(this.neueLeistung.kid && this.neueLeistung.sid && sicherbar);
+  }
   aufklappen(i: number){
     this.aufgeklappt[i] = !this.aufgeklappt[i];
   }
@@ -136,7 +154,7 @@ export class EinzelComponent implements OnInit {
             ergebnis.wert = null;
           });          
         }
-      );
+    );
   }
   public sortByRang(){
     this.switchSort()

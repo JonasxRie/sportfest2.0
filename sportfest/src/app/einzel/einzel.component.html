@@ -9,52 +9,15 @@
     <h4>Beschreibung</h4>
   </md-card-header>
   <md-card-content>
-    {{ beschreibung }}
+    <p id="beschreibung">{{ beschreibung }}</p>
   </md-card-content>
 </md-card>
-
-<md-card>
-  <md-card-header>
-    <h4>Ergebnis eintragen</h4>
-  </md-card-header>
-  <md-card-content>
-    <md-select placeholder="Klasse" [(ngModel)]="neueLeistung.kid">
-      <md-option *ngFor="let klasse of angemeldeteKlassen" [value]="klasse.kid">
-        {{ klasse.name }}
-      </md-option>
-    </md-select>
-    
-    <md-select placeholder="Schüler" [(ngModel)]="neueLeistung.sid">
-      <md-option *ngFor="let s of angemeldeteSchuelerEinerKlasse[neueLeistung.kid]" [value]="s.sid">
-        <div *ngIf="s.kid==neueLeistung.kid"> 
-          {{ s.vorname }} {{ s.name }}
-        </div>
-      </md-option>
-    </md-select>
-    
-    <table>
-      <tr><br></tr>
-      <tr *ngFor="let row of variablen, let i = index">
-        <td> 
-          <md-input-container> 
-            <input mdInput type="text" required placeholder={{variablen[i].name}} [(ngModel)]="this.neueLeistung.ergebnisse[i].wert">
-            <md-hint *ngIf="touched" >Bitte ausfüllen.</md-hint>
-          </md-input-container>
-        </td>
-      </tr>  
-    </table>
-  
-    <button md-raised-button (click)="sichern()" color="accent">Speichern</button>
-  </md-card-content>
-</md-card>
-
 
 <md-card>
   <md-card-header>
     <h4>Ergebnisse</h4>
   </md-card-header>
   <md-card-content>
-
     <table width="100%">
       <tr>
         <th>
@@ -67,19 +30,51 @@
             <md-card>
               <md-list *ngFor="let klasse of klassenMitLeistungen">
                 <h3 (click)="aufklappen(klasse.kid)">{{klasse.name}}</h3>
-                <div *ngIf="aufgeklappt[klasse.kid]">
+                <div [hidden]="!aufgeklappt[klasse.kid]">
                   <table width="100%">
+                    <!--<tr>
+                      <th></th>
+                      <ng-container *ngFor="let s of schuelerEinerKlasseMitLeistung[klasse.kid]">
+                        <ng-container *ngIf="s">
+                          <th>
+                            {{ s.vorname }} {{ s.name }}
+                          </th>
+                        </ng-container>
+                      </ng-container>
+                    </tr>            
+                    <ng-container *ngFor="let v of variablen">
+                      <tr>
+                        <th>
+                          {{v.name}}
+                        </th>                      
+                        <ng-container *ngFor="let s of schuelerEinerKlasseMitLeistung[klasse.kid]">
+                          <ng-container *ngIf="s">
+                            <td align="center">
+                              {{ ergebnisseEinesSchuelersEinerKlasse[klasse.kid][s.sid][v.var_id].wert }}
+                            </td>
+                          </ng-container>
+                        </ng-container>
+                      </tr>
+                    </ng-container>-->
+                    <tr>
+                      <th></th>
+                      <ng-container *ngFor="let v of variablen">
+                        <th>
+                          {{v.name}}
+                        </th> 
+                      </ng-container>
+                    </tr>
                     <ng-container *ngFor="let s of schuelerEinerKlasseMitLeistung[klasse.kid]">
                       <ng-container *ngIf="s">
                         <tr>
                           <td>
-                            <h4>{{ s.vorname }} {{ s.name }}: </h4>
+                            <b>{{ s.vorname }} {{ s.name }}</b>
                           </td>
-                          <td *ngFor="let v of variablen">
-                            <h5>
-                              {{v.name}}: {{ ergebnisseEinesSchuelersEinerKlasse[klasse.kid][s.sid][v.var_id].wert }}
-                            </h5>
-                          </td>
+                          <ng-container *ngFor="let v of variablen">
+                            <td align="center">
+                              {{ ergebnisseEinesSchuelersEinerKlasse[klasse.kid][s.sid][v.var_id].wert }}
+                            </td>
+                          </ng-container>
                         </tr>
                       </ng-container>
                     </ng-container>
@@ -90,7 +85,7 @@
           </td>
         </tr>
       </div>
-      <!--<tr>
+      <tr>
         <td align="center" valign="top">
           <md-card>
             <md-card-header>
@@ -114,7 +109,55 @@
             </md-card-content>
           </md-card>
         </td>
-      </tr>-->
+      </tr>      
     </table>    
   </md-card-content>
 </md-card>
+
+<ng-container *ngIf="role=='admin'">
+  <md-card>
+    <md-card-header>
+      <h4>Ergebnis eintragen</h4>
+    </md-card-header>
+    <md-card-content>
+      <md-select placeholder="Klasse" [(ngModel)]="neueLeistung.kid">
+        <md-option *ngFor="let klasse of angemeldeteKlassen" [value]="klasse.kid">
+          {{ klasse.name }}
+        </md-option>
+      </md-select>
+      
+      <md-select placeholder="Schüler" [(ngModel)]="neueLeistung.sid">
+        <md-option *ngFor="let s of angemeldeteSchuelerEinerKlasse[neueLeistung.kid]" [value]="s.sid">
+          <div *ngIf="s.kid==neueLeistung.kid"> 
+            {{ s.vorname }} {{ s.name }}
+          </div>
+        </md-option>
+      </md-select>
+      
+      <table>
+        <tr><br></tr>
+        <tr *ngFor="let row of variablen, let i = index">
+          <td> 
+
+            <ng-container *ngIf="row.typ.zustaende">
+              <md-select placeholder="{{row.name}}" [(ngModel)]="this.neueLeistung.ergebnisse[i].wert">
+                <md-option *ngFor="let z of row.typ.zustaende" [value]="z.name">
+                  {{z.name}}
+                </md-option>
+              </md-select>
+            </ng-container>
+
+            <ng-container *ngIf="!row.typ.zustaende">
+              <md-input-container> 
+                <input mdInput type="text" placeholder={{variablen[i].name}} [(ngModel)]="this.neueLeistung.ergebnisse[i].wert">
+                <md-hint *ngIf="touched" >Bitte ausfüllen.</md-hint>
+              </md-input-container>
+            </ng-container>
+          </td>
+
+        </tr>  
+      </table>  
+      <button md-raised-button (click)="sichern()" color="accent" [disabled]="sicherbar()">Speichern</button>
+    </md-card-content>
+  </md-card>
+</ng-container>
