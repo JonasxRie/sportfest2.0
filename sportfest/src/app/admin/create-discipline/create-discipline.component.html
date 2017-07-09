@@ -78,11 +78,11 @@
         </td>   
         <td> 
           <md-input-container> 
-            <input mdInput type="number" placeholder="Sortier-Index" [(ngModel)]="rules[i].sortIndex">
+            <input mdInput type="number" placeholder="Sortier-Index" [(ngModel)]="rulesVar[i].sortIndex">
           </md-input-container>
         </td> 
         <td> 
-          <md-slide-toggle [(ngModel)]="rules[i].sortAsc">{{ getAufAbsteigend(rules[i].sortAsc) }}</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="rulesVar[i].sortAsc">{{ getAufAbsteigend(rulesVar[i].sortAsc) }}</md-slide-toggle>
         </td>   
         <td> 
           <md-select placeholder="Datentyp" [(ngModel)]="rulesVar[i].typ.tid">
@@ -125,6 +125,7 @@
     <button md-raised-button color="primary" (click)="addNewRuleLine()"><md-icon>add</md-icon>Regel hinzufügen</button>
   </md-card-content>
 </md-card>
+<br>
 <button md-raised-button color="primary" (click)="addNewRuleSet()"><md-icon>add</md-icon>Regelsatz hinzufügen</button>
 <br>
 <md-card>

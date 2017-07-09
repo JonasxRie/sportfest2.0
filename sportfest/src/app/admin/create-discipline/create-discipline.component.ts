@@ -161,7 +161,7 @@ export class CreateDisciplineComponent implements OnInit {
   }
 
   addNewRuleSet(){
-    
+
   }
 
   submit() {
