@@ -114,7 +114,7 @@
   </md-card-content>
 </md-card>
 
-<ng-container *ngIf="role=='admin' || role=='schiedsrichter'">
+<ng-container *ngIf="enoughPermissionsToWrite()">
   <md-card>
     <md-card-header>
       <h4>Ergebnis eintragen</h4>

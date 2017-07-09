@@ -3,7 +3,9 @@ export interface Variable {
     name?: string,
     desc?:string,
     expressionParameter?:string,
-    typ?:Datentyp
+    typ?:Datentyp,
+    sortAsc: boolean,
+    sortIndex: number
 }
 
 export interface Datentyp {
@@ -67,6 +69,5 @@ export interface Leistung {
     kid?: number,
     sid?: number,
     ergebnisse: Array<Ergebnis2>,
-    timestamp: string,
     versus: number
 }

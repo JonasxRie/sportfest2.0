@@ -1,73 +1,73 @@
 <md-card>
   <md-card-header>
-    <h3>{{ sportart.name }}</h3>
-  </md-card-header>
-</md-card>
-
-<md-card>
-  <md-card-header>
-    <h4>Beschreibung</h4>
+    <h3>{{ sportart }}</h3>
   </md-card-header>
   <md-card-content>
-    {{ sportart.beschreibung }}
+    <p id="beschreibung">{{ beschreibung }}<p>
   </md-card-content>
 </md-card>
 
-<md-card>
+<md-card *ngFor="let versusID of this.versus">
   <md-card-content>
-    <md-card>
-      <!--Eingabe neuer Spielergebnisse-->
-      <md-card-header>
-        <h4>Ergebnis eintragen</h4>
-      </md-card-header>
-      <md-card-content>
-        <table>
-          <tr>
-            <td>
-              <!-- fehler beim Binding - [(ngModel)]="ergebnisse[si].tid" -->
-              <md-select placeholder="Klasse" >
-                <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
-                  {{ klasse.name }}
+    <table width="100%">
+      <tr class="ergebnis">
+        <th class="ergebnis"></th>
+        <ng-container *ngFor="let leistung of this.leistungen.get(versusID)">
+          <th align="center" class="ergebnis">
+            {{ getKlassenNameById(leistung.kid) }}
+          </th>
+        </ng-container>
+      </tr>
+      <ng-container *ngFor="let v of variablen; let i = index">
+        <tr class="ergebnis">
+          <td align="left" class="ergebnis">
+            <b>{{v.name}}</b>
+          </td>
+          <ng-container *ngFor="let leistung of this.leistungen.get(versusID)">
+            <td align="center" class="ergebnis">
+              {{ leistung.ergebnisse[i].wert }}
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </table>
+  </md-card-content>
+</md-card>
+
+<ng-container *ngIf="enoughPermissionsToWrite()">
+  <md-card>
+    <md-card-header>
+      <h4>Ergebnisse eintragen</h4>
+    </md-card-header>
+    <md-card-content>
+      <table width="100%">
+        <tr *ngFor="let i of kontrahentenCountHelper">
+          <td>
+            <md-select placeholder="Klasse" [(ngModel)]="this.neueLeistungen[i].kid">
+              <md-option *ngFor="let klasse of klassen" [value]="klasse.kid">
+                {{ klasse.name }}
+              </md-option>
+            </md-select>
+          </td>
+          <td *ngFor="let row of variablen, let v = index">
+            <ng-container *ngIf="row.typ.zustaende">
+              <md-select placeholder="{{row.name}}" [(ngModel)]="this.neueLeistungen[i].ergebnisse[v].wert">
+                <md-option *ngFor="let z of row.typ.zustaende" [value]="z.name">
+                  {{z.name}}
                 </md-option>
               </md-select>
-            </td>
-            <td *ngFor="let variable of sportart.variablen, let vi=index">
-              <md-input-container>
-                  <input type="text" mdInput [placeholder]="variable.desc" [(ngModel)]="ergebnisse[vi].wert" >
+            </ng-container>
+
+            <ng-container *ngIf="!row.typ.zustaende">
+              <md-input-container> 
+                <input mdInput type="text" placeholder={{variablen[v].name}} [(ngModel)]="this.neueLeistungen[i].ergebnisse[v].wert">
+                <md-hint *ngIf="touched" >Bitte ausfüllen.</md-hint>
               </md-input-container>
-            </td>
-            
-            <td>
-              <md-icon (click)="sendeLeistung()" >save</md-icon>
-            </td>
-          </tr>
-        </table>
-      </md-card-content>
-    </md-card>
-    <br><br>
-    <!--Anzeige der Ergebnisse-->
-    <md-card>
-      <md-card-header>
-        <h4>Ergebnisse</h4>
-      </md-card-header>
-      <md-card-content>
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th (click)="(sortRevA)? sortByClassARev() : sortByClassA()">Klasse A<md-icon>import_export</md-icon></th>
-              <th (click)="(sortRevB)? sortByClassBRev() : sortByClassB()">Klasse B<md-icon>import_export</md-icon></th>
-              <th>Punkte</th>
-              <th>Punkte</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!--<tr *ngFor="let begegnung of punkteStand">
-              <td>{{ begegnung.classA }}</td>
-              <td>{{ begegnung.classB }}</td>
-              <td>{{ begegnung.pointsA }}</td>
-              <td>{{ begegnung.pointsB }}</td>
-            </tr>-->
-          </tbody>
-        </table>
-      </md-card-content>
-    </md-card>
+            </ng-container>
+          </td>
+        </tr>
+      </table>  
+      <button md-raised-button (click)="sichern()" color="accent">Speichern</button>
+    </md-card-content>
+  </md-card>
+</ng-container>

@@ -120,12 +120,22 @@ export class CreateDisciplineComponent implements OnInit {
     }
   }
 
+  getAufAbsteigend(aufab: boolean) {
+    if(aufab){
+      return "Aufsteigend";
+    }else{
+      return "Absteigen";
+    }
+  }
+
   addNewRuleVarLine() {
     let line: Variable = {
       var_id: 0,
       name: '',
       expressionParameter: '',
       desc: '',
+      sortAsc: false,
+      sortIndex: 0,
       typ:
       {
         tid: ''
@@ -148,6 +158,10 @@ export class CreateDisciplineComponent implements OnInit {
 
   removeRuleLine(index: number) {
     this.rules.splice(index, 1);
+  }
+
+  addNewRuleSet(){
+    
   }
 
   submit() {

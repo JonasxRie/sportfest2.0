@@ -75,7 +75,15 @@
           <md-input-container> 
               <input mdInput type="text" placeholder="Beschreibung" [(ngModel)]="rulesVar[i].desc">
           </md-input-container>
-        </td>  
+        </td>   
+        <td> 
+          <md-input-container> 
+            <input mdInput type="number" placeholder="Sortier-Index" [(ngModel)]="rules[i].sortIndex">
+          </md-input-container>
+        </td> 
+        <td> 
+          <md-slide-toggle [(ngModel)]="rules[i].sortAsc">{{ getAufAbsteigend(rules[i].sortAsc) }}</md-slide-toggle>
+        </td>   
         <td> 
           <md-select placeholder="Datentyp" [(ngModel)]="rulesVar[i].typ.tid">
             <md-option *ngFor="let t of datentypen" [value]="t.tid">
@@ -108,7 +116,7 @@
           <md-input-container> 
               <input mdInput type="number" placeholder="Punkte" [(ngModel)]="rules[i].points">
           </md-input-container>
-        </td>  
+        </td>
         <td>
           <md-icon (click)="removeRuleLine(i)" style="cursor: pointer">delete</md-icon>
         </td>
@@ -117,6 +125,7 @@
     <button md-raised-button color="primary" (click)="addNewRuleLine()"><md-icon>add</md-icon>Regel hinzufügen</button>
   </md-card-content>
 </md-card>
+<button md-raised-button color="primary" (click)="addNewRuleSet()"><md-icon>add</md-icon>Regelsatz hinzufügen</button>
 <br>
 <md-card>
   <table>

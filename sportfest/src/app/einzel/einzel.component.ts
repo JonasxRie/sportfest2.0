@@ -1,7 +1,7 @@
-import { Disziplin, Klasse, Schueler, Variable, Ergebnis, Ergebnis2, Leistung } from '../interfaces';
+import { Disziplin, Klasse, Schueler, Variable, Ergebnis2, Leistung } from '../interfaces';
 import { SportfestService } from '../sportfest.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-einzel',
@@ -13,15 +13,15 @@ export class EinzelComponent implements OnInit {
   role: string;
 
   sportartID: number;
-  sportart: string = '';   // TODO: richtige Sportart
-  beschreibung: string = '';  // TODO: richtige Regeln
+  sportart: string = '';
+  beschreibung: string = '';
 
   variablen: Array<Variable> = [];
 
   angemeldeteKlassen: Array<Klasse> = [];
   angemeldeteSchuelerEinerKlasse: Array<Array<Schueler>> = [[]];
 
-  neueLeistung: Leistung = {did: 0, timestamp: null, ergebnisse: [], versus: 0};
+  neueLeistung: Leistung = {did: 0, ergebnisse: [], versus: 0};
 
   klassenMitLeistungen: Array<Klasse> = [];
   schuelerEinerKlasseMitLeistung: Array<Array<Schueler>> = [[]];
@@ -201,14 +201,7 @@ export class EinzelComponent implements OnInit {
       return 0;
     });
   }
-    
-  public inputDisabled(ergObj: Ergebnis): boolean {
-    if ((this.enoughPermissionsToWrite() && ergObj.firstEntry) || this.enoughPermissionsToChange()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+
   private enoughPermissionsToWrite() {
     let role = localStorage.getItem('role');
     if (role == 'admin' || role == 'schiedsrichter'){
