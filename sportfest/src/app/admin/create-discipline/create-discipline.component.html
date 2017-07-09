@@ -37,13 +37,15 @@
           </md-input-container>
         </td>
       <tr>
-      <tr>
-        <td>
-          <md-input-container> 
-            <input mdInput type="number" placeholder="Anzahl der Kontrahenten" [(ngModel)]="kontrahentenAnzahl">
-          </md-input-container>
-        </td>
-      <tr>
+      <ng-container *ngIf="teamleistung">
+        <tr>
+          <td>
+            <md-input-container> 
+              <input mdInput type="number" placeholder="Anzahl der Kontrahenten" [(ngModel)]="kontrahentenAnzahl">
+            </md-input-container>
+          </td>
+        <tr>
+      </ng-container>
     </table>
   </md-card-content>
   <md-card-actions>

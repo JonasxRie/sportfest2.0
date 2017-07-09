@@ -88,7 +88,13 @@ export class CreateDisciplineComponent implements OnInit {
       variablen: this.rulesVar,
       regeln: this.rules,
     }
+
+    if(!disziplinDTO.kontrahentenAnzahl){
+      disziplinDTO.kontrahentenAnzahl = 1;
+    }
+
     console.log("disziplinDTO", disziplinDTO);
+
     if (this.sportartID) {
       this.sfService.disziplinAendern(this.sportartID, disziplinDTO).subscribe(
         (data) => {
