@@ -36,7 +36,7 @@ export class EinzelComponent implements OnInit {
   constructor(private route: ActivatedRoute, private sfService: SportfestService, private router: Router) { }
 
   ngOnInit() {
-    this.role = localStorage.getItem('role');
+    this.role = sessionStorage.getItem('role');
     this.route.params.forEach((params: Params) => {
       this.sportartID = params['did'];
       this.neueLeistung.did = this.sportartID;
