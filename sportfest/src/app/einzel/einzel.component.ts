@@ -111,8 +111,11 @@ export class EinzelComponent implements OnInit {
       });
     });
         
-    // Funktion getBesteSchueler()
-    this.bestenSchueler = [
+    this.bestenSchueler = this.getBesteSchueler();
+  }
+  
+  private getBesteSchueler(): any[] {
+    let besteSchueler = [
       {value: 0, viewValue: 'Mirco', ergebnis: 5.2},
       {value: 1, viewValue: 'Michi', ergebnis: 5.3},
       {value: 2, viewValue: 'Maja', ergebnis: 5.4},
@@ -120,6 +123,14 @@ export class EinzelComponent implements OnInit {
       {value: 4, viewValue: 'Maxi', ergebnis: 5.6},
       {value: 5, viewValue: 'Jonas', ergebnis: 5.7}
     ];
+    this.sfService.schuelerMitLeistungEinerDisziplin(this.sportartID).subscribe((data) => {
+      console.log(data);
+      return besteSchueler;
+    },
+    (err) => {
+      return null;    
+    });
+    return besteSchueler;
   }
 
   sicherbar(){
@@ -129,7 +140,6 @@ export class EinzelComponent implements OnInit {
         sicherbar = false;
       }
     });
-
     return !(this.neueLeistung.kid && this.neueLeistung.sid && sicherbar);
   }
   aufklappen(i: number){
@@ -152,9 +162,8 @@ export class EinzelComponent implements OnInit {
           this.neueLeistung.sid = null;
           this.neueLeistung.ergebnisse.forEach((ergebnis: Ergebnis2) => {
             ergebnis.wert = null;
-          });          
-        }
-    );
+        });
+    });
   }
   public sortByRang(){
     this.switchSort()
